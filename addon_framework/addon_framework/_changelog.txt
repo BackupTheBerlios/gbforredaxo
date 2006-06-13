@@ -1,0 +1,116 @@
+<h2>Changelog:</h2>
+<strong>Not yet released..</strong>
+- rexList:
+  + set/getCaption implementiert
+  + set/getAttributes implementiert
+- rex_db_meta jetzt MySQL5 kompatibel
+- CSS Includes aktualisiert
+- readOnlyField::activateSave() in die Basisklasse verschoben (rexFormField::activateSave())
+- Validierung:
+  + Parmaeterübergabe jetzt möglich
+  + Bugfixes
+  + ValidateEngine updated to 2.8-dev
+  + Pflichtfelder werden nur markiert, wenn diese validen Inhalt enthalten
+
+<strong>RC4 - 01.05.2006</strong>
+
+- <em>BC: Alle Extension Points werden jetzt ausschließlich mit Großbuchstaben gehändelt!</em>
+
+- neuer Funktionsprefix rex_a22_* für alle Funktionen eingebaut
+- logik von rexFormSection aufgetrennt in rexFieldController u. rexFormSection
+- Validierung:
+  + Fehlerhafte felder werden mit einer CSS Klasse "invalid" versehen
+- rexFieldContainer:
+  + searchField() implementiert - Durchsucht den Container nach einem Feld
+- rexForm:
+  + Bugfix: Speichern jetzt auch ohne Validatoren möglich
+  + Bugfix: Wenn ein Feld mit setValue(0), setValue("0") o.ä. beschrieben wurde, wurde nicht gespeichert
+  + die einzelnen Felder werden jetzt mit einem forlaufenden Tabindex verknüpft
+  + auf xhtml strict umgebaut
+- rexList:
+  + Extension Point REX_LIST_*_ROW_ATTR erstellt
+  + Klasse kommentiert (phpDoc)
+  + Grundsätzliche HTML-Struktur ausgebaut
+  + Spaltenbreiten nun via setColGroup() einstellbar
+  + auf xhtml strict umgebaut
+  + setVar(), getVar() implementiert - Damit können statische HTML Konstrukute an versch. Stellen der Liste platziert werden
+  <em>Mögliche Platzhalter:
+  LIST_VAR_TOP => Vor der Liste
+	LIST_VAR_BEFORE_HEAD => Vor den Kopfleisten 
+	LIST_VAR_AFTER_HEAD => Nach den Kopfleisten 
+  LIST_VAR_BEFORE_DATAHEAD => Vor dem Kopfbereich der Tabelle 
+	LIST_VAR_AFTER_DATAHEAD => Nach dem Kopfbereich der Tabelle 
+  LIST_VAR_BEFORE_DATA => Vor dem Datenbereich der Tabelle 
+  LIST_VAR_AFTER_DATA => Nach dem Datenbereich der Tabelle 
+	LIST_VAR_BEFORE_FOOT => Vor den Fußleisten 
+	LIST_VAR_AFTER_FOOT => Nach den Fußleisten 
+	LIST_VAR_BOTTOM => Nach der Liste
+	LIST_VAR_NO_DATA => Wenn die Liste keine Datensätze enthält</em>
+- _getWhereString() gefixed, wenn mehrere Parameter angegeben wurden
+- insert_css(): fügt jetzt dass CSS via externer Datei ein
+- rexBrowseBar: AddButton ausblendbar
+- rexFormField: 
+	+ Fehlerbehandlung für getTags()
+	+ neuer Typ "fieldsetField" implementiert
+	+ neuer Typ "foreignField" implementiert
+  + neuer Typ "passwordField" [thanks to jaehnem]
+  + neuer Type "rexMediaButton" implentiert
+	+ neue Basisklasse "buttonField"
+	+ "saveField" u. "rexSaveField" nun abgeleitet von "buttonField"
+	+ "readOnlyTextField" ist nun von "readOnlyField" abgeleitet
+- rexFormatter: in Methoden aufgesplittet
+- rexFormatter mit "rexmedia"-formatter_type erweitert
+- neues CSS
+- Kleinere Bugfixes
+
+<strong>RC3 - 25.01.2006</strong>
+
+- null values werden nicht gespeichert (für read only fields)
+- MultiValueField Basisklasse implementiert:
+	+ radioField
+	+ checkboxField
+- Dateien einheitlich umbenannt
+- setDefaultStepping() eingebaut
+- rexSaveField: Buttons können ausgeblendet werden
+- neues CSS
+- delete Button nur noch vorhanden, wenn das Form im EditMode ist
+- stepping wird nur als GlobParam hinzugefügt, wenn != default Value
+- Addon ID hinzugefügt
+
+<strong>RC2 - 14.01.2006</strong>
+
+- rexFormatter:
+  + Kommentiert
+  + nl2br eingefügt		
+- &lt;fieldset&gt; um rexForm u. rexList	
+- CSS Files werden nur noch eingebunden, wenn die entsprechende Klasse included wird
+- rexForm:
+  + isValid eingebaut
+  + Extension Point REX_FORM_*_SAVE erstellt
+  + Extension Point REX_FORM_*_DELETE erstellt
+- readSQLDump(): Fehlermeldung entfernt, wenn der SQL Dump leer ist
+- Neue rexForm Buttons eingebaut:
+  + popupButtonField
+  + readOnlyTextField
+  + rexLinkButton
+    
+<strong>RC1 - 05.10.2005</strong>
+
+- Auf Rexextension umgestellt
+- neue Klasse hinzugefügt: rexFormatter zum formatieren von Strings
+- rexSection:
+  + set/getAnchor() eingefügt
+  + parseLabel eingefügt
+- rexField:
+  + neues Feld hinzugefügt: readOnlyField
+  + default css-klasse in basis klasse ausgelagert
+- Lösch und Abbrech-Funktionalität
+- magic_quotes bug gefixed
+- SQL Debugging eingefügt ($rexList->debug = true;, $rexForm->debug = true;)
+- Validierung mit SmartyValidate implementiert
+- rexFormSections implementiert
+- rexForm Validierungen implementiert
+- rexForm Klassen implementiert
+- rexList Klassen implementiert
+
+<strong>initial release - 04.09.2005</strong>
