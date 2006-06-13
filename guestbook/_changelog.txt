@@ -1,0 +1,58 @@
+<h2>Changelog:</h2>
+<strong>Not yet released..</strong>
+
+<strong>ToDo</strong>
+- <b>Neues CSS</b>
+
+	<em>Patches by andre.5tz vom REDAXO-Forum</em>
+	
+- divsoup zum größten Teil entfernt
+- update.sql - Für Updates von alten Versionen
+- rexTablePrefix wird unterstützt
+- Emailbenachrichtigung für Admin
+- Optionaler Freigabemechanismus
+- Email ist kein Pflichtfeld mehr
+- Neues Eingabefeld: Wohnort
+
+<strong>RC6</strong>
+
+- Auf neuste Addon-Framework Version angepasst
+- Uninstall-Routine implementiert
+- Readme handling umgestellt
+- Kleinigkeiten ausgebessert
+
+<strong>RC5</strong>
+	<em>Der Glossar benötigt das Addon "addon_framework" um installiert werden zu können!
+	Das kopieren der CSS Datei ist entfallen!</em>
+	
+- Auf Rexextension umgestellt
+- outputfilter für CSS eingebaut
+- rexForm,rexList eingebaut
+- Es kann jetzt auf Beiträge geantwortet werden
+- Auf neue Addon ID (9) umgestellt
+- Module als Datei ausgelagert
+	    
+<strong>RC4</strong> 
+	<em>Das Gästebuch ist seit version RC4 nur noch mit redaxo 3.0 kompatibel!</em>
+
+- Installationsroutine für redaxo 3.0 angepasst
+
+<strong>RC3</strong> 
+
+- Im Modul Gästebuch - Eintragsliste "&#x26;" in "&#x26;#x26;" umgewandelt (&lt;a href="?article_id=9&#x26;#x26;page=0"&gt;1&lt;/a&gt;)
+- Im Modul Gästebuch - Formular einiges validiert. Sollte jetzt auch XHTML 1.0 Strict konform sein.
+
+<strong>RC2</strong>
+
+- Möglichkeit zur Re-Formatierung der strongailadressen
+- strongailadressen-Verschlüsselung (Optional, Default aktiv)
+- Eigene strongailadress-Verschlüsselungen einbindbar
+
+<strong>RC1</strong>
+
+- Modul zur anzeige der Einträge
+- Modul zur anzeige des Eingabeformulars
+- Redaxo-seitiges löschen der Einträge
+- Komplett per CSS layout-fähig
+
+<strong>initial release<strong>

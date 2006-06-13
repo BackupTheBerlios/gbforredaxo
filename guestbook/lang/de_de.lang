@@ -1,0 +1,39 @@
+#
+# Guestbook Addon 
+# @author staab[at]public-4u[dot]de Markus Staab
+# @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+# @package redaxo3
+# @version $Id: de_de.lang,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+#
+
+menu_title = G&auml;stebuch
+
+label_list = Eintragsliste
+label_form = Eintrag bearbeiten
+label_id = ID
+label_status = Status
+label_author = Autor
+label_message = Nachricht
+label_url = URL
+label_email = E-Mail
+label_city = Wohnort
+label_created = Erstellungsdatum
+label_action = Aktion
+
+label_form_reply = Eintrag beantworten
+label_reply = Antwort
+
+status_online = Online
+status_offline = Offline
+
+reply = Antworten
+
+miss_author = Bitte einen Autor angeben!
+miss_message = Bitte eine Nachricht angeben!
+
+incorect_email = Die angegebene Email-Adresse ist nicht g&uuml;ltig!
+incorect_url = Die angegebende Url ist nicht g&uuml;ltig!
+
+saveStatusInDB_FalscherStatus = Der Wert des Status stimmt nicht.
+saveStatusInDB_SQLFehler = Konnte Status in der Datenbank nicht ändern.
+

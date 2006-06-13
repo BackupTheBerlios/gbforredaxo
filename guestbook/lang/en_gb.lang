@@ -1,0 +1,32 @@
+#
+# Guestbook Addon 
+# @author staab[at]public-4u[dot]de Markus Staab
+# @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+# @package redaxo3
+# @version $Id: en_gb.lang,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+#
+
+menu_title = Guestbook
+
+label_list = Entrylist
+label_form = Edit entry
+label_id = ID
+label_status = State (0=offline, 1=online)
+label_author = Author
+label_message = Message
+label_url = URL
+label_email = E-Mail
+label_city = City
+label_created = Createdate
+label_action = Action
+
+label_form_reply = Reply
+label_reply = Reply
+
+reply = Reply
+
+miss_author = Author mustn`t  be empty!
+miss_message = Message mustn`t be empty!
+
+incorect_email = Given email is not valid!
+incorect_url = Given url is not valid!

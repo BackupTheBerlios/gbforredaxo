@@ -1,0 +1,52 @@
+
+
+<form name="gbook" class="gbook" action="index.php" method="post">
+  <input type="hidden" name="article_id" value="<?php echo $GLOBALS['article_id'] ?>" /> 
+  <input type="hidden" name="clang" value="<?php echo $GLOBALS['clang'] ?>" />
+  <?php echo $error ?>
+  <p>&nbsp; </p>
+  <table width="470" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="80">Name*</td>
+      <td>
+        <input type="text" id="gbook_name" name="name" value="<?php echo $name ?>" maxlength="255" />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="gbook_email">Email</label> </td>
+      <td>
+        <input type="text" id="gbook_email" name="email" value="<?php echo $email ?>" maxlength="255" />
+      </td>
+    </tr>
+    <tr>
+      <td>Homepage</td>
+      <td>
+        <input type="text" id="gbook_url" name="url" value="<?php echo $url ?>" maxlength="255" />
+        http://www.ihrehomepage.de</td>
+    </tr>
+    <tr>
+      <td><label for="gbook_city">Wohnort</label></td>
+      <td>
+        <input type="text" id="gbook_city" name="city" value="<?php echo $city ?>" maxlength="255" />
+      </td>
+    </tr>
+    <tr>
+      <td>Text*</td>
+      <td>
+        <textarea id="gbook_text" name="text" cols="50" rows="5"><?php echo $text ?></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp; </td>
+      <td> 
+        <input class="button" type="submit" name="gbook_save" value="eintragen" />
+        <input class="button" type="reset" value="zur&uuml;cksetzen" name="reset" />
+      </td>
+    </tr>
+  </table>
+  <p><label for="gbook_name"></label>* Pflichtfelder </p>
+  </form>

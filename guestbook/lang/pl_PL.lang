@@ -1,0 +1,32 @@
+#
+# Guestbook Addon 
+# @author staab[at]public-4u[dot]de Markus Staab
+# @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+# @package redaxo3
+# @version $Id: pl_PL.lang,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+#
+
+menu_title = Ksiêga goœci
+
+label_list = Lista wpisów
+label_form = Edycja wpisu
+label_id = ID
+label_status = State (0=offline, 1=online)
+label_author = Autor
+label_message = Wiadomoœæ
+label_url = URL
+label_email = E-Mail
+label_city = City
+label_created = Data utworzenia
+label_action = Akcja
+
+label_form_reply = OdpowiedŸ na wpis
+label_reply = OdpowiedŸ
+
+reply = Odpowiedzi
+
+miss_author = Proszê wpisaæ autora!
+miss_message = Proszê wpisaæ wiadomoœæ!
+
+incorect_email = Podany Email jest niew³aœciwy!
+incorect_url = Podany Url jest niew³aœciwy!

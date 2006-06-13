@@ -1,0 +1,121 @@
+/*
+ Guestbook Addon 
+ @author staab[at]public-4u[dot]de Markus Staab
+ @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+ @package redaxo3
+ @version $Id: guestbook.css,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+ */
+
+
+/*
+	Formular Styles
+*/
+
+
+/* Formular */
+form.gbook div {
+	width: 400px;
+}
+
+/* Eingabefelder */
+form.gbook input, form.gbook textarea {
+	border: 1px solid black;
+    margin: 2px;
+	width: 250px;
+	background-color: #F6F4EF;
+}
+
+/* Text-Eingabefeld*/
+form.gbook textarea {
+	height: 100px;
+}
+
+/* Beschriftungen der Eingabefelder */
+form.gbook div.label {
+	width: 100px;
+	float: left;
+}
+
+/* Buttons */
+form.gbook input.button {
+    width: 100px;
+	margin: 0px;
+	margin-top: 5px;
+	background-color: #D6D3CE;
+}
+
+/* Buttons-Layer*/
+form.gbook div.buttons {
+	padding-left: 105px;
+}
+
+/* Zusatztext-Layer*/
+form.gbook div.info {
+	text-align: right;
+}
+
+/* Fehlermeldungs-Layer*/
+form.gbook div.error {
+	font-weight: bold;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+
+
+/*
+	Listen Styles
+*/
+
+
+/* Einträge-Layer */
+div.gbook .entry {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 2px dashed #859885;
+}
+
+/* Pagination-Layer */
+div.gbook .pagination {
+	float: right;
+}
+
+/* Pagination-Links */
+div.gbook .pagination a {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+/* 
+Allgemeine Formatierungen
+*/
+
+/* Beschriftungen */
+div.gbook .label {
+	float: left;
+}
+
+/* Werte */
+div.gbook .value {
+	padding-left: 150px;
+}
+
+/* 
+Spezifische Formatierungen
+
+z.b.
+[CODE]
+div.gbook .<feldname> .<feldtyp>{
+}
+[/CODE]
+*/
+
+div.gbook .text .label {
+	padding-top: 5px;
+}
+
+div.gbook .text .value {
+	clear: left;
+	padding: 5px;
+	background-color: #F6F4EF;
+}

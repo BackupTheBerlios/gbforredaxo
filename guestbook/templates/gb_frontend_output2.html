@@ -1,0 +1,44 @@
+<head>
+<link href="files/style.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<div class="gbook">
+  <p>&nbsp;</p>
+  <p>{EINTRAEGE_BEGINN} </p>
+  <p><ul class="pagination">{GB_SEITEN}</ul><p></p><br />
+
+<center>
+    <table width="470" cellspacing="0" cellpadding="0" border="0">
+      <!-- BEGIN EintragsUebersicht -->
+      <tr bgcolor="#488848"> 
+        <!--        <td align="left"><a href="mailto:$email" class="email">{AUTHOR_VALUE}</a> schrieb am {DATUM_VALUE}<br>$herkunft</td> -->
+        <td align="left" bgcolor="#BBBBBB" height="20" width="5">&nbsp;</td>
+        <td align="left" bgcolor="#BBBBBB" height="10"><img src="http://www.prima-abenteuer.de/pics/fuss.gif" align="top" width="16" height="16" hspace="8"> 
+          {EMAIL_VALUE} schrieb am {DATUM_VALUE}, {WOHNORT_VALUE}</td>
+      </tr>
+      <tr bgcolor="#57AB27" > 
+        <td align="left" bgcolor="#FFFFFF" height="20" width="5">&nbsp;</td>
+		<td valign="top" colspan="3" bgcolor="#FFFFFF"> {NACHRICHT_VALUE} {ANTWORT_VORHANDEN_BEGINN} 
+          <br />
+          Antwort: {ANTWORT_VALUE} {ANTWORT_VORHANDEN_ENDE} </td>
+      </tr>
+      <tr bgcolor="#57AB27" > 
+        <td colspan="3" bgcolor="#FFFFFF">&nbsp; </td>
+      </tr>
+      <!-- END EintragsUebersicht -->
+    </table>
+</center>
+
+   
+<p><ul class="pagination">{GB_SEITEN}</ul><p></p>
+
+{EINTRAEGE_ENDE}
+
+
+{KEINE_EINTRAEGE_BEGINN}
+
+<p>keine Einträge vorhanden!</p>
+
+{KEINE_EINTRAEGE_ENDE}
+
+</div>
+       
