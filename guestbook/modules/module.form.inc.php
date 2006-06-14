@@ -5,9 +5,13 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.2 2006/06/14 22:34:07 koala_s Exp $
  */
- 
+
+// Dateifunktionen zur Statusbearbeitung einbinden
+include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_file.php');
+
+
 function gbook_form_input($notificationEmail)
 {
   if(empty($notificationEmail))
@@ -85,9 +89,16 @@ function gbook_form_output($notificationEmail)
     $city_value     = checkPostVarForMySQL($_POST['city'],'NULL');
     
     
+    $status = gbook_readStatusFromFile();
+    if ($status === false) {
+      echo 'Fehler.';
+      $status_db = '';
+    } else {
+      $status_db = 'status = "'.$status.'",';
+    }
 
     //$qry = 'INSERT INTO '.TBL_GBOOK.' SET  author = "'.$author.'", message = "'.$message.'", url ="'.$url.'", email="'.$email.'", city="'.$city.'", created = UNIX_TIMESTAMP()';
-    $qry = 'INSERT INTO '.TBL_GBOOK.' SET author = '.$author_value.', message = '.$message_value.', 
+    $qry = 'INSERT INTO '.TBL_GBOOK.' SET '.$status_db.' author = '.$author_value.', message = '.$message_value.', 
             url = '.$url_value.', email = '.$email_value.', city = '.$city_value.', 
             created = UNIX_TIMESTAMP()';
     $sql = new sql();

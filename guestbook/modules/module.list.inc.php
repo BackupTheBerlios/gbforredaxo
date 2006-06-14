@@ -5,9 +5,11 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.2 2006/06/14 22:34:07 koala_s Exp $
  */
  
+// Dateifunktionen zur Statusbearbeitung einbinden
+include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_file.php');
 
 /**
  * gbook_list_input
@@ -348,65 +350,5 @@ function gbook_saveStatusInDB($status = 1) {
 }
 
 
-
-
-
-
-
-
-/**
- * gbook_pagination  ORIGINAL
- * 
- * @param $currentPage
- * @param $elementsPerPage
- * @param $paginationsPerPage
- * @param int   status  1=online 0=offline
- * @return string komplette Seitennavigation
- */
-function gbook_pagination_org($currentPage, $elementsPerPage, $paginationsPerPage, $status) {
-
-  $qry = 'SELECT count(*) rowCount FROM '.TBL_GBOOK .' WHERE status="1" OR status="'. (int) $status .'"';
-  $sql = new sql();
-  $data = $sql->get_array($qry);
-
-  $oneSidePaginations = floor($paginationsPerPage / 2);
-  //var_dump( $oneSidePaginations);
-  $rowCount = $data[0]['rowCount'];
-  //var_dump( $rowCount);
-  $pageCount = ceil($rowCount / $elementsPerPage) + 1;
-  //var_dump( $pageCount);
-  if ($currentPage <= $oneSidePaginations)
-  {
-    $start = 1;
-  }
-  else
-  {
-    $start = $currentPage - $oneSidePaginations;
-  }
-  //var_dump( $start);
-
-  $str = '';
-
-  if ($currentPage != 0)
-  {
-    $str .= gbook_paginationurl(0, '&laquo;');
-  }
-
-  for ($i = 0; $i <= $paginationsPerPage; $i ++)
-  {
-    if ($start == $pageCount)
-    {
-      break;
-    }
-    $str .= gbook_paginationurl($start -1, $start);
-    $start ++;
-  }
-
-  if ($currentPage != ($pageCount -2))
-  {
-    $str .= gbook_paginationurl($pageCount -2, '&raquo;');
-  }
-  return $str;
-}
 
 ?>

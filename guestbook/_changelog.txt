@@ -4,6 +4,14 @@
 <strong>ToDo</strong>
 - <b>Neues CSS</b>
 
+	<em>changes by Koala</em>
+- Template-Klasse
+- Trennung der Frontendausgaben von PHP- und HTML-Code durch Templates
+- Pagination verbessert
+- speichern des Status kann in eine Datei erfolgen (beachte Installtion der Action: Gästebuch - Eintragsliste StatusPerDatei)
+
+
+
 	<em>Patches by andre.5tz vom REDAXO-Forum</em>
 	
 - divsoup zum größten Teil entfernt
