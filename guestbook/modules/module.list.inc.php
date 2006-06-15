@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.2 2006/06/14 22:34:07 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.3 2006/06/15 20:55:02 koala_s Exp $
  */
  
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -195,8 +195,8 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
                         ));
     } // if (is_array($data))
 
-     // komplette Seite ausgeben
-     $t->pparse("output", "start");
+    // komplette Seite ausgeben
+    $t->pparse("output", "start");
 
   } else {
    // Ausgabe im Backend

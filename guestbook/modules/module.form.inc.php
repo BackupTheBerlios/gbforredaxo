@@ -1,30 +1,47 @@
 <?php
-
 /**
  * Guestbook Addon 
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.2 2006/06/14 22:34:07 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.3 2006/06/15 20:55:02 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
 include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_file.php');
 
 
-function gbook_form_input($notificationEmail)
-{
-  if(empty($notificationEmail))
-  {
+/**
+ * gbook_form_input
+ * 
+ * @param Admin-EMail
+ * @param Danke-Text
+ * 
+ */
+function gbook_form_input($notificationEmail, $danke_text) {
+  if (empty($notificationEmail)) {
     global $REX;
     $notificationEmail = $REX['ERROR_EMAIL'];
   }
+  if (!isset ($danke_text) or $danke_text == '') {
+    $danke_text = 'Danke für Ihren Eintrag!</p>
+      <p>Die von Ihnen eingegebenen Daten wurden erfolgreich gespeichert.<br />
+      Vor der Veröffentlichung wird der Eintrag durch den Webmaster geprüft. Freigegeben werden nur unbedenkliche Einträge.</p>';
+  }
+
 ?>
     Email Benachritigungsadresse: (email@domain.de,post@domain.de)
     <br />
     <input type="text" name="VALUE[1]" value="<?php echo $notificationEmail ?>" class="inp100" />
     <br />
     siehe <a href="http://www.php.net/manual/de/function.mail.php" target="_blank">PHP Manual - mail() - to-Parameter</a>
+    <br />
+    Danke-Text:
+    <br />
+    <textarea name="VALUE[2]" class="inp100" /><?php echo $danke_text ?></textarea>
+    <br />
+
+
 <?php
 }
 
@@ -49,7 +66,6 @@ function checkPostVarForMySQL($var, $default = '') {
   } else {
     $var = '';
   }
-  
   return $var;
 }
 
@@ -57,11 +73,11 @@ function checkPostVarForMySQL($var, $default = '') {
 /**
  * gbook_form_output
  * 
- * 
+ * @param Admin-EMail
+ * @param Danke-Text
  * 
  */
-function gbook_form_output($notificationEmail)
-{
+function gbook_form_output($notificationEmail, $danke_text) {
   global $REX;
 
   // wenn Template-Klasse noch nicht eingebunden, dann hole sie jetzt rein
@@ -105,11 +121,23 @@ function gbook_form_output($notificationEmail)
     //$sql->debugsql = true;
     $sql->query($qry);
     
-    echo'
-      <p class="info">Danke für Ihren Eintrag!</p>
-      <p>Die von Ihnen eingegebenen Daten wurden erfolgreich gespeichert.<br />Vor der Veröffentlichung wird der Eintrag durch den Webmaster geprüft. Freigegeben werden nur unbedenkliche Einträge.</p>
-    ';
 
+    if (!isset ($danke_text)) {
+      $danke_text = '';
+    }
+
+    $t->set_var(array("DANKE_TEXT_VALUE" => $danke_text,
+                      "FEHLERMELDUNG_VALUE" => '',
+                      "ARTICLE_ID_VALUE" => $GLOBALS['article_id'],
+                      "CLANG_VALUE" => $GLOBALS['clang'],
+                      "NAME_VALUE" => '',
+                      "EMAIL_VALUE" => '',
+                      "URL_VALUE" => '',
+                      "WOHNORT_VALUE" => '',
+                      "TEXT_VALUE" => ''
+                  ));
+
+    // EMail an Admin
     if ($notificationEmail != '') {
       $author = htmlspecialchars($_POST['name']);
       $message = htmlspecialchars($_POST['text']);
@@ -126,8 +154,10 @@ function gbook_form_output($notificationEmail)
          'Reply-To: '. $notificationEmail ."\r\n" .
          'X-Mailer: PHP/' . phpversion();
     
-      mail($notificationEmail, $betreff, $nachricht, $header);
+      mail ($notificationEmail, $betreff, $nachricht, $header);
     }
+    
+    
   } else { // if (($errorfields = validFields()) === true)
     $error = '';
     $name = '';
@@ -136,8 +166,7 @@ function gbook_form_output($notificationEmail)
     $city = '';
     $text = '';
 
-    if (!empty ($_POST['gbook_save']))
-    {
+    if (!empty ($_POST['gbook_save'])) {
       // var_dump($_POST);
       // Felder mit Werten füllen
       $name = $_POST['name'];
@@ -148,52 +177,31 @@ function gbook_form_output($notificationEmail)
 
       $error .= '<ul class="error">';
 
-      foreach ($errorfields as $fieldname)
-      {
+      foreach ($errorfields as $fieldname) {
         $error .= '<li>Pflichtfeld "'.ucwords($fieldname).'" bitte korrekt ausf&uuml;llen!</li>';
       }
 
       $error .= '</ul>';
     } // if (!empty ($_POST['gbook_save']))
-?>
+    
+    
+    $t->set_var(array("DANKE_TEXT_VALUE" => '',
+                      "FEHLERMELDUNG_VALUE" => $error,
+                      "ARTICLE_ID_VALUE" => $GLOBALS['article_id'],
+                      "CLANG_VALUE" => $GLOBALS['clang'],
+                      "NAME_VALUE" => $name,
+                      "EMAIL_VALUE" => $email,
+                      "URL_VALUE" => $url,
+                      "WOHNORT_VALUE" => $city,
+                      "TEXT_VALUE" => $text
+                  ));
+    
+  } // else { // if (($errorfields = validFields()) === true)
 
-<form name="gbook" class="gbook" action="index.php" method="post">
-  <input type="hidden" name="article_id" value="<?php echo $GLOBALS['article_id'] ?>" /> 
-  <input type="hidden" name="clang" value="<?php echo $GLOBALS['clang'] ?>" /> 
-  <?php echo $error ?>
-  <p>
-    <label for="gbook_name">Name*</label>
-    <input type="text" id="gbook_name" name="name" value="<?php echo $name ?>" maxlength="255" />
-  </p>
-  <p>
-    <label for="gbook_email">Email</label>
-    <input type="text" id="gbook_email" name="email" value="<?php echo $email ?>" maxlength="255" />
-  </p>
-  <p>
-    <label for="gbook_url">Homepage</label>
-    <input type="text" id="gbook_url" name="url" value="<?php echo $url ?>" maxlength="255" />
-  </p>
-  <p>
-    <label for="gbook_city">Wohnort</label>
-    <input type="text" id="gbook_city" name="city" value="<?php echo $city ?>" maxlength="255" />
-  </p>
-  <p>
-    <label for="gbook_text">Text*</label>
-    <textarea id="gbook_text" name="text" cols="0" rows="0"><?php echo $text ?></textarea>
-  </p>
-  <p class="buttons">
-    <input class="button" type="submit" name="gbook_save" value="eintragen" />
-    <input class="button" type="reset" value="zur&uuml;cksetzen" />
-  </p>
-  <p class="hint">
-    * Pflichtfelder
-  </p>
-</form>
 
-<?php
-
-  }
-}
+    // komplette Seite ausgeben
+    $t->pparse("output", "start");
+} // gbook_form_output($notificationEmail, $danke_text)
 
 
 
