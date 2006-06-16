@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.3 2006/06/15 20:55:02 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.4 2006/06/16 09:48:09 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -24,9 +24,8 @@ function gbook_form_input($notificationEmail, $danke_text) {
     $notificationEmail = $REX['ERROR_EMAIL'];
   }
   if (!isset ($danke_text) or $danke_text == '') {
-    $danke_text = 'Danke für Ihren Eintrag!</p>
-      <p>Die von Ihnen eingegebenen Daten wurden erfolgreich gespeichert.<br />
-      Vor der Veröffentlichung wird der Eintrag durch den Webmaster geprüft. Freigegeben werden nur unbedenkliche Einträge.</p>';
+    $danke_text = 'Danke für Ihren Eintrag!'."\n".'Die von Ihnen eingegebenen Daten wurden erfolgreich gespeichert.'."\n".'
+      Vor der Veröffentlichung wird der Eintrag durch den Webmaster geprüft. Freigegeben werden nur unbedenkliche Einträge.';
   }
 
 ?>
@@ -35,10 +34,10 @@ function gbook_form_input($notificationEmail, $danke_text) {
     <input type="text" name="VALUE[1]" value="<?php echo $notificationEmail ?>" class="inp100" />
     <br />
     siehe <a href="http://www.php.net/manual/de/function.mail.php" target="_blank">PHP Manual - mail() - to-Parameter</a>
-    <br />
+    <br /><br />
     Danke-Text:
     <br />
-    <textarea name="VALUE[2]" class="inp100" /><?php echo $danke_text ?></textarea>
+    <textarea name="VALUE[2]" class="inp100" rows="6" /><?php echo $danke_text ?></textarea>
     <br />
 
 
