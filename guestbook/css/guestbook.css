@@ -3,7 +3,7 @@
  @author staab[at]public-4u[dot]de Markus Staab
  @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  @package redaxo3
- @version $Id: guestbook.css,v 1.2 2006/06/18 18:55:18 koala_s Exp $
+ @version $Id: guestbook.css,v 1.3 2006/06/23 17:10:22 koala_s Exp $
  */
 
 
@@ -13,51 +13,58 @@
 
 
 /* Formular */
-form.gbook div {
+.a9-form {
 	width: 400px;
 }
 
 /* Eingabefelder */
-form.gbook input, form.gbook textarea {
+.a9-form input, .a9-form textarea {
 	border: 1px solid black;
-    margin: 2px;
+  margin: 1px 2px 1px 2px;
 	width: 250px;
 	background-color: #F6F4EF;
 }
 
+.a9-form input:focus, .a9-form textarea:focus {
+	background-color: #EEEEEE;
+}
+
 /* Text-Eingabefeld*/
-form.gbook textarea {
+.a9-form textarea {
 	height: 100px;
 }
 
 /* Beschriftungen der Eingabefelder */
-form.gbook div.label {
+.a9-form label {
 	width: 100px;
 	float: left;
+  padding-left: 5px;
 }
 
+
 /* Buttons */
-form.gbook input.button {
-    width: 100px;
+.a9-form .a9-fsubmit {
+	width: 100px;
 	margin: 0px;
 	margin-top: 5px;
 	background-color: #D6D3CE;
 }
 
 /* Buttons-Layer*/
-form.gbook div.buttons {
+.a9-form .a9-buttons {
 	padding-left: 105px;
 }
 
 /* Zusatztext-Layer*/
-form.gbook div.info {
+.a9-form .info {
 	text-align: right;
+      padding: 0px 5px 5px 0px;
 }
 
 /* Fehlermeldungs-Layer*/
-form.gbook div.error {
+.a9-form div.error {
 	font-weight: bold;
-	padding-top: 5px;
+	padding-top: 0px;
 	padding-bottom: 10px;
 }
 
@@ -69,57 +76,52 @@ form.gbook div.error {
 
 
 /* Einträge-Layer */
-div.gbook .entry {
-	padding-top: 10px;
+.a9-entries .a9-entry {
 	padding-bottom: 10px;
-	border-bottom: 2px dashed #859885;
+	border-bottom: 1px dotted #859885;
+}
+
+.a9-entries p {
+	margin: 0px;
+	padding: 0px;
 }
 
 /* Pagination-Layer */
-div.gbook .pagination {
-	float: right;
-}
-
-li.pagination {
-  list-style-type: none;
+.a9-entries .a9-pagination 
+{
+	text-align: right;
 }
 
 /* Pagination-Links */
-div.gbook .pagination a {
+.a9-entries .a9-pagination a 
+{
 	padding-left: 2px;
 	padding-right: 2px;
 }
 
+.a9-entries ul li {
+	list-style-type: none;
+	display: inline;
+}
+
 /* 
-Allgemeine Formatierungen
+	Allgemeine Formatierungen
 */
 
 /* Beschriftungen */
-div.gbook .label {
+.a9-entries .a9-label {
 	float: left;
+  width: 70px;
 }
 
 /* Werte */
-div.gbook .value {
-	padding-left: 150px;
+.a9-entries .a9-value {
+	padding-left: 70px;
 }
 
-/* 
-Spezifische Formatierungen
-
-z.b.
-[CODE]
-div.gbook .<feldname> .<feldtyp>{
-}
-[/CODE]
-*/
-
-div.gbook .text .label {
-	padding-top: 5px;
+/* Mozilla */
+li.pagination {
+  list-style-type: none;
 }
 
-div.gbook .text .value {
-	clear: left;
-	padding: 5px;
-	background-color: #F6F4EF;
-}
+
