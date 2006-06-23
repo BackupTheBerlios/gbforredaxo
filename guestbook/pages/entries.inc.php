@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: entries.inc.php,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+ * @version $Id: entries.inc.php,v 1.2 2006/06/23 17:19:54 koala_s Exp $
  */
  
 //------------------------------> Parameter
@@ -49,8 +49,8 @@ if ($func == '')
   $colId = new resultColumn('id', $I18N_GBOOK->msg('label_id'));
   $colAuthor = new resultColumn('author', $I18N_GBOOK->msg('label_author'));
   $colMsg = new resultColumn('message', $I18N_GBOOK->msg('label_message'), 'truncate');
-//  $colUrl = new resultColumn('url', $I18N_GBOOK->msg('label_url'), 'url');
-  $colUrl = new resultColumn('url', $I18N_GBOOK->msg('label_url'));
+  $colUrl = new resultColumn('url', $I18N_GBOOK->msg('label_url'), 'url');
+//  $colUrl = new resultColumn('url', $I18N_GBOOK->msg('label_url'));
   $colCity = new resultColumn('city', $I18N_GBOOK->msg('label_city'));
   $colCreated = new resultColumn('created', $I18N_GBOOK->msg('label_created'), 'strftime', 'datetime');
 
