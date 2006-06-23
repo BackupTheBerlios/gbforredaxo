@@ -3,7 +3,7 @@
 # @author staab[at]public-4u[dot]de Markus Staab
 # @author <a href="http://www.public-4u.de">www.public-4u.de</a>
 # @package redaxo3
-# @version $Id: en_gb.lang,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+# @version $Id: en_gb.lang,v 1.2 2006/06/23 17:13:03 koala_s Exp $
 #
 
 menu_title = Guestbook
@@ -30,3 +30,8 @@ miss_message = Message mustn`t be empty!
 
 incorect_email = Given email is not valid!
 incorect_url = Given url is not valid!
+
+saveStatusInDatei_FalscherStatus = Der Wert des Status stimmt nicht.
+saveStatusInDatei_Fehler = Konnte Status nicht speichern. Stimmen die Zugriffrechte auf das Verzeichnis guestbook/config/status.txt?
+readStatusFromFile_FalscherStatus = Der Wert des Status stimmt nicht.
+readStatusFromFile_Fehler = Konnte Status nicht speichern. Stimmen die Zugriffrechte auf das Verzeichnis guestbook/config/status.txt?
