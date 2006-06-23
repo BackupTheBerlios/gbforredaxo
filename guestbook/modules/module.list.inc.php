@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.3 2006/06/15 20:55:02 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.4 2006/06/23 17:14:36 koala_s Exp $
  */
  
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -24,49 +24,46 @@ include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_f
  */
 function gbook_list_input($elementsPerPage, $paginationsPerPage, $dateFormat, $emailFormat, $encryptEmails, $status) {
 ?>
-    <br />
-    Einträge pro Seite:
-    <br />
-    <input type="text" name="VALUE[1]" value="<?php echo $elementsPerPage ?>" size="5" maxlength="2" style="text-align: center"/>
-    <br /><br />
-    Anzahl anzuzgeigender Seiten:
-    <br />
-    <input type="text" name="VALUE[2]" value="<?php echo $paginationsPerPage ?>" size="5" maxlength="2" style="text-align: center"/>
-    <br /><br />
-    Email-Adressen verschlüsseln:
-    <br />
-    <select name="VALUE[5]">
+  <fieldset>
+    <legend>Gästebuch Einstellungen</legend>
+    
+    <label for="VALUE[1]">Einträge pro Seite:</label>
+    <input type="text" id="VALUE[1]" name="VALUE[1]" value="<?php echo $elementsPerPage ?>" maxlength="2" />
+    
+    <label for="VALUE[2]">Anzahl anzuzgeigender Seiten:</label>
+    <input type="text" id="VALUE[2]" name="VALUE[2]" value="<?php echo $paginationsPerPage ?>" maxlength="2" />
+    
+    <label for="VALUE[5]">Email-Adressen verschlüsseln:</label>
+    <select name="VALUE[5]" id="VALUE[5]">
      <option value="0" <?php echo $encryptEmails == '0' ? 'selected="selected"' : '' ?>>Nein</option>
      <option value="1" <?php echo $encryptEmails == '1' ? 'selected="selected"' : '' ?>>Ja</option>
     </select>
-    <br /><br />
-    Veröffentlichung erst nach Freigabe:
-    <br />
-    <select name="VALUE[6]">
+    
+    <label for="VALUE[6]">Veröffentlichung erst nach Freigabe:</label>
+    <select name="VALUE[6]" id="VALUE[6]">
      <option value="1" <?php echo $status == '1' ? 'selected="selected"' : '' ?>>Nein</option>
      <option value="0" <?php echo $status == '0' ? 'selected="selected"' : '' ?>>Ja</option>
     </select>
-    <br /><br />
-    Datums-Format:
-    <br />
-    <input type="text" name="VALUE[3]" value="<?php echo $dateFormat ?>" size="45"/>
-    <br />
-    siehe <a href="http://php.net/strftime" target="_blank">PHP Manual - strftime()</a>
-    <br /><br />
-    Email-Adressen-Format:
-    <br />
-    <input type="text" name="VALUE[4]" value="<?php echo $emailFormat ?>" size="45"/>
-    <br /><br />
-    Beispiel:<br />
-    max.mustermann@nowhere.no<br />
-    %to% == max.mustermann<br />
-    %domain% == nowhere<br />
-    %tldomain% == no<br />
-    <br />
-    Format-Beispiele:<br />
-    %to%@%domain%.%tldomain%<br />
-    %to%[AT]%domain%[DOT]%tldomain%<br />
-    %to%*AT*%domain%*DOT*%tldomain%<br />
+    
+    <label for="VALUE[3]">Datums-Format:</label>
+    <input type="text" name="VALUE[3]" id="VALUE[3]" value="<?php echo $dateFormat ?>" />
+    <p>siehe <a href="http://php.net/strftime">PHP Manual - strftime()</a></p>
+  
+    <label for="VALUE[4]">Email-Adressen-Format:</label>
+    <input type="text" name="VALUE[4]" id="VALUE[4]" value="<?php echo $emailFormat ?>" />
+    <p>
+      Beispiel:<br />
+      max.mustermann@nowhere.no<br />
+      %to% == max.mustermann<br />
+      %domain% == nowhere<br />
+      %tldomain% == no<br />
+      <br />
+      Format-Beispiele:<br />
+      %to%@%domain%.%tldomain%<br />
+      %to%[AT]%domain%[DOT]%tldomain%<br />
+      %to%*AT*%domain%*DOT*%tldomain%
+    </p>
+  </fieldset>
     <?php
 
 
@@ -203,21 +200,15 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 ?>
 
 
- <b>Die Einträge sind nur im Frontend sichtbar!</b>
- <br /><br />
- <b>Konfiguration:</b>
- <br />
- Einträge pro Seite: <b><?php echo $elementsPerPage ?></b>
- <br />
- Anzahl anzuzgeigender Seiten: <b><?php echo $paginationsPerPage ?></b>
- <br />
- Emailverschlüsselung: <b><?php echo $encryptEmails == '1' ? 'Ja' : 'Nein' ?></b>
- <br />
- Veröffentlichung erst nach Freigabe: <strong><?php echo $status == '0' ? 'Ja' : 'Nein' ?></strong>
- <br />
- Datumsformat: <b><?php echo $dateFormat ?></b>
- <br />
- Emailformat: <b><?php echo $emailFormat ?></b>
+  <p class="rex-info">Die Einträge sind nur im Frontend sichtbar!</p>
+  <h6>Konfiguration:</h6>
+  <p>Einträge pro Seite: <span class="rex-em"><?php echo $elementsPerPage ?></span></p>
+  <p>Anzahl anzuzgeigender Seiten: <span class="rex-em"><?php echo $paginationsPerPage ?></span></p>
+  <p>Emailverschlüsselung: <span class="rex-em"><?php echo $encryptEmails == '1' ? 'Ja' : 'Nein' ?></span></p>
+  <p>Veröffentlichung nach Freigabe: <span class="rex-em"><?php echo $status == '0' ? 'Ja' : 'Nein' ?></span></p>
+  <p>Datumsformat: <span class="rex-em"><?php echo $dateFormat ?></span></p>
+  <p>Emailformat: <span class="rex-em"><?php echo $emailFormat ?></span></p>
+
  <?php
 
 
@@ -301,7 +292,7 @@ function gbook_paginationurl($page, $label = null, $title_name = '')
   {
     $label = $page;
   }
-  $link = '<li class="pagination"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">'; 
+  $link = '<li class="a9-pagination"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">'; 
   $link .= $label.'</a></li>';
   return $link;
 }

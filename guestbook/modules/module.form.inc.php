@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.4 2006/06/16 09:48:09 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.5 2006/06/23 17:14:27 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -29,14 +29,11 @@ function gbook_form_input($notificationEmail, $danke_text) {
   }
 
 ?>
-    Email Benachritigungsadresse: (email@domain.de,post@domain.de)
+    <label for="VALUE[1]">Email benachritigungsadresse: (email@domain.de,post@domain.de)</label>
+    <input type="text" id="VALUE[1]" name="VALUE[1]" value="<?php echo $notificationEmail ?>" class="inp100" />
+    <p>siehe <a href="http://www.php.net/manual/de/function.mail.php">PHP Manual - mail() - to-Parameter</a></p>
     <br />
-    <input type="text" name="VALUE[1]" value="<?php echo $notificationEmail ?>" class="inp100" />
-    <br />
-    siehe <a href="http://www.php.net/manual/de/function.mail.php" target="_blank">PHP Manual - mail() - to-Parameter</a>
-    <br /><br />
-    Danke-Text:
-    <br />
+    <label for="VALUE[2]">Danke-Text:</label>    
     <textarea name="VALUE[2]" class="inp100" rows="6" /><?php echo $danke_text ?></textarea>
     <br />
 
