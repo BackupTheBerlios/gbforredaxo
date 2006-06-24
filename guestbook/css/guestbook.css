@@ -3,7 +3,7 @@
  @author staab[at]public-4u[dot]de Markus Staab
  @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  @package redaxo3
- @version $Id: guestbook.css,v 1.3 2006/06/23 17:10:22 koala_s Exp $
+ @version $Id: guestbook.css,v 1.4 2006/06/24 17:14:00 koala_s Exp $
  */
 
 
@@ -87,17 +87,22 @@
 }
 
 /* Pagination-Layer */
-.a9-entries .a9-pagination 
-{
+.a9-entries .a9-pagination {
 	text-align: right;
 }
 
 /* Pagination-Links */
-.a9-entries .a9-pagination a 
-{
+.a9-entries .a9-pagination a {
 	padding-left: 2px;
 	padding-right: 2px;
 }
+
+/* hervorheben des Aktuelle-Seite-Links */
+.a9-pagination_aktuell a {
+  font-weight: bold;
+  text-decoration:underline;
+}
+
 
 .a9-entries ul li {
 	list-style-type: none;
