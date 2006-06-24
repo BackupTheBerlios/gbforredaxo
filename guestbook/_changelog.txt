@@ -2,13 +2,13 @@
 <strong>Not yet released..</strong>
 
 <strong>ToDo</strong>
-- <b>Neues CSS</b>
+- <b>Spamschutz</b>
 
 	<em>changes by Koala</em>
 - Template-Klasse
 - Trennung der Frontendausgaben von PHP- und HTML-Code durch Templates
 - Pagination verbessert
-- speichern des Status kann in eine Datei erfolgen (beachte Installtion der Action: Gästebuch - Eintragsliste StatusPerDatei)
+- speichern des Status kann in eine Datei erfolgen (beachte Installation der Action: Gästebuch - Eintragsliste StatusPerDatei)
 
 
 
