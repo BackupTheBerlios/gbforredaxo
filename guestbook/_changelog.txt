@@ -3,13 +3,26 @@
 
 <strong>ToDo</strong>
 - <b>Spamschutz</b>
+- Pagination verbessert
+	(Noch nicht ganz; auf der letzten Seite stimmt mit der Anzeige etwas noch nicht.
+	 Es werden weniger Seitenzahlen angezeigt, als sein müssten.)
+
+
+
+
 
 	<em>changes by Koala</em>
+25.06.2006
+- Funktion zum automatischen Verbinden der Action mit dem Modul während der Installation hinzugefügt
+
+
+24.06.2006
 - Template-Klasse
 - Trennung der Frontendausgaben von PHP- und HTML-Code durch Templates
 - Pagination verbessert
+	(Noch nicht ganz; auf der letzten Seite stimmt mit der Anzeige etwas noch nicht.
+	 Es werden weniger Seitenzahlen angezeigt, als sein müssten.)
 - speichern des Status kann in eine Datei erfolgen (beachte Installation der Action: Gästebuch - Eintragsliste StatusPerDatei)
-
 
 
 	<em>Patches by andre.5tz vom REDAXO-Forum</em>
