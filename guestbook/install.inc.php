@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: install.inc.php,v 1.2 2006/06/24 22:48:09 koala_s Exp $
+ * @version $Id: install.inc.php,v 1.3 2006/06/24 23:35:55 koala_s Exp $
  */
  
 $error = '';
@@ -19,7 +19,7 @@ if ($error == '')
   $error .= rex_installAddon(dirname(__FILE__).'/install.sql');
   include(dirname(__FILE__).'/install.php');
   // installAction2Modul(Name des Modules, Name der Action)
-  $error .= installAction2Modul('Gästebuch - Eintragslis', 'Gästebuch - Eintragsliste StatusPerDatei');
+  $error .= installAction2Modul('Gästebuch - Eintragsliste', 'Gästebuch - Eintragsliste StatusPerDatei');
 }
 
 // Funktionen dürfen ruhig auch mal ein TRUE zurückgeben
