@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.4 2006/06/23 17:14:36 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.5 2006/06/24 17:17:31 koala_s Exp $
  */
  
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -118,7 +118,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
     if (is_array($data)) {
 
-      $GB_SEITEN = gbook_pagination($page, $elementsPerPage, $paginationsPerPage, $status);
+      $GB_SEITEN = gbook_pagination($page, $elementsPerPage, $paginationsPerPage);
       $t->set_var(array("GB_SEITEN"   => $GB_SEITEN
                         ));
 
@@ -216,8 +216,9 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
 }
 
+
 /**
- * gbook_pagination TEST
+ * gbook_pagination
  * 
  * @param $currentPage
  * @param $elementsPerPage
@@ -225,9 +226,9 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
  * @param int   status  1=online 0=offline
  * @return string komplette Seitennavigation
  */
-function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage, $status) {
+function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
 
-  $qry = 'SELECT count(*) rowCount FROM '.TBL_GBOOK .' WHERE status="1"';
+  $qry = 'SELECT count(*) rowCount FROM '.TBL_GBOOK .' WHERE '.TBL_GBOOK .'.status = "1"';
   $sql = new sql();
   $data = $sql->get_array($qry);
 
@@ -238,38 +239,45 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage, $
   $pageCount = ceil($rowCount / $elementsPerPage) + 1;
   //var_dump( $pageCount);
   if ($currentPage <= $oneSidePaginations) {
-    $start = 0;
+    (int) $start = 1;
   } else {
-    $start = $currentPage - $oneSidePaginations;
+    (int) $start = $currentPage - $oneSidePaginations;
   }
   //var_dump( $start);
+  //DebugOut($pageCount);
 
   $str = '';
 
-  if ($currentPage != ($pageCount -2)) {
-    $str .= "\n".gbook_paginationurl($pageCount -2, '&raquo;','Ende')."\n";
+  if ($currentPage != 0) {
+    $str .= "\n".gbook_paginationurl(0, '&laquo;','Anfang')."\n";
   }
 
   // Seitenzahlen in ein Array speichern
   $seiten_array = array();
 
   // erste Seite
-  $seiten_array[] = gbook_paginationurl($start, $start +1, $start +1);
+ // $seiten_array[] = gbook_paginationurl($start, $start +1, $start +1);
 
-  for ($i = 0; $i <= $paginationsPerPage -2; $i ++) {
-    if ($start == $pageCount -2) {
+  for ($i = 0; $i <= $paginationsPerPage -1; $i ++) {
+    if ($start == $pageCount) {
       break;
     }
-    $seiten_array[] = gbook_paginationurl($start +1, $start +2, $start +2);
+    if ($currentPage == $start -1) {
+      $seiten_array[] = gbook_paginationurl($start -1, $start , $start, 1);      
+    } else {
+      $seiten_array[] = gbook_paginationurl($start -1, $start , $start);
+    }
     $start ++;
   }
 
   // Arrayinhalt umdrehen und Seitenzahlen in eine Variable zurückschreiben
   // und ein Trennzeichen einfügen, damit man das im Seitenquelltext besser lesen kann 
-  $str .= implode ("\n", array_reverse ($seiten_array));
+  //$str .= implode ("\n", array_reverse ($seiten_array));
+  $str .= implode ("\n", $seiten_array);
 
-  if ($currentPage != 0) {
-    $str .= "\n".gbook_paginationurl(0, '&laquo;','Anfang')."\n";
+  // zeige den Sprung zum Ende nur, wenn noch nicht alle Links zum anklicken zu sehen sind 
+  if ($currentPage != ($pageCount -3) and $currentPage != ($pageCount -2)) {
+    $str .= "\n".gbook_paginationurl($pageCount -2, '&raquo;','Ende')."\n";
   }
   
   return $str;
@@ -284,15 +292,20 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage, $
  * @param int     $page
  * @param         $label
  * @param string  title_name - 
+ * @param bool    aktuelle Seite (1 oder 0)
  * @return string Link auf nächste Seite
  */
-function gbook_paginationurl($page, $label = null, $title_name = '')
+function gbook_paginationurl($page, $label = null, $title_name = '', $aktuelleSeite = 0)
 {
   if ($label === null)
   {
     $label = $page;
   }
-  $link = '<li class="a9-pagination"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">'; 
+  $class_aktuell = 'a9-pagination';
+  if ($aktuelleSeite) {
+    $class_aktuell = 'a9-pagination_aktuell';
+  }
+  $link = '<li class="'.$class_aktuell.'"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">'; 
   $link .= $label.'</a></li>';
   return $link;
 }
