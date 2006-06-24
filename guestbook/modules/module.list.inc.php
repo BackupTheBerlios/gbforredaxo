@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.5 2006/06/24 17:17:31 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.6 2006/06/24 17:24:54 koala_s Exp $
  */
  
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -330,29 +330,5 @@ function gbook_formatemail($email, $format)
 
   return str_replace(array ('%to%', '%domain%', '%tldomain%'), array ($to, $domain, $tldomain), $format);
 }
-
-
-/**
- * Speichere Status als Defaultwert in die DB
- * 
- * @param int Status
- */
-function gbook_saveStatusInDB($status = 1) {
-  
-  if (isset ($status) and ($status == 0 or $status == 1)) {
-    $qry = "ALTER TABLE ".TBL_GBOOK." CHANGE `status` `status` ENUM( '0', '1' ) NOT NULL DEFAULT '$status'";
-    $sql = new sql();
-    //$sql->debugsql = true;
-    $sql->query($qry);
-    if ($sql->getErrno()) {
-      return false;
-    }
-    return true;
-  } else {
-    return false;
-  }
-}
-
-
 
 ?>
