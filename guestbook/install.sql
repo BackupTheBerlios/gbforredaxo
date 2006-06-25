@@ -1,4 +1,6 @@
-CREATE TABLE `rex_9_gbook` (
+-- $Id: install.sql,v 1.5 2006/06/25 13:14:42 koala_s Exp $
+
+CREATE TABLE `rex_63_gbook` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `status` enum('0','1') NOT NULL default '1',
   `author` varchar(50) NOT NULL default '',
