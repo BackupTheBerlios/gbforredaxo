@@ -1,25 +1,24 @@
 <?php
-
 /**
  * Guestbook Addon 
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.2 2006/06/23 17:09:55 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.3 2006/06/25 13:14:09 koala_s Exp $
  */
  
 $mypage = 'guestbook'; // only for this file
 
 if (!defined('TBL_GBOOK'))
 {
-  define('TBL_GBOOK', $REX['TABLE_PREFIX'].'9_gbook');
+  define('TBL_GBOOK', $REX['TABLE_PREFIX'].'63_gbook');
 }
 
 // CREATE LANG OBJ FOR THIS ADDON
 $I18N_GBOOK = new i18n($REX['LANG'], $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/lang');
 
 $REX['ADDON']['page'][$mypage] = $mypage;
-$REX['ADDON']['rxid'][$mypage] = "9";
+$REX['ADDON']['rxid'][$mypage] = "63";
 $REX['ADDON']['name'][$mypage] = $I18N_GBOOK->msg('menu_title');
 $REX['ADDON']['perm'][$mypage] = 'guestbook[]';
 
