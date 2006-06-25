@@ -1,20 +1,20 @@
+$Id: _changelog.txt,v 1.5 2006/06/25 17:32:02 koala_s Exp $
+
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
 <strong>ToDo</strong>
-- <b>Spamschutz</b>
+- Spamschutz -> siehe gbook_formularPostCheck()
 - Pagination verbessert
 	(Noch nicht ganz; auf der letzten Seite stimmt mit der Anzeige etwas noch nicht.
 	 Es werden weniger Seitenzahlen angezeigt, als sein müssten.)
-
-
-
+- gbook_formularPostCheck() was soll im Fehlerfall passieren? muss noch überarbeitet werden
 
 
 	<em>changes by Koala</em>
 25.06.2006
 - Funktion zum automatischen Verbinden der Action mit dem Modul während der Installation hinzugefügt
-
+- gbook_formularPostCheck() - Prüft Formulversand und übergebene Variablen
 
 24.06.2006
 - Template-Klasse

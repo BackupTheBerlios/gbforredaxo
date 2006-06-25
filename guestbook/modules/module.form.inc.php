@@ -4,11 +4,13 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.7 2006/06/25 16:05:12 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.8 2006/06/25 17:31:52 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
 include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_file.inc.php');
+// 
+include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_postcheck.inc.php');
 
 
 /**
@@ -92,8 +94,8 @@ function gbook_form_output($notificationEmail, $danke_text) {
   /* lese Template-Datei */
   $t->set_file(array("start" => $start_dir));
 
-
-  if (($errorfields = validFields()) === true and gbook_formularPostCheck(array ($_POST['name'],$_POST['text'],$_POST['url'],$_POST['email'],$_POST['city']))) {
+  // gbook_formularPostCheck($postvars, $domainname = false)
+  if (($errorfields = validFields()) === true and gbook_formularPostCheck(array ($_POST['name'],$_POST['text'],$_POST['url'],$_POST['email'],$_POST['city']) )) {
     $author_value   = checkPostVarForMySQL($_POST['name']);
     $message_value  = checkPostVarForMySQL($_POST['text']);
     $url_value      = checkPostVarForMySQL($_POST['url'],'NULL');
