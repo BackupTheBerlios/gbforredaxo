@@ -1,15 +1,14 @@
 <?php
-
 /**
  * Guestbook Addon 
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.6 2006/06/24 17:24:54 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.7 2006/06/25 14:23:33 koala_s Exp $
  */
  
 // Dateifunktionen zur Statusbearbeitung einbinden
-include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_file.php');
+include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_file.inc.php');
 
 /**
  * gbook_list_input
