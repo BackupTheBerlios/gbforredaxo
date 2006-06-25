@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author Koala (diverse Erweiterungen)
  * @package redaxo3
- * @version $Id: function_gbook_file.php,v 1.1 2006/06/14 22:34:07 koala_s Exp $
+ * @version $Id: function_gbook_file.inc.php,v 1.1 2006/06/25 14:20:53 koala_s Exp $
  */
 
 /**
