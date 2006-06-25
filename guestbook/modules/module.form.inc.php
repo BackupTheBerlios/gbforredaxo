@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.6 2006/06/25 14:23:33 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.7 2006/06/25 16:05:12 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -93,7 +93,7 @@ function gbook_form_output($notificationEmail, $danke_text) {
   $t->set_file(array("start" => $start_dir));
 
 
-  if (($errorfields = validFields()) === true) {
+  if (($errorfields = validFields()) === true and gbook_formularPostCheck(array ($_POST['name'],$_POST['text'],$_POST['url'],$_POST['email'],$_POST['city']))) {
     $author_value   = checkPostVarForMySQL($_POST['name']);
     $message_value  = checkPostVarForMySQL($_POST['text']);
     $url_value      = checkPostVarForMySQL($_POST['url'],'NULL');
