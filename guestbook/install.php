@@ -5,9 +5,9 @@
  * Diese Datei dient dazu, einige Grundeinstellungen während der
  * Installation des Addons vorzunehmen.
  *  
- * @author Koala
+ * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: install.php,v 1.2 2006/06/24 22:48:23 koala_s Exp $
+ * @version $Id: install.php,v 1.3 2006/06/26 21:15:55 koala_s Exp $
  */
 
 /**
@@ -80,7 +80,7 @@ function installAction2Modul($modul_name, $action_name) {
   } else {
     return 'installAction2Modul: Fehler in der Datenbankabfrage. Ist der Modulname "'.$modul_name.'" und der Aktionname "'.$action_name.'" richtig?'; 
   }
-  return true;
+  return 'OK';
 } // installAction2Modul()
 
 
