@@ -1,11 +1,11 @@
 <?php
-
 /**
  * Guestbook Addon 
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+ * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: install.inc.php,v 1.4 2006/06/26 19:47:17 koala_s Exp $
+ * @version $Id: install.inc.php,v 1.5 2006/06/26 21:17:09 koala_s Exp $
  */
  
 $error = '';
@@ -25,14 +25,11 @@ if ($error == '') {
   $error .= installAction2Modul('Gästebuch - Eintragsliste', 'Gästebuch - Eintragsliste StatusPerDatei');
 }
 
-// Funktionen dürfen ruhig auch mal ein TRUE zurückgeben
-// deshalb prüfen der error-Variablen auf !== TRUE
-if ($error != '' and $error !== TRUE)
-{
+// Funktionen dürfen ruhig auch mal ein 'OK' zurückgeben, wenn alles in Ordnung war
+// deshalb prüfen der error-Variablen auf != 'OK'
+if ($error != '' and $error != 'OK') {
   $REX['ADDON']['installmsg']['guestbook'] = $error;
-}
-else
-{
+} else {
   $REX['ADDON']['install']['guestbook'] = 1;
 }
 ?>
