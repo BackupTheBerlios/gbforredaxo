@@ -3,7 +3,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: _readme.txt,v 1.3 2006/06/24 22:49:50 koala_s Exp $
+ * @version $Id: _readme.txt,v 1.4 2006/06/26 21:14:57 koala_s Exp $
  */
 
 <a href="?page=addon&amp;spage=help&amp;addonname=guestbook&amp;mode=changelog">Changelog</a>
@@ -11,6 +11,7 @@
 <strong>Beschreibung:</strong>
 
 Einfaches Gästebuch mit Eingabe-Formular und Redaxo-Seitiger Administration.
+Original von Markus Staab (http://www.public-4u.de)
 
 <em>Das Gästebuch ist seit version RC4 nur noch mit redaxo 3.0 kompatibel!</em>
 
