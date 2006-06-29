@@ -1,4 +1,4 @@
-$Id: _changelog.txt,v 1.5 2006/06/25 17:32:02 koala_s Exp $
+$Id: _changelog.txt,v 1.6 2006/06/29 21:55:45 koala_s Exp $
 
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
@@ -12,6 +12,9 @@ $Id: _changelog.txt,v 1.5 2006/06/25 17:32:02 koala_s Exp $
 
 
 	<em>changes by Koala</em>
+29.06.2006
+- Templatepfad kann in der config.inc.php zentral gesetzt werden.
+
 25.06.2006
 - Funktion zum automatischen Verbinden der Action mit dem Modul während der Installation hinzugefügt
 - gbook_formularPostCheck() - Prüft Formulversand und übergebene Variablen
