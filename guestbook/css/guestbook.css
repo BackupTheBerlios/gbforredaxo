@@ -3,7 +3,7 @@
  @author staab[at]public-4u[dot]de Markus Staab
  @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  @package redaxo3
- @version $Id: guestbook.css,v 1.4 2006/06/24 17:14:00 koala_s Exp $
+ @version $Id: guestbook.css,v 1.5 2006/06/29 21:10:38 koala_s Exp $
  */
 
 
@@ -56,9 +56,9 @@
 }
 
 /* Zusatztext-Layer*/
-.a9-form .info {
-	text-align: right;
-      padding: 0px 5px 5px 0px;
+.a9-form .a9-info {
+  text-align: right;
+  padding: 0px 5px 5px 0px;
 }
 
 /* Fehlermeldungs-Layer*/
