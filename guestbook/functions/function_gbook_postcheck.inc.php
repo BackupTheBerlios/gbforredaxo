@@ -3,7 +3,7 @@
  * Guestbook Addon 
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: function_gbook_postcheck.inc.php,v 1.1 2006/06/25 16:04:21 koala_s Exp $
+ * @version $Id: function_gbook_postcheck.inc.php,v 1.2 2006/06/29 18:24:36 koala_s Exp $
  */
 
 
@@ -99,7 +99,8 @@ function gbook_formularPostCheck($postvars, $domainname = false) {
   
   // Loop through each POST'ed value and test if it contains 
   // one of the $badStrings: 
-  foreach($_postvarcheck as $k => $v) {
+//  foreach($_postvarcheck as $k => $v) {
+  foreach($_postvarcheck as $v) {
     foreach($badStrings as $v2) {
       if(strpos($v, $v2) !== false) {
         logBadRequest(); 
@@ -111,7 +112,8 @@ function gbook_formularPostCheck($postvars, $domainname = false) {
   
   // Made it past spammer test, free up some memory 
   // and continue rest of script:     
-  unset($k, $v, $v2, $badStrings, $authHosts, $fromArray, $wwwUsed); 
+//  unset($k, $v, $v2, $badStrings, $authHosts, $fromArray, $wwwUsed); 
+  unset($v, $v2, $badStrings, $authHosts, $fromArray, $wwwUsed); 
   
   // wenn alles gut ging
   return true;
