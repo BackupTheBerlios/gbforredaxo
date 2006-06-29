@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.7 2006/06/25 14:23:33 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.8 2006/06/29 21:33:03 koala_s Exp $
  */
  
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -90,7 +90,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
   if (!class_exists ('Template')) {
     include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/classes/template.inc.php');
   }
-  $_ROOT['template'] = $REX['INCLUDE_PATH'].'/addons/guestbook/templates/';
+  //$_ROOT['template'] = $REX['INCLUDE_PATH'].'/addons/guestbook/templates/';
 
 
 
@@ -109,7 +109,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
     $t = new Template(".", "remove");
     //$t->debug = 7;
     //$start_dir = $_ROOT['template'].'gb_frontend_output.html';
-    $start_dir = $_ROOT['template'].'gb_frontend_output2.html';
+    $start_dir = GBOOK_TEMPLATEPATH.'gb_frontend_output2.html';
 
     /* lese Template-Datei */
     $t->set_file(array("start" => $start_dir));

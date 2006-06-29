@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.8 2006/06/25 17:31:52 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.9 2006/06/29 21:32:56 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -82,14 +82,13 @@ function gbook_form_output($notificationEmail, $danke_text) {
   if (!class_exists ('Template')) {
     include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/classes/template.inc.php');
   }
-  $_ROOT['template'] = $REX['INCLUDE_PATH'].'/addons/guestbook/templates/';
+  //$_ROOT['template'] = $REX['INCLUDE_PATH'].'/addons/guestbook/templates/';
 
 
   /* create Template instance called $t */
   $t = new Template(".", "remove");
   //$t->debug = 7;
-  //$start_dir = $_ROOT['template'].'gb_frontend_output.html';
-  $start_dir = $_ROOT['template'].'gb_frontend_form.html';
+  $start_dir = GBOOK_TEMPLATEPATH.'gb_frontend_form.html';
 
   /* lese Template-Datei */
   $t->set_file(array("start" => $start_dir));
