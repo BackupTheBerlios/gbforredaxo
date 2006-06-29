@@ -4,15 +4,26 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.3 2006/06/25 13:14:09 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.4 2006/06/29 21:32:05 koala_s Exp $
  */
  
 $mypage = 'guestbook'; // only for this file
 
-if (!defined('TBL_GBOOK'))
-{
+if (!defined('TBL_GBOOK')) {
   define('TBL_GBOOK', $REX['TABLE_PREFIX'].'63_gbook');
 }
+
+/**
+ * Der Pfad zu den Templatedateien wird hier festegelegt.
+ */
+if (!defined('GBOOK_TEMPLATEPATH')) {
+  // ein Ordner unterhalb des Guestbook-Addon
+  define('GBOOK_TEMPLATEPATH', $REX['INCLUDE_PATH'].'/addons/guestbook/templates/');
+  // oder wie wäre es mit dem files-Ordner, welcher auch über den Medienpool erreichbar ist
+  //define('GBOOK_TEMPLATEPATH', $REX['MEDIAFOLDER'].'/');
+}
+
+
 
 // CREATE LANG OBJ FOR THIS ADDON
 $I18N_GBOOK = new i18n($REX['LANG'], $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/lang');
