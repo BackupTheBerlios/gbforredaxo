@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.8 2006/06/29 21:33:03 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.9 2006/07/01 16:41:15 koala_s Exp $
  */
  
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -84,7 +84,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
   global $REX;
 
   // hier beliebige mail encrypt funktion einbinden
-  include ($REX['INCLUDE_PATH'].'/addons/guestbook/encryptions/mailcrypt2.php');
+  include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/encryptions/mailcrypt2.php');
 
   // wenn Template-Klasse noch nicht eingebunden, dann hole sie jetzt rein
   if (!class_exists ('Template')) {
