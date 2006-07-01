@@ -3,7 +3,7 @@
  * Guestbook Addon 
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: function_gbook_postcheck.inc.php,v 1.2 2006/06/29 18:24:36 koala_s Exp $
+ * @version $Id: function_gbook_postcheck.inc.php,v 1.3 2006/07/01 14:52:27 koala_s Exp $
  */
 
 
@@ -95,6 +95,8 @@ function gbook_formularPostCheck($postvars, $domainname = false) {
 
   if (!is_array ($postvars)) {
     $_postvarcheck = array ($postvars);
+  } else {
+    $_postvarcheck = $postvars;
   }
   
   // Loop through each POST'ed value and test if it contains 
