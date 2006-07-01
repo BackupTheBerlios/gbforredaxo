@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.5 2006/07/01 12:34:15 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.6 2006/07/01 13:10:28 koala_s Exp $
  */
  
 $mypage = 'guestbook'; // only for this file
@@ -39,6 +39,7 @@ $REX['PERM'][] = 'guestbook[]';
 rex_register_extension('OUTPUT_FILTER', 'rex_a9_gbook_insert_css');
 
 function rex_a9_gbook_insert_css($params) {
+  global $mypage;
   return rex_a22_insertCss($params['subject'], $mypage.'/css/guestbook.css');
 }
 ?>
