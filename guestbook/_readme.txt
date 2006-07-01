@@ -1,11 +1,10 @@
-/**
+<!-- /**
  * Guestbook Addon 
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: _readme.txt,v 1.5 2006/06/29 20:41:32 koala_s Exp $
- */
-
+ * @version $Id: _readme.txt,v 1.6 2006/07/01 09:58:06 koala_s Exp $
+ */ -->
 <a href="?page=addon&amp;spage=help&amp;addonname=guestbook&amp;mode=changelog">Changelog</a>
 
 <strong>Beschreibung:</strong>

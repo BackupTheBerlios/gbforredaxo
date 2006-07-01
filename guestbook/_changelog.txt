@@ -1,5 +1,4 @@
-$Id: _changelog.txt,v 1.6 2006/06/29 21:55:45 koala_s Exp $
-
+<!-- $Id: _changelog.txt,v 1.7 2006/07/01 09:57:56 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
