@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.4 2006/06/29 21:32:05 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.5 2006/07/01 12:34:15 koala_s Exp $
  */
  
 $mypage = 'guestbook'; // only for this file
@@ -18,7 +18,7 @@ if (!defined('TBL_GBOOK')) {
  */
 if (!defined('GBOOK_TEMPLATEPATH')) {
   // ein Ordner unterhalb des Guestbook-Addon
-  define('GBOOK_TEMPLATEPATH', $REX['INCLUDE_PATH'].'/addons/guestbook/templates/');
+  define('GBOOK_TEMPLATEPATH', $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/templates/');
   // oder wie wäre es mit dem files-Ordner, welcher auch über den Medienpool erreichbar ist
   //define('GBOOK_TEMPLATEPATH', $REX['MEDIAFOLDER'].'/');
 }
@@ -39,6 +39,6 @@ $REX['PERM'][] = 'guestbook[]';
 rex_register_extension('OUTPUT_FILTER', 'rex_a9_gbook_insert_css');
 
 function rex_a9_gbook_insert_css($params) {
-  return rex_a22_insertCss($params['subject'], 'guestbook/css/guestbook.css');
+  return rex_a22_insertCss($params['subject'], $mypage.'/css/guestbook.css');
 }
 ?>
