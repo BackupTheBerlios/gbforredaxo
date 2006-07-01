@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `rex_9_gbook`;
+DROP TABLE IF EXISTS `rex_63_gbook`;
