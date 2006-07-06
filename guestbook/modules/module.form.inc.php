@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.12 2006/07/06 20:18:48 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.13 2006/07/06 20:49:53 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -39,7 +39,7 @@ function gbook_form_input($notificationEmail, $danke_text) {
     <textarea name="VALUE[2]" class="inp100" rows="6" /><?php echo $danke_text ?></textarea>
     <br />
 
-<div class="Modulversion">($Revision: 1.12 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.13 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -137,16 +137,27 @@ function gbook_form_output($notificationEmail, $danke_text) {
 
     // EMail an Admin
     if ($notificationEmail != '') {
+      $host = !strstr($REX['SERVER'], 'http://') && !strstr($REX['SERVER'], 'https://') ? 'http://'.$REX['SERVER'] : $REX['SERVER'];
+      if($host{strlen($host)-1} != '/')
+      {
+        $host .= '/';
+      }
+      $server = $host .'/redaxo';
+
       $author = htmlspecialchars($_POST['name']);
       $message = htmlspecialchars($_POST['text']);
       $url = htmlspecialchars($_POST['url']);
       $email = htmlspecialchars($_POST['email']);
       $city = htmlspecialchars($_POST['city']);
       
-      $betreff = 'Neuer Eintrag im Gästebuch';
-      $nachricht = 'Eintrag: '.$author."\r\n";
-      $nachricht .= 'Homepage: '.$url."\n";
-      $nachricht .= 'eMail: '.$email."\n".'Nachricht: '.$message;
+      $betreff = 'Neuer Gästebucheintrag für '. $host;
+      $nachricht = 'Im Gästebuch für die Webseite "'.$host.'" wurde ein neuer Eintrag erstellt.'."\r\n\r\n";
+      $nachricht .= 'Name: '.$author. "\r\n";
+      $nachricht .= 'Homepage: '.$url. "\r\n";
+      $nachricht .= 'eMail: '.$email. "\r\n";
+      $nachricht .= 'Wohnort: '.$city. "\r\n\r\n";
+      $nachricht .= 'Nachricht: '.$message. "\r\n\r\n\r\n";
+      //$nachricht .= 'Hinweis: Dieser Eintrag wurde bei der Einstellung "Veröffentlichung nach Freigabe" deaktiviert gespeichert und erscheint erst dann in Ihren Gästebuch, wenn Sie den Eintrag aktiviert haben. Zum Log-In Bereich geht es unter '.$server."\r\n";
     
       $header = 'From: '. $notificationEmail ."\r\n" .
          'Reply-To: '. $notificationEmail ."\r\n" .
