@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.10 2006/07/06 19:34:19 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.11 2006/07/06 20:17:17 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -39,6 +39,7 @@ function gbook_form_input($notificationEmail, $danke_text) {
     <textarea name="VALUE[2]" class="inp100" rows="6" /><?php echo $danke_text ?></textarea>
     <br />
 
+<div class="Modulversion">(Version: $Revision: 1.11 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }

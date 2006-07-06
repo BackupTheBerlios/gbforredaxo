@@ -3,7 +3,7 @@
  @author staab[at]public-4u[dot]de Markus Staab
  @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  @package redaxo3
- @version $Id: guestbook.css,v 1.5 2006/06/29 21:10:38 koala_s Exp $
+ @version $Id: guestbook.css,v 1.6 2006/07/06 20:17:02 koala_s Exp $
  */
 
 
@@ -129,4 +129,10 @@ li.pagination {
   list-style-type: none;
 }
 
-
+/* Ausgabe der Dateiversion
+  möglichst unauffällig und klein */
+.Modulversion {
+  font-size: 0.5em;
+  color: #aaaaaa;
+/*  color: #dddddd; */ /* (fast) unsichtbar*/
+}
