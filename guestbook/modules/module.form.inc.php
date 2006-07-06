@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.13 2006/07/06 20:49:53 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.14 2006/07/06 21:40:03 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -18,9 +18,10 @@ include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_p
  * 
  * @param Admin-EMail
  * @param Danke-Text
+ * @param DebugLevel  Verschiedene Stufen zur Debugausgabe (vorerst nur per EMail)
  * 
  */
-function gbook_form_input($notificationEmail, $danke_text) {
+function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
   if (empty($notificationEmail)) {
     global $REX;
     $notificationEmail = $REX['ERROR_EMAIL'];
@@ -37,9 +38,19 @@ function gbook_form_input($notificationEmail, $danke_text) {
     <br />
     <label for="VALUE[2]">Danke-Text:</label>    
     <textarea name="VALUE[2]" class="inp100" rows="6" /><?php echo $danke_text ?></textarea>
+    <br /><br />
+    <label for="VALUE[3]">Debug-Modus:</label>
+    <select name="VALUE[3]" id="VALUE[3]">
+     <option value="0" <?php echo $debuglevel == '0' ? 'selected="selected"' : '' ?>>Aus</option>
+     <option value="1" <?php echo $debuglevel == '1' ? 'selected="selected"' : '' ?>>Ein</option>
+    </select>
     <br />
+    <p>Hiermit werden diverse Informationen mit der EMail versand, die zu Debugzwecken nützlich sein können.
+    Aber beachte das es sich dabei um sehr viele Informationen handeln kann und diese Informationen 
+    aus Sicherheitsgründen nie öffentlich zugänglich sein sollten!</p>
+    
 
-<div class="Modulversion">($Revision: 1.13 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.14 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -74,9 +85,10 @@ function checkPostVarForMySQL($var, $default = '') {
  * 
  * @param Admin-EMail
  * @param Danke-Text
+ * @param DebugLevel  Verschiedene Stufen zur Debugausgabe (vorerst nur per EMail)
  * 
  */
-function gbook_form_output($notificationEmail, $danke_text) {
+function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
   global $REX;
 
   // wenn Template-Klasse noch nicht eingebunden, dann hole sie jetzt rein
@@ -103,6 +115,9 @@ function gbook_form_output($notificationEmail, $danke_text) {
     $city_value     = checkPostVarForMySQL($_POST['city'],'NULL');
     
     
+    // Thema Sicherheit:
+    // $status ist endweder 1, 0 oder false
+    // die Funktion gbook_readStatusFromFile() läßt keine andere Rückgabe zu
     $status = gbook_readStatusFromFile();
     if ($status === false) {
       echo 'Fehler.';
@@ -137,6 +152,31 @@ function gbook_form_output($notificationEmail, $danke_text) {
 
     // EMail an Admin
     if ($notificationEmail != '') {
+      
+      $debug_inhalt = '';
+      if ($debuglevel == 1) {
+        $debug_inhalt = "\r\n\r\n ==== DEBUG-INFORMATIONEN ==== \r\n";
+        if (isset($_POST) and count($_POST) != 0) {
+          $debug_inhalt .= "\n === POST ===\n";
+          foreach($_POST as $key => $wert) {
+            $debug_inhalt .= $key.': '.$wert."\n";
+          }
+        }
+        if (isset($_GET) and count($_GET) != 0) {
+          $debug_inhalt .= "\n === GET ===\n";
+          foreach($_GET as $key => $wert) {
+            $debug_inhalt .= $key.': '.$wert."\n";
+          }
+        }
+        if (isset($_SERVER) and count($_SERVER) != 0) {
+          $debug_inhalt .= "\n === SERVER ===\n";
+          foreach($_SERVER as $key => $wert) {
+            $debug_inhalt .= $key.': '.$wert."\n";
+          }
+        }
+      } // if ($debuglevel == 1)
+      
+      
       $host = !strstr($REX['SERVER'], 'http://') && !strstr($REX['SERVER'], 'https://') ? 'http://'.$REX['SERVER'] : $REX['SERVER'];
       if($host{strlen($host)-1} != '/')
       {
@@ -159,6 +199,8 @@ function gbook_form_output($notificationEmail, $danke_text) {
       $nachricht .= 'Nachricht: '.$message. "\r\n\r\n\r\n";
       //$nachricht .= 'Hinweis: Dieser Eintrag wurde bei der Einstellung "Veröffentlichung nach Freigabe" deaktiviert gespeichert und erscheint erst dann in Ihren Gästebuch, wenn Sie den Eintrag aktiviert haben. Zum Log-In Bereich geht es unter '.$server."\r\n";
     
+      // DebugInfo anhängen, falls gewünscht
+      $nachricht .= $debug_inhalt; 
       $header = 'From: '. $notificationEmail ."\r\n" .
          'Reply-To: '. $notificationEmail ."\r\n" .
          'X-Mailer: PHP/' . phpversion();
