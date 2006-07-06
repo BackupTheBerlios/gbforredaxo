@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.9 2006/07/01 16:41:15 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.10 2006/07/06 19:34:40 koala_s Exp $
  */
  
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -204,7 +204,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
   <p>Einträge pro Seite: <span class="rex-em"><?php echo $elementsPerPage ?></span></p>
   <p>Anzahl anzuzgeigender Seiten: <span class="rex-em"><?php echo $paginationsPerPage ?></span></p>
   <p>Emailverschlüsselung: <span class="rex-em"><?php echo $encryptEmails == '1' ? 'Ja' : 'Nein' ?></span></p>
-  <p>Veröffentlichung nach Freigabe: <span class="rex-em"><?php echo $status == '0' ? 'Ja' : 'Nein' ?></span></p>
+  <p>Veröffentlichung erst nach Freigabe: <span class="rex-em"><?php echo $status == '0' ? 'Ja' : 'Nein' ?></span></p>
   <p>Datumsformat: <span class="rex-em"><?php echo $dateFormat ?></span></p>
   <p>Emailformat: <span class="rex-em"><?php echo $emailFormat ?></span></p>
 
