@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.11 2006/07/06 20:17:17 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.12 2006/07/06 20:18:48 koala_s Exp $
  */
  
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -63,7 +63,7 @@ function gbook_list_input($elementsPerPage, $paginationsPerPage, $dateFormat, $e
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-<div class="Modulversion">(Version: $Revision: 1.11 $ - $RCSfile: module.list.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.12 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
