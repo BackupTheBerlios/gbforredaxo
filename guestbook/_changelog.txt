@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.9 2006/07/06 21:41:16 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.10 2006/07/08 08:25:02 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -11,6 +11,10 @@
 
 
 	<em>changes by Koala</em>
+08.07.2006
+- Um Spamscripte zu verwirren, wurden die Inputnamen von URL und EMAIL untereinander getauscht.
+Vielleicht hilts ja etwas.
+
 06.07.2006
 - falscher Moduleinhalt gefixt
 - DebugModus eingefügt; dieser versendet mit der EMail diverse zusätzliche Informationen
