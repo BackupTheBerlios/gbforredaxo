@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.14 2006/07/06 21:40:03 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.15 2006/07/08 08:23:02 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -50,7 +50,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
     aus Sicherheitsgründen nie öffentlich zugänglich sein sollten!</p>
     
 
-<div class="Modulversion">($Revision: 1.14 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.15 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -105,6 +105,30 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
 
   /* lese Template-Datei */
   $t->set_file(array("start" => $start_dir));
+
+
+
+  /**
+   * Um Spameinträge zu erschweren wurden die Feldnamen 'email' und 'url' 
+   * im Formular untereinander getauscht. Diese müssen nun zurückgetauscht werden.
+   * Der normale Benutzer sollte davon nichts bemerken.  
+   */
+  if (isset ($_POST['email']) and $_POST['email'] != '') { 
+    $url_temp = $_POST['email'];
+  } else {
+    $url_temp = '';
+  }
+  if (isset ($_POST['url']) and $_POST['url'] != '') { 
+    $email_temp = $_POST['url'];
+  } else {
+    $email_temp = '';
+  }
+  // gib den POST-Variablen die richtigen Werte
+  $_POST['url'] = $url_temp;
+  $_POST['email'] = $email_temp;
+
+
+
 
   // gbook_formularPostCheck($postvars, $domainname = false)
   if (($errorfields = validFields()) === true and gbook_formularPostCheck(array ($_POST['name'],$_POST['text'],$_POST['url'],$_POST['email'],$_POST['city']) )) {
