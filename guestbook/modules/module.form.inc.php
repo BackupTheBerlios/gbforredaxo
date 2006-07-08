@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.15 2006/07/08 08:23:02 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.16 2006/07/08 11:29:29 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -50,7 +50,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
     aus Sicherheitsgründen nie öffentlich zugänglich sein sollten!</p>
     
 
-<div class="Modulversion">($Revision: 1.15 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.16 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -91,20 +91,18 @@ function checkPostVarForMySQL($var, $default = '') {
 function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
   global $REX;
 
-  // wenn Template-Klasse noch nicht eingebunden, dann hole sie jetzt rein
-  if (!class_exists ('Template')) {
-    include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/classes/template.inc.php');
+
+  // vordefinieren einiger Variablen
+  $error  = '';
+  $name   = '';
+  $email  = '';
+  $url    = 'http://';
+  $city   = '';
+  $text   = '';
+  if (!isset ($danke_text)) {
+    $danke_text = '';
   }
-  //$_ROOT['template'] = $REX['INCLUDE_PATH'].'/addons/guestbook/templates/';
-
-
-  /* create Template instance called $t */
-  $t = new Template(".", "remove");
-  //$t->debug = 7;
-  $start_dir = GBOOK_TEMPLATEPATH.'gb_frontend_form.html';
-
-  /* lese Template-Datei */
-  $t->set_file(array("start" => $start_dir));
+  
 
 
 
@@ -159,20 +157,6 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
     $sql->query($qry);
     
 
-    if (!isset ($danke_text)) {
-      $danke_text = '';
-    }
-
-    $t->set_var(array("DANKE_TEXT_VALUE" => $danke_text,
-                      "FEHLERMELDUNG_VALUE" => '',
-                      "ARTICLE_ID_VALUE" => $GLOBALS['article_id'],
-                      "CLANG_VALUE" => $GLOBALS['clang'],
-                      "NAME_VALUE" => '',
-                      "EMAIL_VALUE" => '',
-                      "URL_VALUE" => '',
-                      "WOHNORT_VALUE" => '',
-                      "TEXT_VALUE" => ''
-                  ));
 
     // EMail an Admin
     if ($notificationEmail != '') {
@@ -201,46 +185,45 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
       } // if ($debuglevel == 1)
       
       
-      $host = !strstr($REX['SERVER'], 'http://') && !strstr($REX['SERVER'], 'https://') ? 'http://'.$REX['SERVER'] : $REX['SERVER'];
-      if($host{strlen($host)-1} != '/')
+      $mail_host = !strstr($REX['SERVER'], 'http://') && !strstr($REX['SERVER'], 'https://') ? 'http://'.$REX['SERVER'] : $REX['SERVER'];
+      if($mail_host{strlen($mail_host)-1} != '/')
       {
-        $host .= '/';
+        $mail_host .= '/';
       }
-      $server = $host .'/redaxo';
+      $mail_server = $mail_host .'/redaxo';
 
-      $author = htmlspecialchars($_POST['name']);
-      $message = htmlspecialchars($_POST['text']);
-      $url = htmlspecialchars($_POST['url']);
-      $email = htmlspecialchars($_POST['email']);
-      $city = htmlspecialchars($_POST['city']);
+      $mail_author = htmlspecialchars($_POST['name']);
+      $mail_message = htmlspecialchars($_POST['text']);
+      $mail_url = htmlspecialchars($_POST['url']);
+      $mail_email = htmlspecialchars($_POST['email']);
+      $mail_city = htmlspecialchars($_POST['city']);
       
-      $betreff = 'Neuer Gästebucheintrag für '. $host;
-      $nachricht = 'Im Gästebuch für die Webseite "'.$host.'" wurde ein neuer Eintrag erstellt.'."\r\n\r\n";
-      $nachricht .= 'Name: '.$author. "\r\n";
-      $nachricht .= 'Homepage: '.$url. "\r\n";
-      $nachricht .= 'eMail: '.$email. "\r\n";
-      $nachricht .= 'Wohnort: '.$city. "\r\n\r\n";
-      $nachricht .= 'Nachricht: '.$message. "\r\n\r\n\r\n";
+      $mail_betreff = 'Neuer Gästebucheintrag für '. $mail_host;
+      $mail_nachricht = 'Im Gästebuch für die Webseite "'.$mail_host.'" wurde ein neuer Eintrag erstellt.'."\r\n\r\n";
+      $mail_nachricht .= 'Name: '.$mail_author. "\r\n";
+      $mail_nachricht .= 'Homepage: '.$mail_url. "\r\n";
+      $mail_nachricht .= 'eMail: '.$mail_email. "\r\n";
+      $mail_nachricht .= 'Wohnort: '.$mail_city. "\r\n\r\n";
+      $mail_nachricht .= 'Nachricht: '.$mail_message. "\r\n\r\n\r\n";
       //$nachricht .= 'Hinweis: Dieser Eintrag wurde bei der Einstellung "Veröffentlichung nach Freigabe" deaktiviert gespeichert und erscheint erst dann in Ihren Gästebuch, wenn Sie den Eintrag aktiviert haben. Zum Log-In Bereich geht es unter '.$server."\r\n";
     
       // DebugInfo anhängen, falls gewünscht
-      $nachricht .= $debug_inhalt; 
+      $mail_nachricht .= $debug_inhalt; 
       $header = 'From: '. $notificationEmail ."\r\n" .
          'Reply-To: '. $notificationEmail ."\r\n" .
          'X-Mailer: PHP/' . phpversion();
     
-      mail ($notificationEmail, $betreff, $nachricht, $header);
+      mail ($notificationEmail, $mail_betreff, $mail_nachricht, $header);
     }
     
     
   } else { // if (($errorfields = validFields()) === true)
-    $error = '';
-    $name = '';
-    $email = '';
-    $url = '';
-    $city = '';
-    $text = '';
 
+    // der Danke-Text erscheint nur nach dem erfolgreichen absenden des Formulares
+    $danke_text = '';
+
+    // Wurde eine falsche Eingabe festgestellt, fülle die Eingabefelder wieder 
+    // mit den ursprünglichen Werten und gibt eine Fehlernachricht aus.
     if (!empty ($_POST['gbook_save'])) {
       // var_dump($_POST);
       // Felder mit Werten füllen
@@ -250,7 +233,7 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
       $city = $_POST['city'];
       $text = $_POST['text'];
 
-      $error .= '<ul class="error">';
+      $error = '<ul class="error">';
 
       foreach ($errorfields as $fieldname) {
         $error .= '<li>Pflichtfeld "'.ucwords($fieldname).'" bitte korrekt ausf&uuml;llen!</li>';
@@ -260,7 +243,27 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
     } // if (!empty ($_POST['gbook_save']))
     
     
-    $t->set_var(array("DANKE_TEXT_VALUE" => '',
+    
+  } // else { // if (($errorfields = validFields()) === true)
+
+    // AUSGABE der Seite
+    
+    // wenn Template-Klasse noch nicht eingebunden, dann hole sie jetzt rein
+    if (!class_exists ('Template')) {
+      include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/classes/template.inc.php');
+    }
+    //$_ROOT['template'] = $REX['INCLUDE_PATH'].'/addons/guestbook/templates/';
+  
+  
+    /* create Template instance called $t */
+    $t = new Template(".", "remove");
+    //$t->debug = 7;
+    $start_dir = GBOOK_TEMPLATEPATH.'gb_frontend_form.html';
+  
+    /* lese Template-Datei */
+    $t->set_file(array("start" => $start_dir));
+
+    $t->set_var(array("DANKE_TEXT_VALUE" => $danke_text,
                       "FEHLERMELDUNG_VALUE" => $error,
                       "ARTICLE_ID_VALUE" => $GLOBALS['article_id'],
                       "CLANG_VALUE" => $GLOBALS['clang'],
@@ -270,9 +273,6 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
                       "WOHNORT_VALUE" => $city,
                       "TEXT_VALUE" => $text
                   ));
-    
-  } // else { // if (($errorfields = validFields()) === true)
-
 
     // komplette Seite ausgeben
     $t->pparse("output", "start");
@@ -312,8 +312,13 @@ function validFields() {
   }
   
   // URL Syntax Prüfung
-  if ($_POST['url'] != '' && 
-      !preg_match('!^http(s)?://[\w-]+\.[\w-]+(\S+)?$!i',$_POST['url'])) 
+  if ($_POST['url'] == 'http://') {
+    $url_temp = '';
+  } else {
+    $url_temp = $_POST['url'];
+  }
+  if ($url_temp != '' && 
+      !preg_match('!^http(s)?://[\w-]+\.[\w-]+(\S+)?$!i',$url_temp)) 
   {
     $failed[] = 'url';
   }
