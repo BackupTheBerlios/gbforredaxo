@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.11 2006/07/08 11:29:43 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.12 2006/07/22 10:55:08 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -8,9 +8,23 @@
 	(Noch nicht ganz; auf der letzten Seite stimmt mit der Anzeige etwas noch nicht.
 	 Es werden weniger Seitenzahlen angezeigt, als sein müssten.)
 - gbook_formularPostCheck() was soll im Fehlerfall passieren? muss noch überarbeitet werden
+- Einträge per E-Mail freischalt-/löschbar für den Admin
+	(eine xtra Tabelle mit Freischaltcode bzw. Sperr-/Löschcode ... 
+	[Überlegung]In dieser Tabelle könnte der Eintrag auch ersteinmal zwischengespeichert werden
+	und wird erst in die eigentliche GB-Tabelle nach Freigabe übertragen[/Überlegung])
+- Einträge nur durch Bestätigungs-EMail des Eintragenden real ins GB eintragen (Admin-Freigabe 
+	bleibt davon unberührt)
+
 
 
 	<em>changes by Koala</em>
+16.07.2006
+- Mailheader etwas geändert (das Reply-To ist hier etwas sinnfrei gewesen)
+- EMail-Zwang deaktiviert; wenn keine EMailadresse angegeben ist, wird auch nicht versucht, 
+	an den Admin eine zu versenden
+
+
+
 08.07.2006
 - Um Spamscripte zu verwirren, wurden die Inputnamen von URL und EMAIL untereinander getauscht.
 Vielleicht hilts ja etwas.
