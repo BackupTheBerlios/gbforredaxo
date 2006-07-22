@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.16 2006/07/08 11:29:29 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.17 2006/07/22 10:53:35 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -22,10 +22,10 @@ include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_p
  * 
  */
 function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
-  if (empty($notificationEmail)) {
+  /*if (empty($notificationEmail)) {
     global $REX;
     $notificationEmail = $REX['ERROR_EMAIL'];
-  }
+  } */
   if (!isset ($danke_text) or $danke_text == '') {
     $danke_text = 'Danke für Ihren Eintrag!'."\n".'Die von Ihnen eingegebenen Daten wurden erfolgreich gespeichert.'."\n".'
       Vor der Veröffentlichung wird der Eintrag durch den Webmaster geprüft. Freigegeben werden nur unbedenkliche Einträge.';
@@ -50,7 +50,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
     aus Sicherheitsgründen nie öffentlich zugänglich sein sollten!</p>
     
 
-<div class="Modulversion">($Revision: 1.16 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.17 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -132,6 +132,8 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
   if (($errorfields = validFields()) === true and gbook_formularPostCheck(array ($_POST['name'],$_POST['text'],$_POST['url'],$_POST['email'],$_POST['city']) )) {
     $author_value   = checkPostVarForMySQL($_POST['name']);
     $message_value  = checkPostVarForMySQL($_POST['text']);
+    // wurde keine URL angegeben, entferne die "HTTP://"-Vorgabe 
+    if ($_POST['url'] == 'http://') { $_POST['url'] = ''; }
     $url_value      = checkPostVarForMySQL($_POST['url'],'NULL');
     $email_value    = checkPostVarForMySQL($_POST['email'],'NULL');
     $city_value     = checkPostVarForMySQL($_POST['city'],'NULL');
@@ -161,6 +163,7 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
     // EMail an Admin
     if ($notificationEmail != '') {
       
+      // DEBUG-Informationen zusammenstellen
       $debug_inhalt = '';
       if ($debuglevel == 1) {
         $debug_inhalt = "\r\n\r\n ==== DEBUG-INFORMATIONEN ==== \r\n";
@@ -184,6 +187,7 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
         }
       } // if ($debuglevel == 1)
       
+
       
       $mail_host = !strstr($REX['SERVER'], 'http://') && !strstr($REX['SERVER'], 'https://') ? 'http://'.$REX['SERVER'] : $REX['SERVER'];
       if($mail_host{strlen($mail_host)-1} != '/')
@@ -209,10 +213,12 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
     
       // DebugInfo anhängen, falls gewünscht
       $mail_nachricht .= $debug_inhalt; 
-      $header = 'From: '. $notificationEmail ."\r\n" .
-         'Reply-To: '. $notificationEmail ."\r\n" .
-         'X-Mailer: PHP/' . phpversion();
-    
+      $header  = 'MIME-Version: 1.0'."\r\n";
+      $header .= 'Content-type: text/plain; charset=iso-8859-1'."\r\n";
+      $header .= 'Content-Transfer-Encoding: 8bit'."\r\n";
+      $header .= 'X-Mailer: PHP/' . phpversion()."\r\n";
+      $header .= 'From: '. $notificationEmail ."\r\n";
+      
       mail ($notificationEmail, $mail_betreff, $mail_nachricht, $header);
     }
     
