@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.12 2006/07/22 10:55:08 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.13 2006/09/25 18:13:45 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -18,18 +18,19 @@
 
 
 	<em>changes by Koala</em>
+25.09.2006
+- Umlaute in den Modulenamen und in der Action ersetzt (führt auf einigen 
+  Systemen wahrscheinlich zu Problemen während der Installation)
+
 16.07.2006
 - Mailheader etwas geändert (das Reply-To ist hier etwas sinnfrei gewesen)
 - EMail-Zwang deaktiviert; wenn keine EMailadresse angegeben ist, wird auch nicht versucht, 
 	an den Admin eine zu versenden
 
-
-
 08.07.2006
 - Um Spamscripte zu verwirren, wurden die Inputnamen von URL und EMAIL untereinander getauscht.
 Vielleicht hilts ja etwas.
 - Das erstellen der Formularausgabe überarbeitet. Per default steht nun 'http://' im URL-Feld.
-
 
 06.07.2006
 - falscher Moduleinhalt gefixt
