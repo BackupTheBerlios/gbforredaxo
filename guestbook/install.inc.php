@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: install.inc.php,v 1.5 2006/06/26 21:17:09 koala_s Exp $
+ * @version $Id: install.inc.php,v 1.6 2006/09/25 18:08:59 koala_s Exp $
  */
  
 $error = '';
@@ -22,7 +22,7 @@ if ($error == '') {
 if ($error == '') {
   include(dirname(__FILE__).'/install.php');
   // installAction2Modul(Name des Modules, Name der Action)
-  $error .= installAction2Modul('Gästebuch - Eintragsliste', 'Gästebuch - Eintragsliste StatusPerDatei');
+  $error .= installAction2Modul('Gaestebuch - Eintragsliste', 'Gaestebuch - Eintragsliste StatusPerDatei');
 }
 
 // Funktionen dürfen ruhig auch mal ein 'OK' zurückgeben, wenn alles in Ordnung war
