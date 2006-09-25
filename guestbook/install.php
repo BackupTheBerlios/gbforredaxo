@@ -7,7 +7,7 @@
  *  
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: install.php,v 1.3 2006/06/26 21:15:55 koala_s Exp $
+ * @version $Id: install.php,v 1.4 2006/09/25 18:01:16 koala_s Exp $
  */
 
 /**
@@ -15,7 +15,7 @@
  * Die install.sql muss bereits ausgeführt worden sein und die Module und 
  * Action somit bereits in der Datenbank stehen. 
  * Als erstes werden die IDs des Modules "Gästebuch - Eintragsliste" und der 
- * Action "Gästebuch - Eintragsliste StstusPerdatei" ausgelesen und dann nachgesehen,
+ * Action "Gästebuch - Eintragsliste StatusPerdatei" ausgelesen und dann nachgesehen,
  * ob es dazu schon eine Zuweisung in der Tabelle rex_module_action gibt.
  * Ist das nicht der Fall, werden die IDs entsprechend eingetragen.
  * 
