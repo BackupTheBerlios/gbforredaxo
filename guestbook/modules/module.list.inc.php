@@ -1,18 +1,18 @@
 <?php
 /**
- * Guestbook Addon 
+ * Guestbook Addon
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.12 2006/07/06 20:18:48 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.13 2006/10/08 18:53:04 koala_s Exp $
  */
- 
+
 // Dateifunktionen zur Statusbearbeitung einbinden
 include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_file.inc.php');
 
 /**
  * gbook_list_input
- * 
+ *
  * @param $elementsPerPage
  * @param $paginationsPerPage
  * @param $dateFormat
@@ -25,31 +25,40 @@ function gbook_list_input($elementsPerPage, $paginationsPerPage, $dateFormat, $e
 ?>
   <fieldset>
     <legend>Gästebuch Einstellungen</legend>
-    
-    <label for="VALUE[1]">Einträge pro Seite:</label>
-    <input type="text" id="VALUE[1]" name="VALUE[1]" value="<?php echo $elementsPerPage ?>" maxlength="2" />
-    
-    <label for="VALUE[2]">Anzahl anzuzgeigender Seiten:</label>
-    <input type="text" id="VALUE[2]" name="VALUE[2]" value="<?php echo $paginationsPerPage ?>" maxlength="2" />
-    
-    <label for="VALUE[5]">Email-Adressen verschlüsseln:</label>
-    <select name="VALUE[5]" id="VALUE[5]">
-     <option value="0" <?php echo $encryptEmails == '0' ? 'selected="selected"' : '' ?>>Nein</option>
-     <option value="1" <?php echo $encryptEmails == '1' ? 'selected="selected"' : '' ?>>Ja</option>
-    </select>
-    
-    <label for="VALUE[6]">Veröffentlichung erst nach Freigabe:</label>
-    <select name="VALUE[6]" id="VALUE[6]">
-     <option value="1" <?php echo $status == '1' ? 'selected="selected"' : '' ?>>Nein</option>
-     <option value="0" <?php echo $status == '0' ? 'selected="selected"' : '' ?>>Ja</option>
-    </select>
-    
-    <label for="VALUE[3]">Datums-Format:</label>
-    <input type="text" name="VALUE[3]" id="VALUE[3]" value="<?php echo $dateFormat ?>" />
+
+    <p>
+      <label for="VALUE[1]">Einträge pro Seite:</label>
+      <input type="text" id="VALUE[1]" name="VALUE[1]" value="<?php echo $elementsPerPage ?>" size="2" maxlength="2" />
+    </p>
+
+    <p>
+      <label for="VALUE[2]">Anzahl anzuzgeigender Seiten:</label>
+      <input type="text" id="VALUE[2]" name="VALUE[2]" value="<?php echo $paginationsPerPage ?>" size="2" maxlength="2" />
+    </p>
+    <p>
+      <label for="VALUE[5]">Email-Adressen verschlüsseln:</label>
+      <select name="VALUE[5]" id="VALUE[5]">
+       <option value="0" <?php echo $encryptEmails == '0' ? 'selected="selected"' : '' ?>>Nein</option>
+       <option value="1" <?php echo $encryptEmails == '1' ? 'selected="selected"' : '' ?>>Ja</option>
+      </select>
+    </p>
+    <p>
+      <label for="VALUE[6]">Veröffentlichung erst nach Freigabe:</label>
+      <select name="VALUE[6]" id="VALUE[6]">
+       <option value="1" <?php echo $status == '1' ? 'selected="selected"' : '' ?>>Nein</option>
+       <option value="0" <?php echo $status == '0' ? 'selected="selected"' : '' ?>>Ja</option>
+      </select>
+    </p>
+    <p>
+      <label for="VALUE[3]">Datums-Format:</label>
+      <input type="text" name="VALUE[3]" id="VALUE[3]" value="<?php echo $dateFormat ?>" />
+    </p>
     <p>siehe <a href="http://php.net/strftime">PHP Manual - strftime()</a></p>
-  
-    <label for="VALUE[4]">Email-Adressen-Format:</label>
-    <input type="text" name="VALUE[4]" id="VALUE[4]" value="<?php echo $emailFormat ?>" />
+
+    <p>
+      <label for="VALUE[4]">Email-Adressen-Format:</label>
+      <input type="text" name="VALUE[4]" id="VALUE[4]" value="<?php echo $emailFormat ?>" size="30" />
+    </p>
     <p>
       Beispiel:<br />
       max.mustermann@nowhere.no<br />
@@ -63,7 +72,7 @@ function gbook_list_input($elementsPerPage, $paginationsPerPage, $dateFormat, $e
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-<div class="Modulversion">($Revision: 1.12 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.13 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
@@ -71,14 +80,14 @@ function gbook_list_input($elementsPerPage, $paginationsPerPage, $dateFormat, $e
 
 /**
  * gbook_list_output
- * 
+ *
  * @param $elementsPerPage
  * @param $paginationsPerPage
  * @param $dateFormat
  * @param $emailFormat
  * @param $encryptEmails
  * @param $status
- * @return 
+ * @return
  */
 function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $emailFormat, $encryptEmails, $status)
 {
@@ -147,8 +156,8 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
         $WOHNORT_VALUE = $row['city'];
         $DATUM_VALUE = $row['created'];
         $NACHRICHT_VALUE = nl2br( stripslashes( str_replace('  ', ' &#160;', $row['message'])));
-        
-        
+
+
         // hat der Admin eine Antwort verfasst?
         if ( trim( $row['reply']) != '') {
           $ANTWORT_VALUE = nl2br( stripslashes( str_replace('  ', ' &#160;', $row['reply'])));
@@ -159,7 +168,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
           $ANTWORT_VORHANDEN_BEGINN = '{*';
           $ANTWORT_VORHANDEN_ENDE = '*}';
         }
-        
+
         $t->set_var(array("AUTHOR_VALUE"   => $AUTHOR_VALUE,
                           "EMAIL_VALUE"   => $EMAIL_VALUE,
                           "HOMEPAGE_VALUE"   => $HOMEPAGE_VALUE,
@@ -170,12 +179,12 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
                           "ANTWORT_VORHANDEN_BEGINN"   => $ANTWORT_VORHANDEN_BEGINN,
                           "ANTWORT_VORHANDEN_ENDE"   => $ANTWORT_VORHANDEN_ENDE
                           ));
- 
+
         $t->parse("EintragsUebersicht_s", "EintragsUebersicht", true);
 
       } // foreach ($data as $row)
-  
-      // Einträge vorhanden sind, brauchen wir keinen "Einträge nicht vorhanden"-Hinweis 
+
+      // Einträge vorhanden sind, brauchen wir keinen "Einträge nicht vorhanden"-Hinweis
       $t->set_var(array("EINTRAEGE_BEGINN" => '',
                         "EINTRAEGE_ENDE"   => '',
                         "KEINE_EINTRAEGE_BEGINN" => '{*',
@@ -183,8 +192,8 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
                         ));
 
     } else { // if (is_array($data))
-      
-      // Einträge keine vorhanden sind, brauchen wir "Einträge nicht vorhanden"-Hinweis 
+
+      // Einträge keine vorhanden sind, brauchen wir "Einträge nicht vorhanden"-Hinweis
       $t->set_var(array("EINTRAEGE_BEGINN" => '{*',
                         "EINTRAEGE_ENDE"   => '*}',
                         "KEINE_EINTRAEGE_BEGINN" => '',
@@ -219,7 +228,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
 /**
  * gbook_pagination
- * 
+ *
  * @param $currentPage
  * @param $elementsPerPage
  * @param $paginationsPerPage
@@ -263,7 +272,7 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
       break;
     }
     if ($currentPage == $start -1) {
-      $seiten_array[] = gbook_paginationurl($start -1, $start , $start, 1);      
+      $seiten_array[] = gbook_paginationurl($start -1, $start , $start, 1);
     } else {
       $seiten_array[] = gbook_paginationurl($start -1, $start , $start);
     }
@@ -271,15 +280,15 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
   }
 
   // Arrayinhalt umdrehen und Seitenzahlen in eine Variable zurückschreiben
-  // und ein Trennzeichen einfügen, damit man das im Seitenquelltext besser lesen kann 
+  // und ein Trennzeichen einfügen, damit man das im Seitenquelltext besser lesen kann
   //$str .= implode ("\n", array_reverse ($seiten_array));
   $str .= implode ("\n", $seiten_array);
 
-  // zeige den Sprung zum Ende nur, wenn noch nicht alle Links zum anklicken zu sehen sind 
+  // zeige den Sprung zum Ende nur, wenn noch nicht alle Links zum anklicken zu sehen sind
   if ($currentPage != ($pageCount -3) and $currentPage != ($pageCount -2)) {
     $str .= "\n".gbook_paginationurl($pageCount -2, '&raquo;','Ende')."\n";
   }
-  
+
   return $str;
 }
 
@@ -288,10 +297,10 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
 
 /**
  * gbook_paginationurl
- * 
+ *
  * @param int     $page
  * @param         $label
- * @param string  title_name - 
+ * @param string  title_name -
  * @param bool    aktuelle Seite (1 oder 0)
  * @return string Link auf nächste Seite
  */
@@ -305,7 +314,7 @@ function gbook_paginationurl($page, $label = null, $title_name = '', $aktuelleSe
   if ($aktuelleSeite) {
     $class_aktuell = 'a9-pagination_aktuell';
   }
-  $link = '<li class="'.$class_aktuell.'"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">'; 
+  $link = '<li class="'.$class_aktuell.'"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">';
   $link .= $label.'</a></li>';
   return $link;
 }
@@ -314,10 +323,10 @@ function gbook_paginationurl($page, $label = null, $title_name = '', $aktuelleSe
 
 /**
  * gbook_formatemail
- * 
+ *
  * @param $email
  * @param $format
- * @return array 
+ * @return array
  */
 function gbook_formatemail($email, $format)
 {
