@@ -1,29 +1,29 @@
 <?php
 /**
- * Guestbook Addon 
+ * Guestbook Addon
  *
  * Diese Datei dient dazu, einige Grundeinstellungen während der
  * Installation des Addons vorzunehmen.
- *  
+ *
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: install.php,v 1.4 2006/09/25 18:01:16 koala_s Exp $
+ * @version $Id: install.php,v 1.5 2006/10/08 12:57:46 koala_s Exp $
  */
 
 /**
  * Vorgehensweise
- * Die install.sql muss bereits ausgeführt worden sein und die Module und 
- * Action somit bereits in der Datenbank stehen. 
- * Als erstes werden die IDs des Modules "Gästebuch - Eintragsliste" und der 
+ * Die install.sql muss bereits ausgeführt worden sein und die Module und
+ * Action somit bereits in der Datenbank stehen.
+ * Als erstes werden die IDs des Modules "Gästebuch - Eintragsliste" und der
  * Action "Gästebuch - Eintragsliste StatusPerdatei" ausgelesen und dann nachgesehen,
  * ob es dazu schon eine Zuweisung in der Tabelle rex_module_action gibt.
  * Ist das nicht der Fall, werden die IDs entsprechend eingetragen.
- * 
+ *
  * Die automatische Zuweisung zwischen Action und Modul ist damit erledigt.
  * Im Fehlerfalle muss eine Meldung ausgegeben werden.
- * Die Action könnte dann evtl. per Hand noch zugewiesen werden.   
- * 
- * 
+ * Die Action könnte dann evtl. per Hand noch zugewiesen werden.
+ *
+ *
  * @param   string  Name des Modules (auf richtige Schreibweise achten!)
  * @param   string  Name der Action (auf richtige Schreibweise achten!)
  * @return  mixed   TRUE oder ein Fehlertext
@@ -38,29 +38,53 @@ function installAction2Modul($modul_name, $action_name) {
   /**
    * Diese Abfrage gibt zurück
    * - wenn es bereits eine Verküpfung in der Tabelle rex_module_action gibt:
-   * m_id  a_id  mod_action_m_id   mod_action_a_id 
+   * m_id  a_id  mod_action_m_id   mod_action_a_id
    *  42     9       true             true
-   * 
+   *
    * - gibt es noch keine Verknüpfung, sieht die Rückgabe so aus:
-   * m_id  a_id  mod_action_m_id   mod_action_a_id 
+   * m_id  a_id  mod_action_m_id   mod_action_a_id
    *  42     9       false             false
    *
    * m_id und a_id sind von MySQL vergebene IDs und entsprechen nicht diesem Beispiel hier!
-   * 
+   *
    */
   $qry = 'SELECT `'.$REX['TABLE_PREFIX'].'modultyp`.`id` AS m_id, `'.$REX['TABLE_PREFIX'].'action`.`id` AS a_id,
             IF(`'.$REX['TABLE_PREFIX'].'module_action`.`module_id` != 0, "true", "false") AS mod_action_m_id,
             IF(`'.$REX['TABLE_PREFIX'].'module_action`.`action_id` != 0, "true", "false") AS mod_action_a_id
-          FROM `'.$REX['TABLE_PREFIX'].'modultyp` , `'.$REX['TABLE_PREFIX'].'action` 
-          LEFT JOIN `'.$REX['TABLE_PREFIX'].'module_action` ON ( `'.$REX['TABLE_PREFIX'].'module_action`.`module_id` = `'.$REX['TABLE_PREFIX'].'modultyp`.`id` 
-            AND `'.$REX['TABLE_PREFIX'].'module_action`.`action_id` = `'.$REX['TABLE_PREFIX'].'action`.`id` ) 
+          FROM `'.$REX['TABLE_PREFIX'].'modultyp` , `'.$REX['TABLE_PREFIX'].'action`
+          LEFT JOIN `'.$REX['TABLE_PREFIX'].'module_action` ON ( `'.$REX['TABLE_PREFIX'].'module_action`.`module_id` = `'.$REX['TABLE_PREFIX'].'modultyp`.`id`
+            AND `'.$REX['TABLE_PREFIX'].'module_action`.`action_id` = `'.$REX['TABLE_PREFIX'].'action`.`id` )
           WHERE `'.$REX['TABLE_PREFIX'].'modultyp`.`name` = "'.$modul_name.'"
             AND `'.$REX['TABLE_PREFIX'].'action`.`name` = "'.$action_name.'"
           LIMIT 1';
-  
+
+  /**
+   * Ein Fehler in MySQL ließ die Installation scheitern.
+   * Link zum MySQL-Fehler: http://bugs.mysql.com/bug.php?id=15229
+   * Der Fehler wurde in der Version 5.0.20 behoben.
+   * Dies ist ein Würkaround für MySQL 5.0.15 bis einschließlich 5.0.19.
+   * Der fehler könnte auch schon in Versionen vor 5.0.15 drin sein.
+   * Dies ist mir aber (noch) nicht bekannt.
+   */
+  $qry_5019 = 'SELECT `'.$REX['TABLE_PREFIX'].'modultyp`.`id` AS m_id, `'.$REX['TABLE_PREFIX'].'action`.`id` AS a_id,
+            IF(`'.$REX['TABLE_PREFIX'].'module_action`.`module_id` != 0, "true", "false") AS mod_action_m_id,
+            IF(`'.$REX['TABLE_PREFIX'].'module_action`.`action_id` != 0, "true", "false") AS mod_action_a_id
+          FROM `'.$REX['TABLE_PREFIX'].'modultyp` , `'.$REX['TABLE_PREFIX'].'action`, `'.$REX['TABLE_PREFIX'].'module_action`
+          WHERE `'.$REX['TABLE_PREFIX'].'modultyp`.`name` = "'.$modul_name.'"
+            AND `'.$REX['TABLE_PREFIX'].'action`.`name` = "'.$action_name.'"
+            AND `'.$REX['TABLE_PREFIX'].'module_action`.`module_id` = `'.$REX['TABLE_PREFIX'].'modultyp`.`id`
+            AND `'.$REX['TABLE_PREFIX'].'module_action`.`action_id` = `'.$REX['TABLE_PREFIX'].'action`.`id`
+          LIMIT 1';
+
   $sql = new sql();
   //$sql->debugsql = true;
-  $data = $sql->get_array($qry);
+
+  if ($REX['MYSQL_VERSION'] >= '5.0.15' and $REX['MYSQL_VERSION'] <= '5.0.19') {
+    $data = $sql->get_array($qry_5019);
+  } else {
+    $data = $sql->get_array($qry);
+  }
+
 
   if (is_array($data) and $sql->getRows() == 1) {
     foreach ($data as $row) {
@@ -68,7 +92,7 @@ function installAction2Modul($modul_name, $action_name) {
       // sind diese IDs in dieser Kombination noch nicht in der Verknüpfungstabelle
       // dann können sie dort eingetragen werden
       if ($row['mod_action_m_id'] == 'false' and $row['mod_action_a_id'] == 'false') {
-        $qry = 'INSERT INTO `'.$REX['TABLE_PREFIX'].'module_action` ( `id` , `module_id` , `action_id` ) 
+        $qry = 'INSERT INTO `'.$REX['TABLE_PREFIX'].'module_action` ( `id` , `module_id` , `action_id` )
                 VALUES (NULL , "'.$row['m_id'].'", "'.$row['a_id'].'")';
         $sql = new sql();
         //$sql->debugsql = true;
@@ -78,7 +102,7 @@ function installAction2Modul($modul_name, $action_name) {
       }
     }
   } else {
-    return 'installAction2Modul: Fehler in der Datenbankabfrage. Ist der Modulname "'.$modul_name.'" und der Aktionname "'.$action_name.'" richtig?'; 
+    return 'installAction2Modul: Fehler in der Datenbankabfrage. Ist der Modulname "'.$modul_name.'" und der Aktionname "'.$action_name.'" richtig?';
   }
   return 'OK';
 } // installAction2Modul()
