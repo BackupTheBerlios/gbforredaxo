@@ -1,9 +1,9 @@
 /*
- Guestbook Addon 
+ Guestbook Addon
  @author staab[at]public-4u[dot]de Markus Staab
  @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  @package redaxo3
- @version $Id: guestbook.css,v 1.7 2006/07/22 10:54:20 koala_s Exp $
+ @version $Id: guestbook.css,v 1.8 2006/10/08 18:35:17 koala_s Exp $
  */
 
 
@@ -13,29 +13,29 @@
 
 
 /* Formular */
-.a9-form {
+.a63-form {
   width: 400px;
 }
 
 /* Eingabefelder */
-.a9-form input, .a9-form textarea {
+.a63-form input, .a63-form textarea {
   border: 1px solid black;
   margin: 1px 2px 1px 2px;
   width: 250px;
   background-color: #F6F4EF;
 }
 
-.a9-form input:focus, .a9-form textarea:focus {
+.a63-form input:focus, .a63-form textarea:focus {
   background-color: #EEEEEE;
 }
 
 /* Text-Eingabefeld*/
-.a9-form textarea {
+.a63-form textarea {
   height: 100px;
 }
 
 /* Beschriftungen der Eingabefelder */
-.a9-form label {
+.a63-form label {
   width: 100px;
   float: left;
   padding-left: 5px;
@@ -43,7 +43,7 @@
 
 
 /* Buttons */
-.a9-form .a9-fsubmit {
+.a63-form .a63-fsubmit {
   width: 100px;
   margin: 0px;
   margin-top: 5px;
@@ -51,18 +51,18 @@
 }
 
 /* Buttons-Layer*/
-.a9-form .a9-buttons {
+.a63-form .a63-buttons {
   padding-left: 105px;
 }
 
 /* Zusatztext-Layer*/
-.a9-form .a9-info {
+.a63-form .a63-info {
   text-align: right;
   padding: 0px 5px 5px 0px;
 }
 
 /* Fehlermeldungs-Layer*/
-.a9-form div.error {
+.a63-form div.error {
   font-weight: bold;
   padding-top: 0px;
   padding-bottom: 10px;
@@ -76,51 +76,51 @@
 
 
 /* Einträge-Layer */
-.a9-entries .a9-entry {
+.a63-entries .a63-entry {
   padding-bottom: 10px;
   border-bottom: 1px dotted #859885;
 }
 
-.a9-entries p {
+.a63-entries p {
   margin: 0px;
   padding: 0px;
 }
 
 /* Pagination-Layer */
-.a9-entries .a9-pagination {
+.a63-entries .a63-pagination {
   text-align: right;
 }
 
 /* Pagination-Links */
-.a9-entries .a9-pagination a {
+.a63-entries .a63-pagination a {
   padding-left: 2px;
   padding-right: 2px;
 }
 
 /* hervorheben des Aktuelle-Seite-Links */
-.a9-pagination_aktuell a {
+.a63-pagination_aktuell a {
   font-weight: bold;
   text-decoration:underline;
 }
 
 
-.a9-entries ul li {
+.a63-entries ul li {
   list-style-type: none;
   display: inline;
 }
 
-/* 
-	Allgemeine Formatierungen
+/*
+  Allgemeine Formatierungen
 */
 
 /* Beschriftungen */
-.a9-entries .a9-label {
+.a63-entries .a63-label {
   float: left;
   width: 70px;
 }
 
 /* Werte */
-.a9-entries .a9-value {
+.a63-entries .a63-value {
   padding-left: 70px;
 }
 
