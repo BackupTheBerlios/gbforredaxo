@@ -1,9 +1,9 @@
 <!-- /**
- * Guestbook Addon 
+ * Guestbook Addon
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: _readme.txt,v 1.7 2006/09/25 18:14:02 koala_s Exp $
+ * @version $Id: _readme.txt,v 1.8 2006/10/08 17:29:51 koala_s Exp $
  */ -->
 <a href="?page=addon&amp;spage=help&amp;addonname=guestbook&amp;mode=changelog">Changelog</a>
 
@@ -14,7 +14,6 @@ Original von Markus Staab (http://www.public-4u.de)
 
 Anpassungen und Herausgabe der Gästebuchversion V2 durch Sven (Koala) Eichler.
 Bei Fragen wende dich bitte an "redaxo [ät] koalashome [punkt) de".
-
 
 
 <em>Das Gästebuch ist seit version RC4 nur noch mit redaxo 3.0 kompatibel!</em>
@@ -39,7 +38,7 @@ Bei Fragen wende dich bitte an "redaxo [ät] koalashome [punkt) de".
 - Dem Benutzer das recht "guestbook[]" verleihen
 
 - Die Module "Gästebuch - Formular" und "Gästebuch - Eintragsliste" in die ensprechenden Artikel einfügen
-  
+
 - CSS auf die eingene Seite anpassen
 
 - fertig ;)
