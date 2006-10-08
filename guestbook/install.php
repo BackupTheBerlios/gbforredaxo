@@ -7,7 +7,7 @@
  *
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: install.php,v 1.5 2006/10/08 12:57:46 koala_s Exp $
+ * @version $Id: install.php,v 1.6 2006/10/08 15:27:11 koala_s Exp $
  */
 
 /**
@@ -51,39 +51,16 @@ function installAction2Modul($modul_name, $action_name) {
   $qry = 'SELECT `'.$REX['TABLE_PREFIX'].'modultyp`.`id` AS m_id, `'.$REX['TABLE_PREFIX'].'action`.`id` AS a_id,
             IF(`'.$REX['TABLE_PREFIX'].'module_action`.`module_id` != 0, "true", "false") AS mod_action_m_id,
             IF(`'.$REX['TABLE_PREFIX'].'module_action`.`action_id` != 0, "true", "false") AS mod_action_a_id
-          FROM `'.$REX['TABLE_PREFIX'].'modultyp` , `'.$REX['TABLE_PREFIX'].'action`
+          FROM (`'.$REX['TABLE_PREFIX'].'modultyp` , `'.$REX['TABLE_PREFIX'].'action`)
           LEFT JOIN `'.$REX['TABLE_PREFIX'].'module_action` ON ( `'.$REX['TABLE_PREFIX'].'module_action`.`module_id` = `'.$REX['TABLE_PREFIX'].'modultyp`.`id`
             AND `'.$REX['TABLE_PREFIX'].'module_action`.`action_id` = `'.$REX['TABLE_PREFIX'].'action`.`id` )
           WHERE `'.$REX['TABLE_PREFIX'].'modultyp`.`name` = "'.$modul_name.'"
             AND `'.$REX['TABLE_PREFIX'].'action`.`name` = "'.$action_name.'"
           LIMIT 1';
 
-  /**
-   * Ein Fehler in MySQL ließ die Installation scheitern.
-   * Link zum MySQL-Fehler: http://bugs.mysql.com/bug.php?id=15229
-   * Der Fehler wurde in der Version 5.0.20 behoben.
-   * Dies ist ein Würkaround für MySQL 5.0.15 bis einschließlich 5.0.19.
-   * Der fehler könnte auch schon in Versionen vor 5.0.15 drin sein.
-   * Dies ist mir aber (noch) nicht bekannt.
-   */
-  $qry_5019 = 'SELECT `'.$REX['TABLE_PREFIX'].'modultyp`.`id` AS m_id, `'.$REX['TABLE_PREFIX'].'action`.`id` AS a_id,
-            IF(`'.$REX['TABLE_PREFIX'].'module_action`.`module_id` != 0, "true", "false") AS mod_action_m_id,
-            IF(`'.$REX['TABLE_PREFIX'].'module_action`.`action_id` != 0, "true", "false") AS mod_action_a_id
-          FROM `'.$REX['TABLE_PREFIX'].'modultyp` , `'.$REX['TABLE_PREFIX'].'action`, `'.$REX['TABLE_PREFIX'].'module_action`
-          WHERE `'.$REX['TABLE_PREFIX'].'modultyp`.`name` = "'.$modul_name.'"
-            AND `'.$REX['TABLE_PREFIX'].'action`.`name` = "'.$action_name.'"
-            AND `'.$REX['TABLE_PREFIX'].'module_action`.`module_id` = `'.$REX['TABLE_PREFIX'].'modultyp`.`id`
-            AND `'.$REX['TABLE_PREFIX'].'module_action`.`action_id` = `'.$REX['TABLE_PREFIX'].'action`.`id`
-          LIMIT 1';
-
   $sql = new sql();
   //$sql->debugsql = true;
-
-  if ($REX['MYSQL_VERSION'] >= '5.0.15' and $REX['MYSQL_VERSION'] <= '5.0.19') {
-    $data = $sql->get_array($qry_5019);
-  } else {
-    $data = $sql->get_array($qry);
-  }
+  $data = $sql->get_array($qry);
 
 
   if (is_array($data) and $sql->getRows() == 1) {
