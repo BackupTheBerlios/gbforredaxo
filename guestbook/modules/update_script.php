@@ -6,7 +6,7 @@
  * in ein anderes zu kopieren. 
  * 
  * @author koala at koalashome punkt de Koala
- * @version $Id: update_script.php,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+ * @version $Id: update_script.php,v 1.2 2006/10/08 17:54:52 koala_s Exp $
  */
 
 /**
@@ -65,8 +65,31 @@ $qry = 'TRUNCATE TABLE '.TBL_GBOOK;
 
 
 
+// Beispiel
+// Daten von Gästebuch 9 (Original von Markus) nach 63 (Gästebuch V2) übernehmen
 
+/*
+$ziel_tabelle = 'rex_63_gbook';
+$quell_tabelle = 'rex_9_gbook';
 
+// ersteinmal Zieltabelle leeren
+$qry = 'TRUNCATE TABLE '.$ziel_tabelle;
+$sql = new sql();
+//    $sql->debugsql = true;
+$data = $sql->setQuery($qry);
+
+// lese Daten der Quelltabelle und schreibe sie in die Zieltabelle
+$qry = 'INSERT INTO '.$ziel_tabelle.'(id, status, author, message, url, email, city, created, replay) ';
+$qry .= 'SELECT id, status, author, message, url, email, city, created, replay FROM '.$quell_tabelle;
+$sql = new sql();
+
+//$sql->debugsql = true;
+$data = $sql->setQuery($qry);
+
+// reine SQL-Anweisung:
+//INSERT INTO rex_63_gbook (id, status, author, message, url, email, city, created, replay) SELECT id, status, author, message, url, email, city, created, replay FROM rex_9_gbook
+
+*/
 
 
 ?>
