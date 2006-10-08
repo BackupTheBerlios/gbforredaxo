@@ -3,7 +3,7 @@
  @author staab[at]public-4u[dot]de Markus Staab
  @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  @package redaxo3
- @version $Id: guestbook.css,v 1.8 2006/10/08 18:35:17 koala_s Exp $
+ @version $Id: guestbook.css,v 1.9 2006/10/08 18:53:24 koala_s Exp $
  */
 
 
@@ -125,7 +125,7 @@
 }
 
 /* Mozilla */
-li.pagination {
+li.a63-pagination {
   list-style-type: none;
 }
 
@@ -136,3 +136,13 @@ li.pagination {
   color: #aaaaaa;
 /*  color: #dddddd; */ /* (fast) unsichtbar*/
 }
+
+
+
+
+/* ***********
+  Adminbereich
+  ************ */
+/* TODO: hier könnten noch Formatierungen für den Adminbereich rein */
+
+
