@@ -3,7 +3,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: _readme.txt,v 1.8 2006/10/08 17:29:51 koala_s Exp $
+ * @version $Id: _readme.txt,v 1.9 2006/10/08 18:57:15 koala_s Exp $
  */ -->
 <a href="?page=addon&amp;spage=help&amp;addonname=guestbook&amp;mode=changelog">Changelog</a>
 
@@ -31,6 +31,9 @@ Bei Fragen wende dich bitte an "redaxo [ät] koalashome [punkt) de".
 
 - Alle Dateien des Archivs nach "redaxo/include/addons/guestbook" entpacken
 
+- das Verzeichnis "guestbook/config/" und die darin enthaltene Datei "status.txt"
+  müssen Schreibrechte erhalten (dies Wird während der Installation NICHT geprüft)!
+
 - Im Redaxo AddOn Manager das Plugin installieren
 
 - Im Redaxo AddOn Manager das Plugin aktivieren
@@ -57,6 +60,7 @@ Bei Fragen wende dich bitte an "redaxo [ät] koalashome [punkt) de".
 
 
 <strong>Credits:</strong>
+- muadib2000 vom REDAXO-Forum (behilflich bei Suche nach Problemen mit MySQL 5)
 
 - andre.5tz vom REDAXO-Forum
 
