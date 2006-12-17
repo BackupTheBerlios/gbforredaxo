@@ -1,16 +1,16 @@
 {DANKE_TEXT_VALUE}
 
-{* Hinweis: 
-Wenn man davon ausgeht, dass SpamScripte nach bestimmten Schlüsselwörtern suchen um die Eingabefelder 
+{* Hinweis:
+Wenn man davon ausgeht, dass SpamScripte nach bestimmten Schlüsselwörtern suchen um die Eingabefelder
 richtig auszufüllen, warum sie dann nicht mit vertauschten Namen in die irre führen?
 Zu diesem Zwecke wurden die Bezeichnungen für URL und EMail getauscht.
 Im verarbeitenden PHP-Script wird dieser Tausch entsprechend berücksicht.
 *}
-<form class="a9-form" action="index.php" method="post">
+<form class="a63-form" action="index.php" method="post">
   <fieldset>
     <legend>Gästebuchformular</legend>
-    <input type="hidden" name="article_id" value="{ARTICLE_ID_VALUE}" /> 
-    <input type="hidden" name="clang" value="{CLANG_VALUE}" /> 
+    <input type="hidden" name="article_id" value="{ARTICLE_ID_VALUE}" />
+    <input type="hidden" name="clang" value="{CLANG_VALUE}" />
     {FEHLERMELDUNG_VALUE}
     <p>
       <label for="gbook_name">Name*</label>
@@ -33,8 +33,8 @@ Im verarbeitenden PHP-Script wird dieser Tausch entsprechend berücksicht.
       <textarea id="gbook_text" name="text" cols="50" rows="6">{TEXT_VALUE}</textarea>
     </p>
     <p class="a63-buttons">
-      <input class="a9-fsubmit" type="submit" name="gbook_save" value="eintragen" />
-      <input class="a9-fsubmit" type="reset" value="zurücksetzen" />
+      <input class="a63-fsubmit" type="submit" name="gbook_save" value="eintragen" />
+      <input class="a63-fsubmit" type="reset" value="zurücksetzen" />
     </p>
     <p class="a63-info">
       * Pflichtfelder
