@@ -1,25 +1,25 @@
 <?php
 /**
- * Guestbook Addon 
+ * Guestbook Addon
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.17 2006/07/22 10:53:35 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.18 2006/12/17 20:46:33 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
 include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_file.inc.php');
-// 
+//
 include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_postcheck.inc.php');
 
 
 /**
  * gbook_form_input
- * 
+ *
  * @param Admin-EMail
  * @param Danke-Text
  * @param DebugLevel  Verschiedene Stufen zur Debugausgabe (vorerst nur per EMail)
- * 
+ *
  */
 function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
   /*if (empty($notificationEmail)) {
@@ -36,7 +36,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
     <input type="text" id="VALUE[1]" name="VALUE[1]" value="<?php echo $notificationEmail ?>" class="inp100" />
     <p>siehe <a href="http://www.php.net/manual/de/function.mail.php">PHP Manual - mail() - to-Parameter</a></p>
     <br />
-    <label for="VALUE[2]">Danke-Text:</label>    
+    <label for="VALUE[2]">Danke-Text:</label>
     <textarea name="VALUE[2]" class="inp100" rows="6" /><?php echo $danke_text ?></textarea>
     <br /><br />
     <label for="VALUE[3]">Debug-Modus:</label>
@@ -46,11 +46,11 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
     </select>
     <br />
     <p>Hiermit werden diverse Informationen mit der EMail versand, die zu Debugzwecken nützlich sein können.
-    Aber beachte das es sich dabei um sehr viele Informationen handeln kann und diese Informationen 
+    Aber beachte das es sich dabei um sehr viele Informationen handeln kann und diese Informationen
     aus Sicherheitsgründen nie öffentlich zugänglich sein sollten!</p>
-    
 
-<div class="Modulversion">($Revision: 1.17 $ - $RCSfile: module.form.inc.php,v $)</div>
+
+<div class="Modulversion">($Revision: 1.18 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -59,11 +59,11 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
 
 /**
  * Prüft den Inhalt der übergebenen Variable.
- * 
+ *
  * Ist die Variable leer und darf sie für MySQL NULL sein,
  * so gib ein NULL zurück. Sonst gib den Wert in Anführungszeichen
  * zurück.
- * 
+ *
  * @param mixed Variable
  * @param mixed Defaultwert (NULL)
  * @return string
@@ -82,11 +82,11 @@ function checkPostVarForMySQL($var, $default = '') {
 
 /**
  * gbook_form_output
- * 
+ *
  * @param Admin-EMail
  * @param Danke-Text
  * @param DebugLevel  Verschiedene Stufen zur Debugausgabe (vorerst nur per EMail)
- * 
+ *
  */
 function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
   global $REX;
@@ -102,21 +102,21 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
   if (!isset ($danke_text)) {
     $danke_text = '';
   }
-  
+
 
 
 
   /**
-   * Um Spameinträge zu erschweren wurden die Feldnamen 'email' und 'url' 
+   * Um Spameinträge zu erschweren wurden die Feldnamen 'email' und 'url'
    * im Formular untereinander getauscht. Diese müssen nun zurückgetauscht werden.
-   * Der normale Benutzer sollte davon nichts bemerken.  
+   * Der normale Benutzer sollte davon nichts bemerken.
    */
-  if (isset ($_POST['email']) and $_POST['email'] != '') { 
+  if (isset ($_POST['email']) and $_POST['email'] != '') {
     $url_temp = $_POST['email'];
   } else {
     $url_temp = '';
   }
-  if (isset ($_POST['url']) and $_POST['url'] != '') { 
+  if (isset ($_POST['url']) and $_POST['url'] != '') {
     $email_temp = $_POST['url'];
   } else {
     $email_temp = '';
@@ -132,13 +132,13 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
   if (($errorfields = validFields()) === true and gbook_formularPostCheck(array ($_POST['name'],$_POST['text'],$_POST['url'],$_POST['email'],$_POST['city']) )) {
     $author_value   = checkPostVarForMySQL($_POST['name']);
     $message_value  = checkPostVarForMySQL($_POST['text']);
-    // wurde keine URL angegeben, entferne die "HTTP://"-Vorgabe 
+    // wurde keine URL angegeben, entferne die "HTTP://"-Vorgabe
     if ($_POST['url'] == 'http://') { $_POST['url'] = ''; }
     $url_value      = checkPostVarForMySQL($_POST['url'],'NULL');
     $email_value    = checkPostVarForMySQL($_POST['email'],'NULL');
     $city_value     = checkPostVarForMySQL($_POST['city'],'NULL');
-    
-    
+
+
     // Thema Sicherheit:
     // $status ist endweder 1, 0 oder false
     // die Funktion gbook_readStatusFromFile() läßt keine andere Rückgabe zu
@@ -151,18 +151,18 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
     }
 
     //$qry = 'INSERT INTO '.TBL_GBOOK.' SET  author = "'.$author.'", message = "'.$message.'", url ="'.$url.'", email="'.$email.'", city="'.$city.'", created = UNIX_TIMESTAMP()';
-    $qry = 'INSERT INTO '.TBL_GBOOK.' SET '.$status_db.' author = '.$author_value.', message = '.$message_value.', 
-            url = '.$url_value.', email = '.$email_value.', city = '.$city_value.', 
+    $qry = 'INSERT INTO '.TBL_GBOOK.' SET '.$status_db.' author = '.$author_value.', message = '.$message_value.',
+            url = '.$url_value.', email = '.$email_value.', city = '.$city_value.',
             created = UNIX_TIMESTAMP()';
     $sql = new sql();
     //$sql->debugsql = true;
     $sql->query($qry);
-    
+
 
 
     // EMail an Admin
     if ($notificationEmail != '') {
-      
+
       // DEBUG-Informationen zusammenstellen
       $debug_inhalt = '';
       if ($debuglevel == 1) {
@@ -186,9 +186,9 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
           }
         }
       } // if ($debuglevel == 1)
-      
 
-      
+
+
       $mail_host = !strstr($REX['SERVER'], 'http://') && !strstr($REX['SERVER'], 'https://') ? 'http://'.$REX['SERVER'] : $REX['SERVER'];
       if($mail_host{strlen($mail_host)-1} != '/')
       {
@@ -201,7 +201,7 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
       $mail_url = htmlspecialchars($_POST['url']);
       $mail_email = htmlspecialchars($_POST['email']);
       $mail_city = htmlspecialchars($_POST['city']);
-      
+
       $mail_betreff = 'Neuer Gästebucheintrag für '. $mail_host;
       $mail_nachricht = 'Im Gästebuch für die Webseite "'.$mail_host.'" wurde ein neuer Eintrag erstellt.'."\r\n\r\n";
       $mail_nachricht .= 'Name: '.$mail_author. "\r\n";
@@ -210,25 +210,25 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
       $mail_nachricht .= 'Wohnort: '.$mail_city. "\r\n\r\n";
       $mail_nachricht .= 'Nachricht: '.$mail_message. "\r\n\r\n\r\n";
       //$nachricht .= 'Hinweis: Dieser Eintrag wurde bei der Einstellung "Veröffentlichung nach Freigabe" deaktiviert gespeichert und erscheint erst dann in Ihren Gästebuch, wenn Sie den Eintrag aktiviert haben. Zum Log-In Bereich geht es unter '.$server."\r\n";
-    
+
       // DebugInfo anhängen, falls gewünscht
-      $mail_nachricht .= $debug_inhalt; 
+      $mail_nachricht .= $debug_inhalt;
       $header  = 'MIME-Version: 1.0'."\r\n";
       $header .= 'Content-type: text/plain; charset=iso-8859-1'."\r\n";
       $header .= 'Content-Transfer-Encoding: 8bit'."\r\n";
       $header .= 'X-Mailer: PHP/' . phpversion()."\r\n";
       $header .= 'From: '. $notificationEmail ."\r\n";
-      
+
       mail ($notificationEmail, $mail_betreff, $mail_nachricht, $header);
     }
-    
-    
+
+
   } else { // if (($errorfields = validFields()) === true)
 
     // der Danke-Text erscheint nur nach dem erfolgreichen absenden des Formulares
     $danke_text = '';
 
-    // Wurde eine falsche Eingabe festgestellt, fülle die Eingabefelder wieder 
+    // Wurde eine falsche Eingabe festgestellt, fülle die Eingabefelder wieder
     // mit den ursprünglichen Werten und gibt eine Fehlernachricht aus.
     if (!empty ($_POST['gbook_save'])) {
       // var_dump($_POST);
@@ -247,25 +247,25 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
 
       $error .= '</ul>';
     } // if (!empty ($_POST['gbook_save']))
-    
-    
-    
+
+
+
   } // else { // if (($errorfields = validFields()) === true)
 
     // AUSGABE der Seite
-    
+
     // wenn Template-Klasse noch nicht eingebunden, dann hole sie jetzt rein
     if (!class_exists ('Template')) {
       include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/classes/template.inc.php');
     }
     //$_ROOT['template'] = $REX['INCLUDE_PATH'].'/addons/guestbook/templates/';
-  
-  
+
+
     /* create Template instance called $t */
-    $t = new Template(".", "remove");
+    $t = new Template(GBOOK_TEMPLATEPATH, "remove");
     //$t->debug = 7;
-    $start_dir = GBOOK_TEMPLATEPATH.'gb_frontend_form.html';
-  
+    $start_dir = 'gb_frontend_form.html';
+
     /* lese Template-Datei */
     $t->set_file(array("start" => $start_dir));
 
@@ -288,17 +288,17 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
 
 /**
  * validFields
- * 
+ *
  */
 function validFields() {
   if (empty ($_POST['gbook_save']))
   {
     return false;
   }
-    
+
   $failed = array ();
   $reqfields = array ('name', 'text');
-  
+
   foreach ($reqfields as $name)
   {
     if (empty ($_POST[$name]))
@@ -308,7 +308,7 @@ function validFields() {
   }
 
   // Email Syntax Prüfung
-  if ($_POST['email'] != '' && 
+  if ($_POST['email'] != '' &&
      !(
       !(preg_match('!@.*@|\.\.|\,|\;!', $_POST['email']) ||
       !preg_match('!^.+\@(\[?)[a-zA-Z0-9\.\-]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$!', $_POST['email'])))
@@ -316,15 +316,15 @@ function validFields() {
   {
     $failed[] = 'email';
   }
-  
+
   // URL Syntax Prüfung
   if ($_POST['url'] == 'http://') {
     $url_temp = '';
   } else {
     $url_temp = $_POST['url'];
   }
-  if ($url_temp != '' && 
-      !preg_match('!^http(s)?://[\w-]+\.[\w-]+(\S+)?$!i',$url_temp)) 
+  if ($url_temp != '' &&
+      !preg_match('!^http(s)?://[\w-]+\.[\w-]+(\S+)?$!i',$url_temp))
   {
     $failed[] = 'url';
   }

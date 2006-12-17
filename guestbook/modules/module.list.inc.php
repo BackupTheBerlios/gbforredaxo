@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.13 2006/10/08 18:53:04 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.14 2006/12/17 20:46:33 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -72,7 +72,7 @@ function gbook_list_input($elementsPerPage, $paginationsPerPage, $dateFormat, $e
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-  <div class="Modulversion">($Revision: 1.13 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.14 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
@@ -116,10 +116,10 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
 
     /* create Template instance called $t */
-    $t = new Template(".", "remove");
+    $t = new Template(GBOOK_TEMPLATEPATH, "remove");
     //$t->debug = 7;
     //$start_dir = $_ROOT['template'].'gb_frontend_output.html';
-    $start_dir = GBOOK_TEMPLATEPATH.'gb_frontend_output2.html';
+    $start_dir = 'gb_frontend_output2.html';
 
     /* lese Template-Datei */
     $t->set_file(array("start" => $start_dir));
@@ -310,9 +310,9 @@ function gbook_paginationurl($page, $label = null, $title_name = '', $aktuelleSe
   {
     $label = $page;
   }
-  $class_aktuell = 'a9-pagination';
+  $class_aktuell = 'a63-pagination';
   if ($aktuelleSeite) {
-    $class_aktuell = 'a9-pagination_aktuell';
+    $class_aktuell = 'a63-pagination_aktuell';
   }
   $link = '<li class="'.$class_aktuell.'"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">';
   $link .= $label.'</a></li>';
