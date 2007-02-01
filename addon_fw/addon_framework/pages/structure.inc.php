@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: structure.inc.php,v 1.1 2006/06/24 11:04:17 koala_s Exp $
+ * @version $Id: structure.inc.php,v 1.2 2007/02/01 21:44:28 koala_s Exp $
  */
 
 
@@ -30,7 +30,7 @@ if ($func == '')
    */
   $colId = new resultColumn('id', 'ID');
   // ID zentrieren
-  $colId->setBodyTags('style="text-align: center"');
+  $colId->setBodyAttributes('style="text-align: center"');
   $colName = new resultColumn('name', 'Kategorie', '', '%name% [%id%]');
   $colPrio = new resultColumn('catprior', 'Prio');
 
@@ -40,8 +40,8 @@ if ($func == '')
   // Icon Spalte
   $colIcon = new staticColumn('<img src="pics/folder.gif"/>', '<img src="pics/folder_plus.gif"/>');
   // Icons zentrieren
-  $colIcon->setHeadTags('style="text-align: center"');
-  $colIcon->setBodyTags('style="text-align: center"');
+  $colIcon->setHeadAttributes('style="text-align: center"');
+  $colIcon->setBodyAttributes('style="text-align: center"');
   // Bearbeiten Spalte
   $colEdit = new staticColumn('Kategorie editieren/löschen', 'Kategorie editieren');
   // Online/Offline Spalte
