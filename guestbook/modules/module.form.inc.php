@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.18 2006/12/17 20:46:33 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.19 2007/07/11 20:11:14 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -21,7 +21,7 @@ include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_p
  * @param DebugLevel  Verschiedene Stufen zur Debugausgabe (vorerst nur per EMail)
  *
  */
-function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
+function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formular_an_aus) {
   /*if (empty($notificationEmail)) {
     global $REX;
     $notificationEmail = $REX['ERROR_EMAIL'];
@@ -48,9 +48,17 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel) {
     <p>Hiermit werden diverse Informationen mit der EMail versand, die zu Debugzwecken nützlich sein können.
     Aber beachte das es sich dabei um sehr viele Informationen handeln kann und diese Informationen
     aus Sicherheitsgründen nie öffentlich zugänglich sein sollten!</p>
+    <br /><br />
+    <label for="VALUE[4]">Formlar Ein oder Aus:</label>
+    <select name="VALUE[4]" id="VALUE[4]">
+     <option value="0" <?php echo $formular_an_aus == '0' ? 'selected="selected"' : '' ?>>Aus</option>
+     <option value="1" <?php echo $formular_an_aus == '1' ? 'selected="selected"' : '' ?>>Ein</option>
+    </select>
+    <br />
+		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
+		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-
-<div class="Modulversion">($Revision: 1.18 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.19 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -88,7 +96,7 @@ function checkPostVarForMySQL($var, $default = '') {
  * @param DebugLevel  Verschiedene Stufen zur Debugausgabe (vorerst nur per EMail)
  *
  */
-function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
+function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formular_an_aus) {
   global $REX;
 
 
@@ -126,7 +134,8 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
   $_POST['email'] = $email_temp;
 
 
-
+	// Wird true, wenn eine Eintrag erfolgreich geschrieben wurde
+	$Eintrag_geschrieben = false;
 
   // gbook_formularPostCheck($postvars, $domainname = false)
   if (($errorfields = validFields()) === true and gbook_formularPostCheck(array ($_POST['name'],$_POST['text'],$_POST['url'],$_POST['email'],$_POST['city']) )) {
@@ -158,7 +167,7 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
     //$sql->debugsql = true;
     $sql->query($qry);
 
-
+		$Eintrag_geschrieben = true;
 
     // EMail an Admin
     if ($notificationEmail != '') {
@@ -264,10 +273,56 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
     /* create Template instance called $t */
     $t = new Template(GBOOK_TEMPLATEPATH, "remove");
     //$t->debug = 7;
-    $start_dir = 'gb_frontend_form.html';
+    $danketext_templ = 'gb_frontend_danketext.html';
+    $formular_templ = 'gb_frontend_form.html';
+    $frontend_templ = 'gb_frontend.html';
 
     /* lese Template-Datei */
-    $t->set_file(array("start" => $start_dir));
+    $t->set_file(array('danketext' => $danketext_templ,
+    									 'formular' => $formular_templ,
+    									 'start' => $frontend_templ));
+
+		// Danketext
+    $t->set_var(array("DANKE_TEXT_VALUE" => $danke_text
+                  ));
+		// Formular
+    $t->set_var(array("FEHLERMELDUNG_VALUE" => $error,
+                      "ARTICLE_ID_VALUE" => $GLOBALS['article_id'],
+                      "CLANG_VALUE" => $GLOBALS['clang'],
+                      "NAME_VALUE" => $name,
+                      "EMAIL_VALUE" => $email,
+                      "URL_VALUE" => $url,
+                      "WOHNORT_VALUE" => $city,
+                      "TEXT_VALUE" => $text
+                  ));
+
+
+    // Teilseite zusammensetzen
+    $danke_text_value = $t->parse("output", "danketext");
+
+		// soll nur der Danke-Text ausgegeben werden, erstelle keine Formularseite
+		if ($formular_an_aus == 0) {
+			$formular_value = '';
+		} else {
+	    // Teilseite zusammensetzen
+	    $formular_value = $t->parse("output", 'formular');
+		}
+
+
+		// Seite zusammensetzen
+    $t->set_var(array("DANKE_TEXT" => $danke_text_value,
+    									'FORMULAR' => $formular_value
+                  ));
+
+
+
+    /* create Template instance called $t */
+//    $t = new Template(GBOOK_TEMPLATEPATH, "remove");
+    //$t->debug = 7;
+//    $start_dir = 'gb_frontend_form.html';
+
+    /* lese Template-Datei */
+/*    $t->set_file(array("start" => $start_dir));
 
     $t->set_var(array("DANKE_TEXT_VALUE" => $danke_text,
                       "FEHLERMELDUNG_VALUE" => $error,
@@ -279,7 +334,7 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel) {
                       "WOHNORT_VALUE" => $city,
                       "TEXT_VALUE" => $text
                   ));
-
+*/
     // komplette Seite ausgeben
     $t->pparse("output", "start");
 } // gbook_form_output($notificationEmail, $danke_text)
