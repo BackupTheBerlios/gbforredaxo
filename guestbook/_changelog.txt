@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.16 2007/07/11 20:11:14 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.17 2007/07/12 19:59:43 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -18,6 +18,9 @@
 
 
   <em>changes by Koala</em>
+12.07.2007 - GB V2 RC5 -
+- Fehler in der install.sql gefixt
+
 10.07.2007 - GB V2 RC4 -
 - zwei neue Templatedateien sorgen für eine bessere trennung von Formular und Danke-Text
 - Im Backend kann nun eingestellt werden, ob nur der Danke-Text erscheinen soll, oder ob
