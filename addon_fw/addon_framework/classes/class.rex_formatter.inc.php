@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formatter.inc.php,v 1.1 2006/06/24 11:04:14 koala_s Exp $
+ * @version $Id: class.rex_formatter.inc.php,v 1.2 2007/09/04 19:47:03 koala_s Exp $
  */
 
 /**
@@ -208,6 +208,11 @@ class rexFormatter
 
   function _formatUrl($value, $format)
   {
+    if (empty ($value))
+    {
+      return '';
+    }
+
     if (!is_array($format))
     {
       $format = array ();

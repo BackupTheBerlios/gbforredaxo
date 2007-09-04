@@ -1,4 +1,8 @@
 <h2>Changelog:</h2>
+
+<strong>[Sven] Änderungen von RC5 eingebaut - 04.09.2007</strong>
+- Kompatibel mit REDAXO 3.2.2
+
 <strong>Not yet released..</strong>
 - rexList:
   + set/getCaption implementiert

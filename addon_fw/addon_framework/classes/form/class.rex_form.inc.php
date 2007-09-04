@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_form.inc.php,v 1.1 2006/06/24 11:04:14 koala_s Exp $
+ * @version $Id: class.rex_form.inc.php,v 1.2 2007/09/04 19:47:03 koala_s Exp $
  */
 
 // Form Komponenten einbinden
@@ -232,7 +232,7 @@ class rexForm extends rexFieldContainer
     $s = '';
     $s .= '<!-- rexForm start -->'. "\n";
     $s .= '<div class="a22-rexform">'. "\n";
-    $s .= '  <form action="index.php" method="post">'."\n";
+    $s .= '  <form action="index.php" method="post" name="'. $this->getName() .'">'."\n";
     $s .= '    <div class="a22-rexform-hidden">'."\n";
 
     // Show Messages
