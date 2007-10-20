@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.7 2006/07/01 13:19:12 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.8 2007/10/20 17:42:06 koala_s Exp $
  */
  
 $mypage = 'guestbook'; // only for this file
@@ -32,13 +32,15 @@ $REX['ADDON']['page'][$mypage] = $mypage;
 $REX['ADDON']['rxid'][$mypage] = "63";
 $REX['ADDON']['name'][$mypage] = $I18N_GBOOK->msg('menu_title');
 $REX['ADDON']['perm'][$mypage] = 'guestbook[]';
+$REX['ADDON']['version'][$mypage] = "2.1 RC1";
+$REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
 
 $REX['PERM'][] = 'guestbook[]';
 
 // CSS einfügen
-rex_register_extension('OUTPUT_FILTER', 'rex_a9_gbook_insert_css');
+rex_register_extension('OUTPUT_FILTER', 'rex_a22_gbook_insert_css');
 
-function rex_a9_gbook_insert_css($params) {
+function rex_a22_gbook_insert_css($params) {
   return rex_a22_insertCss($params['subject'], 'guestbook/css/guestbook.css');
 }
 ?>
