@@ -1,18 +1,22 @@
 <?php
-
 /**
  * Guestbook Addon 
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: mailcrypt2.php,v 1.1 2006/06/13 20:26:09 koala_s Exp $
+ * @version $Id: mailcrypt2.php,v 1.2 2007/10/21 00:03:26 koala_s Exp $
  */
   
-# Dies ist die mailcrypt-Funktion Version 2, um deine eMail-Adressen vor Spammern zu schützen, die Webseiten nach Adressen durchsuchen.
-# Dieses Skript wird von www.silentcreek.de kostenlos zur Verfügung gestellt.
-# Nachfolgend ist die Funktion mailcrypt deklaliert. Du solltest nichts an der Funktion ändern.
-# Die Funktion verschlüsselt eMail-Adressen in ASCII-Code. Und zwar sowohl dezimale Schreibweise als auch hexadezimale Schreibweise gemischt.
-# Siehe readme.txt für Details zur Verwendung. Viel Spaß, creek
+/** 
+ * Dies ist die mailcrypt-Funktion Version 2, um deine eMail-Adressen vor 
+ * Spammern zu schützen, die Webseiten nach Adressen durchsuchen.
+ * Dieses Skript wird von www.silentcreek.de kostenlos zur Verfügung gestellt.
+ * Nachfolgend ist die Funktion mailcrypt deklaliert. Du solltest nichts an der
+ * Funktion ändern. Die Funktion verschlüsselt eMail-Adressen in ASCII-Code. 
+ * Und zwar sowohl dezimale Schreibweise als auch hexadezimale Schreibweise 
+ * gemischt.
+ * Siehe readme.txt für Details zur Verwendung. Viel Spaß, creek
+ */
 function gbook_encryptmail($email)
 {
 	// Zeichensatz für Symbole und Zeichen wird definiert
