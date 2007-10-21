@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.8 2007/10/20 17:42:06 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.9 2007/10/21 01:34:39 koala_s Exp $
  */
  
 $mypage = 'guestbook'; // only for this file
@@ -37,10 +37,17 @@ $REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
 
 $REX['PERM'][] = 'guestbook[]';
 
-// CSS einfügen
-rex_register_extension('OUTPUT_FILTER', 'rex_a22_gbook_insert_css');
-
-function rex_a22_gbook_insert_css($params) {
-  return rex_a22_insertCss($params['subject'], 'guestbook/css/guestbook.css');
+// CSS includen
+rex_register_extension('PAGE_HEADER', 'rex_a63_gbook_insert_css');
+function rex_a63_gbook_insert_css($params)
+{
+  return $params['subject'] .'  <link rel="stylesheet" type="text/css" href="../files/tmp_/addon_framework/common.css" />'. "\n";
 }
+
+// CSS einfügen
+//rex_register_extension('OUTPUT_FILTER', 'rex_a63_gbook_insert_css');
+
+//function rex_a63_gbook_insert_css($params) {
+//  return rex_a63_insertCss($params['subject'], 'guestbook/css/guestbook.css');
+//}
 ?>

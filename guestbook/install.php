@@ -7,7 +7,7 @@
  *
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: install.php,v 1.6 2006/10/08 15:27:11 koala_s Exp $
+ * @version $Id: install.php,v 1.7 2007/10/21 01:34:39 koala_s Exp $
  */
 
 /**
@@ -48,19 +48,19 @@ function installAction2Modul($modul_name, $action_name) {
    * m_id und a_id sind von MySQL vergebene IDs und entsprechen nicht diesem Beispiel hier!
    *
    */
-  $qry = 'SELECT `'.$REX['TABLE_PREFIX'].'modultyp`.`id` AS m_id, `'.$REX['TABLE_PREFIX'].'action`.`id` AS a_id,
+  $qry = 'SELECT `'.$REX['TABLE_PREFIX'].'module`.`id` AS m_id, `'.$REX['TABLE_PREFIX'].'action`.`id` AS a_id,
             IF(`'.$REX['TABLE_PREFIX'].'module_action`.`module_id` != 0, "true", "false") AS mod_action_m_id,
             IF(`'.$REX['TABLE_PREFIX'].'module_action`.`action_id` != 0, "true", "false") AS mod_action_a_id
-          FROM (`'.$REX['TABLE_PREFIX'].'modultyp` , `'.$REX['TABLE_PREFIX'].'action`)
-          LEFT JOIN `'.$REX['TABLE_PREFIX'].'module_action` ON ( `'.$REX['TABLE_PREFIX'].'module_action`.`module_id` = `'.$REX['TABLE_PREFIX'].'modultyp`.`id`
+          FROM (`'.$REX['TABLE_PREFIX'].'module` , `'.$REX['TABLE_PREFIX'].'action`)
+          LEFT JOIN `'.$REX['TABLE_PREFIX'].'module_action` ON ( `'.$REX['TABLE_PREFIX'].'module_action`.`module_id` = `'.$REX['TABLE_PREFIX'].'module`.`id`
             AND `'.$REX['TABLE_PREFIX'].'module_action`.`action_id` = `'.$REX['TABLE_PREFIX'].'action`.`id` )
-          WHERE `'.$REX['TABLE_PREFIX'].'modultyp`.`name` = "'.$modul_name.'"
+          WHERE `'.$REX['TABLE_PREFIX'].'module`.`name` = "'.$modul_name.'"
             AND `'.$REX['TABLE_PREFIX'].'action`.`name` = "'.$action_name.'"
           LIMIT 1';
 
-  $sql = new sql();
+  $sql = new rex_sql();
   //$sql->debugsql = true;
-  $data = $sql->get_array($qry);
+  $data = $sql->getArray($qry);
 
 
   if (is_array($data) and $sql->getRows() == 1) {
@@ -71,7 +71,7 @@ function installAction2Modul($modul_name, $action_name) {
       if ($row['mod_action_m_id'] == 'false' and $row['mod_action_a_id'] == 'false') {
         $qry = 'INSERT INTO `'.$REX['TABLE_PREFIX'].'module_action` ( `id` , `module_id` , `action_id` )
                 VALUES (NULL , "'.$row['m_id'].'", "'.$row['a_id'].'")';
-        $sql = new sql();
+        $sql = new rex_sql();
         //$sql->debugsql = true;
         $sql->setQuery($qry);
       } else {

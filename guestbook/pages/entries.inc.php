@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: entries.inc.php,v 1.2 2006/06/23 17:19:54 koala_s Exp $
+ * @version $Id: entries.inc.php,v 1.3 2007/10/21 01:34:39 koala_s Exp $
  */
  
 //------------------------------> Parameter
@@ -20,7 +20,7 @@ if($func == 'status')
   $status = $mode == 'online_it' ? 1 : 0; 
   $qry = 'UPDATE '. TBL_GBOOK .' SET status="'. $status .'" WHERE id='. $entry_id;
   
-  $sql = new sql();
+  $sql = new rex_sql();
   //$sql->debugsql = true;
   $sql->setQuery($qry);
   

@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.20 2007/07/11 20:45:21 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.21 2007/10/21 01:34:38 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -58,7 +58,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.20 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.21 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -163,7 +163,7 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
     $qry = 'INSERT INTO '.TBL_GBOOK.' SET '.$status_db.' author = '.$author_value.', message = '.$message_value.',
             url = '.$url_value.', email = '.$email_value.', city = '.$city_value.',
             created = UNIX_TIMESTAMP()';
-    $sql = new sql();
+    $sql = new rex_sql();
     //$sql->debugsql = true;
     $sql->query($qry);
 

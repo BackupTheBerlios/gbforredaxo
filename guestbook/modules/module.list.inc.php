@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.14 2006/12/17 20:46:33 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.15 2007/10/21 01:34:39 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -72,7 +72,7 @@ function gbook_list_input($elementsPerPage, $paginationsPerPage, $dateFormat, $e
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-  <div class="Modulversion">($Revision: 1.14 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.15 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
@@ -110,9 +110,9 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
     $qry = 'SELECT * FROM '.TBL_GBOOK.' WHERE status = "1" ORDER BY id DESC LIMIT '. ($page * $elementsPerPage).', '.$elementsPerPage;
 //    $qry = 'SELECT * FROM '.TBL_GBOOK.' WHERE status = "'. $status .'" ORDER BY id DESC LIMIT '. ($page * $elementsPerPage).', '.$elementsPerPage;
-    $sql = new sql();
+    $sql = new rex_sql();
 //    $sql->debugsql = true;
-    $data = $sql->get_array($qry);
+    $data = $sql->getArray($qry);
 
 
     /* create Template instance called $t */
@@ -238,8 +238,8 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
 
   $qry = 'SELECT count(*) rowCount FROM '.TBL_GBOOK .' WHERE '.TBL_GBOOK .'.status = "1"';
-  $sql = new sql();
-  $data = $sql->get_array($qry);
+  $sql = new rex_sql();
+  $data = $sql->getArray($qry);
 
   $oneSidePaginations = floor($paginationsPerPage / 2);
   //var_dump( $oneSidePaginations);
