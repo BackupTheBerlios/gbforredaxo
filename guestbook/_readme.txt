@@ -2,8 +2,9 @@
  * Guestbook Addon
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
- * @package redaxo3
- * @version $Id: _readme.txt,v 1.9 2006/10/08 18:57:15 koala_s Exp $
+ * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
+ * @package redaxo4
+ * @version $Id: _readme.txt,v 1.10 2007/10/22 14:33:58 koala_s Exp $
  */ -->
 <a href="?page=addon&amp;spage=help&amp;addonname=guestbook&amp;mode=changelog">Changelog</a>
 
@@ -13,7 +14,10 @@ Einfaches Gästebuch mit Eingabe-Formular und Redaxo-Seitiger Administration.
 Original von Markus Staab (http://www.public-4u.de)
 
 Anpassungen und Herausgabe der Gästebuchversion V2 durch Sven (Koala) Eichler.
-Bei Fragen wende dich bitte an "redaxo [ät] koalashome [punkt) de".
+Bei Fragen wende dich bitte an "redaxo [at] koalashome [punkt) de".
+
+<em>Das Gästebuch ist seit version GB V2.1 RC1 nur noch mit REDAXO 4.0 kompatibel 
+und benötigt mind. die AddOn Framework Version RC6!</em>
 
 
 <em>Das Gästebuch ist seit version RC4 nur noch mit redaxo 3.0 kompatibel!</em>

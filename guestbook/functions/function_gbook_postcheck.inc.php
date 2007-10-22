@@ -2,8 +2,8 @@
 /**
  * Guestbook Addon 
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
- * @package redaxo3
- * @version $Id: function_gbook_postcheck.inc.php,v 1.3 2006/07/01 14:52:27 koala_s Exp $
+ * @package redaxo4
+ * @version $Id: function_gbook_postcheck.inc.php,v 1.4 2007/10/22 14:33:58 koala_s Exp $
  */
 
 

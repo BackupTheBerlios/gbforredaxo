@@ -3,9 +3,10 @@
  * Guestbook Addon 
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+ * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @author Koala (diverse Erweiterungen)
- * @package redaxo3
- * @version $Id: function_gbook_file.inc.php,v 1.1 2006/06/25 14:20:53 koala_s Exp $
+ * @package redaxo4
+ * @version $Id: function_gbook_file.inc.php,v 1.2 2007/10/22 14:33:58 koala_s Exp $
  */
 
 /**

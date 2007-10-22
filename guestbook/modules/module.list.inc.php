@@ -3,8 +3,9 @@
  * Guestbook Addon
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
- * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.16 2007/10/22 00:21:13 koala_s Exp $
+ * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
+ * @package redaxo4
+ * @version $Id: module.list.inc.php,v 1.17 2007/10/22 14:33:58 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -74,7 +75,7 @@ $css_breite = '200px';
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-  <div class="Modulversion">($Revision: 1.16 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.17 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 

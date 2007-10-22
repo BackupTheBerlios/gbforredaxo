@@ -3,8 +3,9 @@
  * Guestbook Addon
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
- * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.22 2007/10/22 00:21:12 koala_s Exp $
+ * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
+ * @package redaxo4
+ * @version $Id: module.form.inc.php,v 1.23 2007/10/22 14:33:58 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -58,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.22 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.23 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
