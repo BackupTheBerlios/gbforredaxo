@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.20 2007/10/22 14:33:58 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.21 2007/10/22 19:21:38 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -22,6 +22,7 @@
 - erste Anpassungen für REDAXO 4.0
 - eigene install_.sql-Datei notwendig, da sich die Installationsprozedur mit R4 
   geändert hat
+- config/status.txt wird nun bei der Installation auf Schreibrechte geprüft 
   
 
 12.07.2007 - GB V2 RC5 -
