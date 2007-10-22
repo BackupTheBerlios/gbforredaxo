@@ -3,7 +3,7 @@
  * ModuleAndSlices Addon 
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: release.php,v 1.1 2007/10/22 21:41:23 koala_s Exp $
+ * @version $Id: release.php,v 1.2 2007/10/22 22:06:59 koala_s Exp $
  */
 
 $name = null;
@@ -80,7 +80,7 @@ function buildRelease($name = null, $version = null)
   echo '> read files'."\n";
 
   // Ordner und Dateien auslesen
-  $structure = readFolderStructure('.', array('.project','.setting','.cache', 'CVS', $cfg_path));
+  $structure = readFolderStructure('.', array('.project','.settings','.cache', 'CVS', $cfg_path));
 
   echo '> copy files'."\n";
   // Ordner/Dateien kopieren
