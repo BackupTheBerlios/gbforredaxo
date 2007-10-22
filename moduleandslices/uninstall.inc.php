@@ -1,0 +1,11 @@
+<?php
+/**
+ * ModuleAndSlices Addon
+ * @author sven[ät]koalashome[punkt]de Sven Eichler
+ * @package redaxo3
+ * @version $Id: uninstall.inc.php,v 1.1 2007/10/22 21:41:23 koala_s Exp $
+ */
+
+$REX['ADDON']['install']['moduleandslices'] = 0;
+
+?>
