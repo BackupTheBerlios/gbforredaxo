@@ -6,8 +6,8 @@
  * Installation des Addons vorzunehmen.
  *
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
- * @package redaxo3
- * @version $Id: install.php,v 1.8 2007/10/22 00:21:13 koala_s Exp $
+ * @package redaxo4
+ * @version $Id: install.php,v 1.9 2007/10/22 12:11:37 koala_s Exp $
  */
 
 /**
@@ -71,17 +71,18 @@ function installAction2Modul_63($modul_name, $action_name) {
       if ($row['mod_action_m_id'] == 'false' and $row['mod_action_a_id'] == 'false') {
         $qry = 'INSERT INTO `'.$REX['TABLE_PREFIX'].'module_action` ( `id` , `module_id` , `action_id` )
                 VALUES (NULL , "'.$row['m_id'].'", "'.$row['a_id'].'")';
-        $sql = new rex_sql();
+        $sql2 = new rex_sql();
         //$sql->debugsql = true;
-        $sql->setQuery($qry);
+        $sql2->setQuery($qry);
+        $sql2->freeResult();
       } else {
-        return 'installAction2Modul: Es exitiert bereits eine Zuweisung zwischen dem Modul "'.$modul_name.'" und der Aktion "'.$action_name.'".';
+        return 'installAction2Modul_63: Es exitiert bereits eine Zuweisung zwischen dem Modul "'.$modul_name.'" und der Aktion "'.$action_name.'".';
       }
     }
   } else {
-    return 'installAction2Modul: Fehler in der Datenbankabfrage. Ist der Modulname "'.$modul_name.'" und der Aktionname "'.$action_name.'" richtig?';
+    return 'installAction2Modul_63: Fehler in der Datenbankabfrage. Ist der Modulname "'.$modul_name.'" und der Aktionname "'.$action_name.'" richtig?';
   }
-  return 'OK';
+  return true;
 } // installAction2Modul()
 
 
