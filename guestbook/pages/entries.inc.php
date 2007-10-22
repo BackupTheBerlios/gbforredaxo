@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: entries.inc.php,v 1.3 2007/10/21 01:34:39 koala_s Exp $
+ * @version $Id: entries.inc.php,v 1.4 2007/10/22 00:21:13 koala_s Exp $
  */
  
 //------------------------------> Parameter
@@ -62,8 +62,8 @@ if ($func == '')
    */
   //Status
   $colStatus = new staticColumn('status', $I18N_GBOOK->msg('label_status'));
-  $colStatus->addCondition('status', '1', '<span class="online">'. $I18N_GBOOK->msg('status_online') .'</span>', array ('func' => 'status', 'mode' => 'offline_it', 'entry_id' => '%id%'));
-  $colStatus->addCondition('status', '0', '<span class="offline">'. $I18N_GBOOK->msg('status_offline') .'</span>', array ('func' => 'status', 'mode' => 'online_it', 'entry_id' => '%id%'));
+  $colStatus->addCondition('status', '1', '<span class="rex-online">'. $I18N_GBOOK->msg('status_online') .'</span>', array ('func' => 'status', 'mode' => 'offline_it', 'entry_id' => '%id%'));
+  $colStatus->addCondition('status', '0', '<span class="rex-offline">'. $I18N_GBOOK->msg('status_offline') .'</span>', array ('func' => 'status', 'mode' => 'online_it', 'entry_id' => '%id%'));
   
   // Antworten link
   $colAction = new staticColumn($I18N_GBOOK->msg('reply'), $I18N_GBOOK->msg('label_action'));

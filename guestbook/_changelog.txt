@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.18 2007/10/20 17:42:06 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.19 2007/10/22 00:21:13 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -18,8 +18,11 @@
 
 
   <em>changes by Koala</em>
-20.10.2007 - GB V2.1 RC1 -
+21.10.2007 - GB V2.1 RC1 -
 - erste Anpassungen für REDAXO 4.0
+- eigene install_.sql-Datei notwendig, da sich die Installationsprozedur mit R4 
+  geändert hat
+  
 
 12.07.2007 - GB V2 RC5 -
 - Fehler in der install.sql gefixt

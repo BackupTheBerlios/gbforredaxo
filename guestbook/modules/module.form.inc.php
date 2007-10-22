@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.form.inc.php,v 1.21 2007/10/21 01:34:38 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.22 2007/10/22 00:21:12 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -37,7 +37,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
     <p>siehe <a href="http://www.php.net/manual/de/function.mail.php">PHP Manual - mail() - to-Parameter</a></p>
     <br />
     <label for="VALUE[2]">Danke-Text:</label>
-    <textarea name="VALUE[2]" class="inp100" rows="6" /><?php echo $danke_text ?></textarea>
+    <textarea name="VALUE[2]" class="inp100" rows="6" cols="80"/><?php echo $danke_text ?></textarea>
     <br /><br />
     <label for="VALUE[3]">Debug-Modus:</label>
     <select name="VALUE[3]" id="VALUE[3]">
@@ -58,7 +58,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.21 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.22 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -165,7 +165,7 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
             created = UNIX_TIMESTAMP()';
     $sql = new rex_sql();
     //$sql->debugsql = true;
-    $sql->query($qry);
+    $sql->setQuery($qry);
 
 		$Eintrag_geschrieben = true;
 

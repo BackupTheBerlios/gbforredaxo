@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: module.list.inc.php,v 1.15 2007/10/21 01:34:39 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.16 2007/10/22 00:21:13 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -22,41 +22,43 @@ include_once ($REX['INCLUDE_PATH'].'/addons/guestbook/functions/function_gbook_f
  * @return
  */
 function gbook_list_input($elementsPerPage, $paginationsPerPage, $dateFormat, $emailFormat, $encryptEmails, $status) {
+
+$css_breite = '200px';
 ?>
   <fieldset>
-    <legend>Gästebuch Einstellungen</legend>
+    <legend>G&#228;stebuch Einstellungen</legend>
 
     <p>
-      <label for="VALUE[1]">Einträge pro Seite:</label>
+      <label for="VALUE[1]" style="width:<?php echo $css_breite; ?>">Eintr&#228;ge pro Seite:</label>
       <input type="text" id="VALUE[1]" name="VALUE[1]" value="<?php echo $elementsPerPage ?>" size="2" maxlength="2" />
     </p>
 
     <p>
-      <label for="VALUE[2]">Anzahl anzuzgeigender Seiten:</label>
+      <label for="VALUE[2]" style="width:<?php echo $css_breite; ?>">Anzahl anzuzgeigender Seiten:</label>
       <input type="text" id="VALUE[2]" name="VALUE[2]" value="<?php echo $paginationsPerPage ?>" size="2" maxlength="2" />
     </p>
     <p>
-      <label for="VALUE[5]">Email-Adressen verschlüsseln:</label>
+      <label for="VALUE[5]" style="width:<?php echo $css_breite; ?>">Email-Adressen verschl&#252;sseln:</label>
       <select name="VALUE[5]" id="VALUE[5]">
        <option value="0" <?php echo $encryptEmails == '0' ? 'selected="selected"' : '' ?>>Nein</option>
        <option value="1" <?php echo $encryptEmails == '1' ? 'selected="selected"' : '' ?>>Ja</option>
       </select>
     </p>
     <p>
-      <label for="VALUE[6]">Veröffentlichung erst nach Freigabe:</label>
+      <label for="VALUE[6]" style="width:<?php echo $css_breite; ?>">Ver&#246;ffentlichung erst nach Freigabe:</label>
       <select name="VALUE[6]" id="VALUE[6]">
        <option value="1" <?php echo $status == '1' ? 'selected="selected"' : '' ?>>Nein</option>
        <option value="0" <?php echo $status == '0' ? 'selected="selected"' : '' ?>>Ja</option>
       </select>
     </p>
     <p>
-      <label for="VALUE[3]">Datums-Format:</label>
+      <label for="VALUE[3]" style="width:<?php echo $css_breite; ?>">Datums-Format:</label>
       <input type="text" name="VALUE[3]" id="VALUE[3]" value="<?php echo $dateFormat ?>" />
     </p>
     <p>siehe <a href="http://php.net/strftime">PHP Manual - strftime()</a></p>
 
     <p>
-      <label for="VALUE[4]">Email-Adressen-Format:</label>
+      <label for="VALUE[4]" style="width:<?php echo $css_breite; ?>">Email-Adressen-Format:</label>
       <input type="text" name="VALUE[4]" id="VALUE[4]" value="<?php echo $emailFormat ?>" size="30" />
     </p>
     <p>
@@ -72,7 +74,7 @@ function gbook_list_input($elementsPerPage, $paginationsPerPage, $dateFormat, $e
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-  <div class="Modulversion">($Revision: 1.15 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.16 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
@@ -209,7 +211,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 ?>
 
 
-  <p class="rex-info">Die Einträge sind nur im Frontend sichtbar!</p>
+  <p class="rex-info">Die Einträge sind nur im Backend sichtbar!</p>
   <h6>Konfiguration:</h6>
   <p>Einträge pro Seite: <span class="rex-em"><?php echo $elementsPerPage ?></span></p>
   <p>Anzahl anzuzgeigender Seiten: <span class="rex-em"><?php echo $paginationsPerPage ?></span></p>

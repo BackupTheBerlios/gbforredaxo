@@ -7,7 +7,7 @@
  *
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo3
- * @version $Id: install.php,v 1.7 2007/10/21 01:34:39 koala_s Exp $
+ * @version $Id: install.php,v 1.8 2007/10/22 00:21:13 koala_s Exp $
  */
 
 /**
@@ -28,7 +28,7 @@
  * @param   string  Name der Action (auf richtige Schreibweise achten!)
  * @return  mixed   TRUE oder ein Fehlertext
  */
-function installAction2Modul($modul_name, $action_name) {
+function installAction2Modul_63($modul_name, $action_name) {
   global $REX;
 
   if (!isset ($modul_name) or $modul_name == '' or !isset ($action_name) or $action_name == '') {
