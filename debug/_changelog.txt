@@ -1,0 +1,4 @@
+<!-- $Id: _changelog.txt,v 1.1 2007/10/22 19:48:42 koala_s Exp $ -->
+<h2>Changelog:</h2>
+<strong>10.09.2006</strong>
+first release
