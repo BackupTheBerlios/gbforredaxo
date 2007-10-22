@@ -2,7 +2,7 @@
 --
 -- @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
 -- @package redaxo4
--- @version $Id$
+-- @version $Id:$
 
 CREATE TABLE `rex_63_gbook` (
   `id` int(10) unsigned NOT NULL auto_increment,
