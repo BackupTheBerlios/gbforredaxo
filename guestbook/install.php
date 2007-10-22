@@ -7,7 +7,7 @@
  *
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: install.php,v 1.9 2007/10/22 12:11:37 koala_s Exp $
+ * @version $Id: install.php,v 1.10 2007/10/22 12:13:01 koala_s Exp $
  */
 
 /**
@@ -80,8 +80,10 @@ function installAction2Modul_63($modul_name, $action_name) {
       }
     }
   } else {
+    $sql->freeResult();
     return 'installAction2Modul_63: Fehler in der Datenbankabfrage. Ist der Modulname "'.$modul_name.'" und der Aktionname "'.$action_name.'" richtig?';
   }
+  $sql->freeResult();
   return true;
 } // installAction2Modul()
 
