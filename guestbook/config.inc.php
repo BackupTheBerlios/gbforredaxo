@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: config.inc.php,v 1.11 2007/10/22 14:33:58 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.12 2007/10/31 17:45:15 koala_s Exp $
  */
  
 $mypage = 'guestbook'; // only for this file
@@ -33,7 +33,7 @@ $REX['ADDON']['page'][$mypage] = $mypage;
 $REX['ADDON']['rxid'][$mypage] = "63";
 $REX['ADDON']['name'][$mypage] = $I18N_GBOOK->msg('menu_title');
 $REX['ADDON']['perm'][$mypage] = 'guestbook_63[]';
-$REX['ADDON']['version'][$mypage] = "2.1 RC1";
+$REX['ADDON']['version'][$mypage] = "2.1 RC2";
 $REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
 
 $REX['PERM'][] = 'guestbook_63[]';
