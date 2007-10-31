@@ -7,7 +7,7 @@
  *
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: install.php,v 1.10 2007/10/22 12:13:01 koala_s Exp $
+ * @version $Id: install.php,v 1.11 2007/10/31 17:43:18 koala_s Exp $
  */
 
 /**
@@ -74,16 +74,16 @@ function installAction2Modul_63($modul_name, $action_name) {
         $sql2 = new rex_sql();
         //$sql->debugsql = true;
         $sql2->setQuery($qry);
-        $sql2->freeResult();
+        if (!$REX['a63_sql_compare']) { $sql2->freeResult(); }
       } else {
         return 'installAction2Modul_63: Es exitiert bereits eine Zuweisung zwischen dem Modul "'.$modul_name.'" und der Aktion "'.$action_name.'".';
       }
     }
   } else {
-    $sql->freeResult();
+    if (!$REX['a63_sql_compare']) { $sql2->freeResult(); }
     return 'installAction2Modul_63: Fehler in der Datenbankabfrage. Ist der Modulname "'.$modul_name.'" und der Aktionname "'.$action_name.'" richtig?';
   }
-  $sql->freeResult();
+  if (!$REX['a63_sql_compare']) { $sql2->freeResult(); }
   return true;
 } // installAction2Modul()
 

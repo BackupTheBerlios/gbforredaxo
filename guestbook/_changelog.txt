@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.21 2007/10/22 19:21:38 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.22 2007/10/31 17:43:18 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -18,6 +18,14 @@
 
 
   <em>changes by Koala</em>
+31.10.2007 - GB V2.1 RC2 -
+- Beim Reinstall des AddOns wird nun geprueft, ob es die Gaestebuchtabelle in 
+  der DB schon gibt. Ist dies der Fall, werden die SQL-Statements nicht 
+  ausgefuehrt. Die Module und Action werden dabei allerdings ignoriert.
+- [BUG] rex_sql::freeResult(): wird bei REDAXO < 4.0.1 nicht mehr aufgerufen
+- [BUG] rex_uninstalladdon(): Aufruf mit REDAXO4 nicht mehr notwendig > entfernt 
+
+
 22.10.2007 - GB V2.1 RC1 -
 - erste Anpassungen für REDAXO 4.0
 - eigene install_.sql-Datei notwendig, da sich die Installationsprozedur mit R4 
