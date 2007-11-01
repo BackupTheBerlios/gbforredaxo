@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: install.inc.php,v 1.10 2007/10/31 17:43:18 koala_s Exp $
+ * @version $Id: install.inc.php,v 1.11 2007/11/01 22:42:47 koala_s Exp $
  */
  
 $error = '';
@@ -23,8 +23,7 @@ if (!defined('TBL_GBOOK')) {
   define('TBL_GBOOK', $REX['TABLE_PREFIX'].'63_gbook');
 }
 
-$_REX['REDAXO-VERSION'] = $REX['VERSION'].$REX['SUBVERSION'].$REX['MINORVERSION'];
-
+$_REX['REDAXO-VERSION'] = $REX['VERSION'].'.'.$REX['SUBVERSION'].'.'.$REX['MINORVERSION'];
 
 // mind. REDAXO-Version 4.0.0 muss vorhanden sein
 if (version_compare($_REX['REDAXO-VERSION'], "4.0.0", "<"))
@@ -37,8 +36,6 @@ if (version_compare($_REX['REDAXO-VERSION'], "4.0.0", "=="))
 {
   $REX['a63_sql_compare'] = true;
 }
-
-
 
 /**
  * pruefe config/status.txt auf Schreibrechte
