@@ -2,8 +2,8 @@
 /**
  * Debug Addon 
  * @author sven[ät]koalshome[punkt]de Sven Eichler
- * @package redaxo3
- * @version $Id: index.inc.php,v 1.1 2007/10/22 19:48:42 koala_s Exp $
+ * @package redaxo4
+ * @version $Id: index.inc.php,v 1.2 2007/11/04 21:45:22 koala_s Exp $
  */
 
 
@@ -20,33 +20,28 @@ rex_title('Debug Addon');
 
 ?>
 
-<table border="0" cellpadding="5" cellspacing="1" width="770">
-  <tbody>
-  <tr>
-    <th colspan="2" align="left">Anleitung</th>
-  </tr>
-  <tr>
-    <td class="grey" valign="top" ><br />
-      <b>Features:</b><br /><br />
-      Mit Hilfe des Debug Addon können Variablen-, Array- oder Objektinhalte in <br />
-      zum Teil formatierter Form ausgegeben werden. 
+<h1>Anleitung</h1>
+<h2>Features:</h2>
+<p>Mit Hilfe des Debug Addon können Variablen-, Array- oder Objektinhalte in <br />
+zum Teil formatierter Form ausgegeben werden.</p>
   
-      <br /><br />
-      
-      <b>Beispiele:</b><br /><br />
-      $foo = 'bar';<br />
-      DebugOut($foo);<br />
-      Ausgabe: <br />
-      DEBUGOUT: bar<br /><br />
-      
-      $foo = array('bar','example');<br />
-      DebugOut($foo);<br />
-      Ausgabe: <br />
-      DEBUGOUT: 0 => bar<br />
-               1 => example<br /><br /><br />
-      
+<br /><br />
+
+<h2>Beispiele:</h2>
+<p>
+$foo = 'bar';<br />
+DebugOut($foo);<br />
+Ausgabe: <br />
+<span style="font-weight:bold;">DEBUGOUT:</span> bar<br /><br />
+
+$foo = array('bar','example');<br />
+DebugOut($foo);<br />
+Ausgabe: <br />
+<span style="font-weight:bold;">DEBUGOUT:</span> 0 => bar<br />
+1 => example<br /><br /><br />
+
 <pre>/**
- * Debug_Out gibt Variableninfos aus
+ * DebugOut gibt Variableninfos aus
  *
  * Aufrufbeispiel:
  * $a = array(1, 2, array("a", "b", "c"));
@@ -58,14 +53,8 @@ rex_title('Debug Addon');
  * @param  bool   0 (default): Ausgabe erfolgt per var_export()
  *                1: Ausgabe erfolgt per var_dump()
  */</pre>
-      
 
-      <b>Version:</b> RC 2 - 12.09.2006
-
-    </td>
-  </tr>
-</tbody>
-</table>
+</p>
 
 <?php
 
