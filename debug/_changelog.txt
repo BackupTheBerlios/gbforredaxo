@@ -1,8 +1,9 @@
-<!-- $Id: _changelog.txt,v 1.2 2007/11/04 21:45:22 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.3 2007/11/07 22:33:32 koala_s Exp $ -->
 <h2>Changelog:</h2>
 
 <strong>03.11.2007</strong>
-DebugOut-Funktion überarbeitet; Trennung nach Array und normaler Variable aufgehoben  
+- DebugOut-Funktion überarbeitet; Trennung nach Array und normaler Variable aufgehoben  
+- Kurzform DBO() eingefügt
 
 <strong>10.09.2006</strong>
 first release
