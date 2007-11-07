@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.form.inc.php,v 1.23 2007/10/22 14:33:58 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.24 2007/11/07 22:12:24 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -59,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.23 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.24 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -138,6 +138,14 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
 	// Wird true, wenn eine Eintrag erfolgreich geschrieben wurde
 	$Eintrag_geschrieben = false;
 
+	
+	if (!isset ($_POST['name'])) { $_POST['name'] = ''; }
+  if (!isset ($_POST['text'])) { $_POST['text'] = ''; }
+  if (!isset ($_POST['url'])) { $_POST['url'] = ''; }
+  if (!isset ($_POST['email'])) { $_POST['email'] = ''; }
+  if (!isset ($_POST['city'])) { $_POST['city'] = ''; }
+  
+	
   // gbook_formularPostCheck($postvars, $domainname = false)
   if (($errorfields = validFields()) === true and gbook_formularPostCheck(array ($_POST['name'],$_POST['text'],$_POST['url'],$_POST['email'],$_POST['city']) )) {
     $author_value   = checkPostVarForMySQL($_POST['name']);

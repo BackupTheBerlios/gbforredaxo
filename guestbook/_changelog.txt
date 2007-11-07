@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.22 2007/10/31 17:43:18 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.23 2007/11/07 22:12:24 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -18,6 +18,13 @@
 
 
   <em>changes by Koala</em>
+07.11.2007 - GB V2.1 RC3 -
+- [BUG] beim Antworten auf einen Eintrag wurde der Eintrag autom. offline 
+  gestellt > passiert nun nicht mehr 
+- [BUG] das entfernen eines Feldes aus dem Eintragsformular brachte eine 
+  Fehlermeldung > beseitigt; Felder können nun fast nach belieben aus dem 
+  Formular entfernt werden    
+
 31.10.2007 - GB V2.1 RC2 -
 - Beim Reinstall des AddOns wird nun geprueft, ob es die Gaestebuchtabelle in 
   der DB schon gibt. Ist dies der Fall, werden die SQL-Statements nicht 
