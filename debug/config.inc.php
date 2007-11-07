@@ -3,7 +3,7 @@
  * Debug Addon 
  * @author sven[ät]koalshome[punkt]de Sven Eichler
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.2 2007/11/04 21:45:22 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.3 2007/11/07 22:37:02 koala_s Exp $
  */
 
 // addon identifier
@@ -22,7 +22,7 @@ $REX['ADDON']['page'][$mypage] = $mypage;
 $REX['ADDON']['name'][$mypage] = 'Debug';
 // permission needed for accessing the addon
 $REX['ADDON']['perm'][$mypage] = 'debug[]';
-$REX['ADDON']['version'][$mypage] = "0.0.2";
+$REX['ADDON']['version'][$mypage] = "0.0.3";
 $REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
 // $REX['ADDON']['supportpage'][$mypage] = "";
 
