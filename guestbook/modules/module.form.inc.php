@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.form.inc.php,v 1.24 2007/11/07 22:12:24 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.25 2007/11/25 13:51:03 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -59,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.24 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.25 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -295,9 +295,9 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
     $t->set_var(array("DANKE_TEXT_VALUE" => $danke_text
                   ));
 		// Formular
+    $adresse = rex_geturl($GLOBALS['article_id']);
     $t->set_var(array("FEHLERMELDUNG_VALUE" => $error,
-                      "ARTICLE_ID_VALUE" => $GLOBALS['article_id'],
-                      "CLANG_VALUE" => $GLOBALS['clang'],
+                      "ADRESSE_VALUE" => $adresse,
                       "NAME_VALUE" => $name,
                       "EMAIL_VALUE" => $email,
                       "URL_VALUE" => $url,

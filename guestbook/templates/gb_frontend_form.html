@@ -4,11 +4,9 @@ richtig auszufüllen, warum sie dann nicht mit vertauschten Namen in die irre füh
 Zu diesem Zwecke wurden die Bezeichnungen für URL und EMail getauscht.
 Im verarbeitenden PHP-Script wird dieser Tausch entsprechend berücksicht.
 *}
-<form class="a63-form" action="index.php" method="post">
+<form class="a63-form" action="{ADRESSE_VALUE}" method="post">
   <fieldset>
     <legend>Gästebuchformular</legend>
-    <input type="hidden" name="article_id" value="{ARTICLE_ID_VALUE}" />
-    <input type="hidden" name="clang" value="{CLANG_VALUE}" />
     {FEHLERMELDUNG_VALUE}
     <p>
       <label for="gbook_name">Name*</label>

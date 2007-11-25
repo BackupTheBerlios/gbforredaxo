@@ -6,7 +6,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: entries.inc.php,v 1.6 2007/11/07 22:12:24 koala_s Exp $
+ * @version $Id: entries.inc.php,v 1.7 2007/11/25 13:51:03 koala_s Exp $
  */
  
 //------------------------------> Parameter
@@ -16,7 +16,7 @@ $Basedir = dirname(__FILE__);
 $entry_id = !empty($entry_id) ? (int) $entry_id : 0;
 $mode = !empty($mode) ? (string) $mode: '';
 //DBO($func);
-if($func == 'status_z')
+if($func == 'status')
 {
   $status = $mode == 'online_it' ? 1 : 0; 
   $qry = 'UPDATE '. TBL_GBOOK .' SET status="'. $status .'" WHERE id='. $entry_id;
@@ -62,9 +62,9 @@ if ($func == '')
    *  Statische Spalten anlegen 
    */
   //Status
-  $colStatus = new staticColumn('status_z', $I18N_GBOOK->msg('label_status'));
-  $colStatus->addCondition('status', '1', '<span class="rex-online">'. $I18N_GBOOK->msg('status_online') .'</span>', array ('func' => 'status_z', 'mode' => 'offline_it', 'entry_id' => '%id%'));
-  $colStatus->addCondition('status', '0', '<span class="rex-offline">'. $I18N_GBOOK->msg('status_offline') .'</span>', array ('func' => 'status_z', 'mode' => 'online_it', 'entry_id' => '%id%'));
+  $colStatus = new staticColumn('status', $I18N_GBOOK->msg('label_status'));
+  $colStatus->addCondition('status', '1', '<span class="rex-online">'. $I18N_GBOOK->msg('status_online') .'</span>', array ('func' => 'status', 'mode' => 'offline_it', 'entry_id' => '%id%'));
+  $colStatus->addCondition('status', '0', '<span class="rex-offline">'. $I18N_GBOOK->msg('status_offline') .'</span>', array ('func' => 'status', 'mode' => 'online_it', 'entry_id' => '%id%'));
   
   // Antworten link
   $colAction = new staticColumn($I18N_GBOOK->msg('reply'), $I18N_GBOOK->msg('label_action'));
@@ -149,14 +149,14 @@ elseif ($func == 'edit' || $func == 'add')
   $fieldMsg->addValidator('notEmpty', $I18N_GBOOK->msg('miss_message'));
 
   $fieldUrl = & new textField('url', $I18N_GBOOK->msg('label_url'));
-  $fieldUrl->addValidator('isUrl', $I18N_GBOOK->msg('incorect_url'), true);
+  $fieldUrl->addValidator('isURL', $I18N_GBOOK->msg('incorect_url'), true);
 
   $fieldEmail = & new textField('email', $I18N_GBOOK->msg('label_email'));
   $fieldEmail->addValidator('isEmail', $I18N_GBOOK->msg('incorect_email'), true);
 
   $fieldCity = & new textField('city', $I18N_GBOOK->msg('label_city'));
 
-  $fieldStatus = & new selectField('status_z', $I18N_GBOOK->msg('label_status'));
+  $fieldStatus = & new selectField('status', $I18N_GBOOK->msg('label_status'));
   $fieldStatus->addAttribute('size', '1');
   $fieldStatus->addValidator('notEmpty', $I18N_GBOOK->msg('miss_status'));
   $fieldStatus->addOption($I18N_GBOOK->msg('status_online'), '1');

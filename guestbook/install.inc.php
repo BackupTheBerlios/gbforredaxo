@@ -5,10 +5,11 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: install.inc.php,v 1.11 2007/11/01 22:42:47 koala_s Exp $
+ * @version $Id: install.inc.php,v 1.12 2007/11/25 13:51:02 koala_s Exp $
  */
  
 $error = '';
+$Basedir = dirname(__FILE__);
 
 /**
  * Setze SQL-Comparestatus.
@@ -38,11 +39,18 @@ if (version_compare($_REX['REDAXO-VERSION'], "4.0.0", "=="))
 }
 
 /**
+ * pruefe config/ auf Schreibrechte
+ */
+$error = rex_is_writable($Basedir.'/config');
+
+/**
  * pruefe config/status.txt auf Schreibrechte
  */
-$Basedir = dirname(__FILE__);
-$error = rex_is_writable($Basedir.'/config/status.txt');
-
+if (($error == '' or strlen($error) < 3))
+{
+  $error = rex_is_writable($Basedir.'/config/status.txt');
+}
+  
 if (($error == '' or strlen($error) < 3 ) and !OOAddon :: isAvailable('addon_framework'))
 {
   $error = 'Required addon "addon_framework" is either not installed or not activated!';
@@ -51,13 +59,17 @@ if (($error == '' or strlen($error) < 3 ) and !OOAddon :: isAvailable('addon_fra
 
 // erstelle tmp-Ordner
 $tmpFolder = $REX['MEDIAFOLDER'].'/'. $REX['TEMP_PREFIX'] .'/';
-if($error == '' && !is_dir($tmpFolder) && !mkdir($tmpFolder))
+if ($error == '' && !is_dir($tmpFolder) && !mkdir($tmpFolder))
+{
   $error = 'Unable to create folder "'. $tmpFolder .'"';
+}
 
 // erstelle AddOn-Ordner im tmp-Ordner
 $mediaFolder = $tmpFolder .'/guestbook_63/';
-if($error == '' && !is_dir($mediaFolder) && !mkdir($mediaFolder))
+if ($error == '' && !is_dir($mediaFolder) && !mkdir($mediaFolder))
+{
   $error = 'Unable to create folder "'. $mediaFolder .'"';
+}
 
 // kopiere CSS dorthin
 $cssPathSource = '/addons/guestbook/css/';
@@ -66,9 +78,13 @@ $cssFile = 'guestbook.css';
 $cssSrc = $REX['INCLUDE_PATH'] . $cssPathSource . $cssFile;
 $cssDst = $mediaFolder . $cssFile;
 
-if($error == '' && !file_exists($cssDst) && !copy($cssSrc, $cssDst))
+if ($error == '' && !file_exists($cssDst) && !copy($cssSrc, $cssDst))
+{
   $error = 'Unable to copy file to "'. $cssDst .'"';
+}
 // fertig
+
+
 
 // Gibt es die GB-Tabelle schon?
 $_a63_checkTabelle = rex_a63_CheckTabelle();
