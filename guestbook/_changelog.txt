@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.24 2007/11/25 13:51:03 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.25 2007/11/29 20:05:26 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -18,6 +18,10 @@
 
 
   <em>changes by Koala</em>
+29.11.2007 - GB V2.1 RC5 -
+- install_.sql ... was fehlende einfache Anführungszeichen so alles anrichten 
+  können ... na, nun funktionierts aber
+
 25.11.2007 - GB V2.1 RC4 -
 - install_.sql für mehrfache Redaxoinstallationen angepasst
   Benutzer- und Zeitinformationen angepasst/hinzugefügt
