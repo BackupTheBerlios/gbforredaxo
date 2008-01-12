@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.1 2006/06/24 11:04:14 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.2 2008/01/12 19:06:20 koala_s Exp $
  */
 
 $mypage = 'addon_framework'; // only for this file
@@ -27,7 +27,7 @@ if(isset($_GET['rex_css']))
   $errors = array();
   
   // Pfad validieren
-  if(strpos($file, '/') !== false)
+  if(strpos($file, '/') !== false and preg_match("/\.css$/i", $file))
   {
     $file_parts = explode('/', $file);
     
@@ -39,11 +39,11 @@ if(isset($_GET['rex_css']))
       }
     }
   }
-  else
+/*  else
   {
     $errors[] = 'Datei "'. $file .'" verweist auf keinen Ordner!';
     $errors[] = 'Beispielpfad: "addon_framework/css/rexform.css"';
-  }
+  } */
     
   // letzte "/" abschneiden
   $fileurl = substr($fileurl, 0, strlen($fileurl) - 1);
@@ -54,10 +54,10 @@ if(isset($_GET['rex_css']))
     header('Content-Type: text/css');
     readfile($css_file);
   }
-  else
+/*  else
   {
     $errors[] = 'Datei "'. $css_file .'" wurde nicht gefunden!';
-  }
+  } */
   exit(implode("<br />\n", $errors));
 }
 

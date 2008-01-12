@@ -1,5 +1,8 @@
 <h2>Changelog:</h2>
 
+<strong>[Sven] RC5.2 - 12.01.2008</strong>
+- Fehler bei der Übergaben von Daten an die Datenbank gefixt 
+
 <strong>[Sven] Änderungen von RC5 eingebaut - 04.09.2007</strong>
 - Kompatibel mit REDAXO 3.2.2
 
