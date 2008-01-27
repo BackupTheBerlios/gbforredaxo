@@ -4,7 +4,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: _readme.txt,v 1.10 2007/10/22 14:33:58 koala_s Exp $
+ * @version $Id: _readme.txt,v 1.11 2008/01/27 19:22:38 koala_s Exp $
  */ -->
 <a href="?page=addon&amp;spage=help&amp;addonname=guestbook&amp;mode=changelog">Changelog</a>
 
@@ -20,9 +20,6 @@ Bei Fragen wende dich bitte an "redaxo [at] koalashome [punkt) de".
 und benötigt mind. die AddOn Framework Version RC6!</em>
 
 
-<em>Das Gästebuch ist seit version RC4 nur noch mit redaxo 3.0 kompatibel!</em>
-
-
 <strong>Download:</strong>
 
 <a href="http://www.redaxo.de/18-0-addons.html">REDAXO Addon-Sammlung</a>
@@ -36,7 +33,7 @@ und benötigt mind. die AddOn Framework Version RC6!</em>
 - Alle Dateien des Archivs nach "redaxo/include/addons/guestbook" entpacken
 
 - das Verzeichnis "guestbook/config/" und die darin enthaltene Datei "status.txt"
-  müssen Schreibrechte erhalten (dies Wird während der Installation NICHT geprüft)!
+  müssen Schreibrechte erhalten (dies wird während der Installation NICHT geprüft)!
 
 - Im Redaxo AddOn Manager das Plugin installieren
 
@@ -44,14 +41,33 @@ und benötigt mind. die AddOn Framework Version RC6!</em>
 
 - Dem Benutzer das recht "guestbook[]" verleihen
 
-- Die Module "Gästebuch - Formular" und "Gästebuch - Eintragsliste" in die ensprechenden Artikel einfügen
+- Die Module "Gaestebuch - Formular" und "Gaestebuch - Eintragsliste" in die ensprechenden Artikel einfügen
 
-- CSS auf die eingene Seite anpassen
-
+- CSS auf die eigene Seite anpassen
+  Weiteres zur CSS-Installation findest du weiter unten.
+  
 - fertig ;)
 
 - Die Ausgabe-Template können im Ordner templates/ angepasst werden.
   Zu beachten sind hier lediglich die Platzhalter für die Datenausgabe.
+
+
+
+<strong>CSS-Installation:</strong>
+
+Die CSS-Datei sollte sich nach der Installation im Verzeichnis <em>files/tmp_/guestbook_63/guestbook.css</em> befinden.
+Du hast nun drei Möglichkeiten.
+- Im Template, welches die Seitenheader enthält, eine zusätzliche Zeile eingefügen.
+  Irgendwo zwischen &lt;head&gt; und &lt;/head&gt; ist diese Zeile einzufügen:
+  <strong>&lt;?php echo rex_register_extension_point('PAGE_HEADER_FRONTEND', ''); ?&gt;</strong>
+  Damit wird ein neuer Extensionpoint angelegt über den die CSS-Datei eingebunden wird.
+
+- Du kannst die CSS-Datei auch direkt im Header einbinden.
+  Mittels dieser Zeile:
+  <strong>&lt;link rel="stylesheet" type="text/css" href="./files/tmp_/guestbook_63/guestbook.css" /&gt;</strong>
+
+- Oder du kopierst alles notwendige in eine andere der CSS-Datei die bereits eingebunden wird. 
+
 
 
 

@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: config.inc.php,v 1.13 2007/11/25 13:51:03 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.14 2008/01/27 19:22:38 koala_s Exp $
  */
  
 $mypage = 'guestbook'; // only for this file
@@ -33,22 +33,20 @@ $REX['ADDON']['page'][$mypage] = $mypage;
 $REX['ADDON']['rxid'][$mypage] = "63";
 $REX['ADDON']['name'][$mypage] = $I18N_GBOOK->msg('menu_title');
 $REX['ADDON']['perm'][$mypage] = 'guestbook_63[]';
-$REX['ADDON']['version'][$mypage] = "2.1 RC4";
+$REX['ADDON']['version'][$mypage] = "2.1 RC6";
 $REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
 
 $REX['PERM'][] = 'guestbook_63[]';
 
-// CSS includen
-rex_register_extension('PAGE_HEADER', 'rex_a63_gbook_insert_css');
-function rex_a63_gbook_insert_css($params)
-{
-  return $params['subject'] .'  <link rel="stylesheet" type="text/css" href="../files/tmp_/guestbook_63/guestbook.css" />'. "\n";
+
+if ($REX['REDAXO']) {
+  $cssLink = '  <link rel="stylesheet" type="text/css" href="../files/tmp_/guestbook_63/guestbook.css" />'."\n";
+  $extpoint = 'PAGE_HEADER';
+} else {
+  $cssLink = '  <link rel="stylesheet" type="text/css" href="./files/tmp_/guestbook_63/guestbook.css" />'."\n";
+  $extpoint = 'PAGE_HEADER_FRONTEND';
 }
 
-// CSS einfügen
-//rex_register_extension('OUTPUT_FILTER', 'rex_a63_gbook_insert_css');
+rex_register_extension($extpoint, create_function('$params', 'return $params[\'subject\'].\''. $cssLink .'\';'));
 
-//function rex_a63_gbook_insert_css($params) {
-//  return rex_a63_insertCss($params['subject'], 'guestbook/css/guestbook.css');
-//}
 ?>

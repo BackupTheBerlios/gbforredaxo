@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.25 2007/11/29 20:05:26 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.26 2008/01/27 19:22:38 koala_s Exp $ -->
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 
@@ -18,6 +18,18 @@
 
 
   <em>changes by Koala</em>
+27.01.2008 - GB V2.1 RC6 -
+- Die CSS-Integration funktionierte bisher nur im Backendbereich.
+  Mit der jetzigen Lösung wird es auch im Frontend funktionieren. Dazu
+  muss allerdings in dem Template, welches die Seitenheader enthält,
+  eine zusätzliche Zeile eingefügt werden.
+  Irgendwo zwischen <head> und </head> ist diese Zeile einzufügen:
+  <?php echo rex_register_extension_point('PAGE_HEADER_FRONTEND', ''); ?>
+  Damit wird ein neuer Extensionpoint angelegt über den die CSS-Datei 
+  eingebunden wird.
+  Oder man bindet die CSS-Datei im Template direkt ein mittels:
+  <link rel="stylesheet" type="text/css" href="./files/tmp_/guestbook_63/guestbook.css" />
+
 29.11.2007 - GB V2.1 RC5 -
 - install_.sql ... was fehlende einfache Anführungszeichen so alles anrichten 
   können ... na, nun funktionierts aber
