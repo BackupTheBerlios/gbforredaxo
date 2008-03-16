@@ -7,7 +7,7 @@
  *
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: install.php,v 1.11 2007/10/31 17:43:18 koala_s Exp $
+ * @version $Id: install.php,v 1.12 2008/03/16 20:13:33 koala_s Exp $
  */
 
 /**
@@ -28,11 +28,11 @@
  * @param   string  Name der Action (auf richtige Schreibweise achten!)
  * @return  mixed   TRUE oder ein Fehlertext
  */
-function installAction2Modul_63($modul_name, $action_name) {
+function rex_a63_installAction2Modul($modul_name, $action_name) {
   global $REX;
 
   if (!isset ($modul_name) or $modul_name == '' or !isset ($action_name) or $action_name == '') {
-    return 'installAction2Modul: Keinen Modul- oder Aktionname übergeben.';
+    return 'rex_a63_installAction2Modul: Keinen Modul- oder Aktionname übergeben.';
   }
 
   /**
@@ -76,14 +76,13 @@ function installAction2Modul_63($modul_name, $action_name) {
         $sql2->setQuery($qry);
         if (!$REX['a63_sql_compare']) { $sql2->freeResult(); }
       } else {
-        return 'installAction2Modul_63: Es exitiert bereits eine Zuweisung zwischen dem Modul "'.$modul_name.'" und der Aktion "'.$action_name.'".';
+        return 'rex_a63_installAction2Modul: Es exitiert bereits eine Zuweisung zwischen dem Modul "'.$modul_name.'" und der Aktion "'.$action_name.'".';
       }
     }
   } else {
-    if (!$REX['a63_sql_compare']) { $sql2->freeResult(); }
-    return 'installAction2Modul_63: Fehler in der Datenbankabfrage. Ist der Modulname "'.$modul_name.'" und der Aktionname "'.$action_name.'" richtig?';
+    return 'rex_a63_installAction2Modul: Fehler in der Datenbankabfrage. Ist der Modulname "'.$modul_name.'" und der Aktionname "'.$action_name.'" richtig?';
   }
-  if (!$REX['a63_sql_compare']) { $sql2->freeResult(); }
+  if (!$REX['a63_sql_compare']) { $sql->freeResult(); }
   return true;
 } // installAction2Modul()
 

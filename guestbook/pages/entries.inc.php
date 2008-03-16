@@ -6,7 +6,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: entries.inc.php,v 1.7 2007/11/25 13:51:03 koala_s Exp $
+ * @version $Id: entries.inc.php,v 1.8 2008/03/16 20:13:33 koala_s Exp $
  */
  
 //------------------------------> Parameter
@@ -41,19 +41,19 @@ if ($func == '')
   // Standard sortierung nach id absteigend
   // Standard author ist shortcut
   $list = new rexlist($sql, 'id', 'desc', 'author');
-  $list->setLabel($I18N_GBOOK->msg('label_list'));
+  $list->setLabel($I18N_A63->msg('label_list'));
   //$list->debug = true;
 
   /**
    *  Spalten aus dem SQL-ResultSet anlegen 
    */
-  $colId = new resultColumn('id', $I18N_GBOOK->msg('label_id'));
-  $colAuthor = new resultColumn('author', $I18N_GBOOK->msg('label_author'));
-  $colMsg = new resultColumn('message', $I18N_GBOOK->msg('label_message'), 'truncate');
-  $colUrl = new resultColumn('url', $I18N_GBOOK->msg('label_url'), 'url');
-//  $colUrl = new resultColumn('url', $I18N_GBOOK->msg('label_url'));
-  $colCity = new resultColumn('city', $I18N_GBOOK->msg('label_city'));
-  $colCreated = new resultColumn('created', $I18N_GBOOK->msg('label_created'), 'strftime', 'datetime');
+  $colId = new resultColumn('id', $I18N_A63->msg('label_id'));
+  $colAuthor = new resultColumn('author', $I18N_A63->msg('label_author'));
+  $colMsg = new resultColumn('message', $I18N_A63->msg('label_message'), 'truncate');
+  $colUrl = new resultColumn('url', $I18N_A63->msg('label_url'), 'url');
+//  $colUrl = new resultColumn('url', $I18N_A63->msg('label_url'));
+  $colCity = new resultColumn('city', $I18N_A63->msg('label_city'));
+  $colCreated = new resultColumn('created', $I18N_A63->msg('label_created'), 'strftime', 'datetime');
 
   // ID zentrieren
   $colId->setBodyAttributes('style="text-align: center;"');
@@ -62,12 +62,12 @@ if ($func == '')
    *  Statische Spalten anlegen 
    */
   //Status
-  $colStatus = new staticColumn('status', $I18N_GBOOK->msg('label_status'));
-  $colStatus->addCondition('status', '1', '<span class="rex-online">'. $I18N_GBOOK->msg('status_online') .'</span>', array ('func' => 'status', 'mode' => 'offline_it', 'entry_id' => '%id%'));
-  $colStatus->addCondition('status', '0', '<span class="rex-offline">'. $I18N_GBOOK->msg('status_offline') .'</span>', array ('func' => 'status', 'mode' => 'online_it', 'entry_id' => '%id%'));
+  $colStatus = new staticColumn('status', $I18N_A63->msg('label_status'));
+  $colStatus->addCondition('status', '1', '<span class="rex-online">'. $I18N_A63->msg('status_online') .'</span>', array ('func' => 'status', 'mode' => 'offline_it', 'entry_id' => '%id%'));
+  $colStatus->addCondition('status', '0', '<span class="rex-offline">'. $I18N_A63->msg('status_offline') .'</span>', array ('func' => 'status', 'mode' => 'online_it', 'entry_id' => '%id%'));
   
   // Antworten link
-  $colAction = new staticColumn($I18N_GBOOK->msg('reply'), $I18N_GBOOK->msg('label_action'));
+  $colAction = new staticColumn($I18N_A63->msg('reply'), $I18N_A63->msg('label_action'));
   
   
   /**
@@ -142,34 +142,34 @@ elseif ($func == 'edit' || $func == 'add')
   //------------------------------> Fields[Allgemein]
 
   
-  $fieldAuthor = & new textField('author', $I18N_GBOOK->msg('label_author'));
-  $fieldAuthor->addValidator('notEmpty', $I18N_GBOOK->msg('miss_author'));
+  $fieldAuthor = & new textField('author', $I18N_A63->msg('label_author'));
+  $fieldAuthor->addValidator('notEmpty', $I18N_A63->msg('miss_author'));
 
-  $fieldMsg = & new textAreaField('message', $I18N_GBOOK->msg('label_message'), array ('style' => 'height: 100px'));
-  $fieldMsg->addValidator('notEmpty', $I18N_GBOOK->msg('miss_message'));
+  $fieldMsg = & new textAreaField('message', $I18N_A63->msg('label_message'), array ('style' => 'height: 100px'));
+  $fieldMsg->addValidator('notEmpty', $I18N_A63->msg('miss_message'));
 
-  $fieldUrl = & new textField('url', $I18N_GBOOK->msg('label_url'));
-  $fieldUrl->addValidator('isURL', $I18N_GBOOK->msg('incorect_url'), true);
+  $fieldUrl = & new textField('url', $I18N_A63->msg('label_url'));
+  $fieldUrl->addValidator('isURL', $I18N_A63->msg('incorect_url'), true);
 
-  $fieldEmail = & new textField('email', $I18N_GBOOK->msg('label_email'));
-  $fieldEmail->addValidator('isEmail', $I18N_GBOOK->msg('incorect_email'), true);
+  $fieldEmail = & new textField('email', $I18N_A63->msg('label_email'));
+  $fieldEmail->addValidator('isEmail', $I18N_A63->msg('incorect_email'), true);
 
-  $fieldCity = & new textField('city', $I18N_GBOOK->msg('label_city'));
+  $fieldCity = & new textField('city', $I18N_A63->msg('label_city'));
 
-  $fieldStatus = & new selectField('status', $I18N_GBOOK->msg('label_status'));
+  $fieldStatus = & new selectField('status', $I18N_A63->msg('label_status'));
   $fieldStatus->addAttribute('size', '1');
-  $fieldStatus->addValidator('notEmpty', $I18N_GBOOK->msg('miss_status'));
-  $fieldStatus->addOption($I18N_GBOOK->msg('status_online'), '1');
-  $fieldStatus->addOption($I18N_GBOOK->msg('status_offline'), '0');
+  $fieldStatus->addValidator('notEmpty', $I18N_A63->msg('miss_status'));
+  $fieldStatus->addOption($I18N_A63->msg('status_online'), '1');
+  $fieldStatus->addOption($I18N_A63->msg('status_offline'), '0');
   
-  $fieldCreated = & new readOnlyField('created', $I18N_GBOOK->msg('label_created'));
+  $fieldCreated = & new readOnlyField('created', $I18N_A63->msg('label_created'));
   $fieldCreated->setFormatType('strftime');
   $fieldCreated->setFormat('datetime');
   $fieldCreated->activateSave(true);
 
   //------------------------------> Fields[Antworten]
 
-  $fieldReply = & new textAreaField('reply', $I18N_GBOOK->msg('label_reply'), array ('style' => 'height: 100px'));
+  $fieldReply = & new textAreaField('reply', $I18N_A63->msg('label_reply'), array ('style' => 'height: 100px'));
 
   //------------------------------> Set conditional Field Values
   
@@ -180,7 +180,7 @@ elseif ($func == 'edit' || $func == 'add')
   
   //------------------------------> Add Fields: Section[Allgemein]
 
-  $sectionCommon = & new rexFormSection(TBL_GBOOK, $I18N_GBOOK->msg('label_form'), array ('id' => $entry_id));
+  $sectionCommon = & new rexFormSection(TBL_GBOOK, $I18N_A63->msg('label_form'), array ('id' => $entry_id));
   $sectionCommon->addField($fieldAuthor);
   $sectionCommon->addField($fieldMsg);
   $sectionCommon->addField($fieldUrl);
@@ -191,7 +191,7 @@ elseif ($func == 'edit' || $func == 'add')
 
   //------------------------------> Add Fields: Section[Antworten]
 
-  $sectionReply = & new rexFormSection(TBL_GBOOK, $I18N_GBOOK->msg('label_form_reply'), array ('id' => $entry_id));
+  $sectionReply = & new rexFormSection(TBL_GBOOK, $I18N_A63->msg('label_form_reply'), array ('id' => $entry_id));
   $sectionReply->setAnchor('reply');
   $sectionReply->addField($fieldReply);
 

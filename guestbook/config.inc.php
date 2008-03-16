@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: config.inc.php,v 1.14 2008/01/27 19:22:38 koala_s Exp $
+ * @version $Id: config.inc.php,v 1.15 2008/03/16 20:13:33 koala_s Exp $
  */
  
 $mypage = 'guestbook'; // only for this file
@@ -27,14 +27,15 @@ if (!defined('GBOOK_TEMPLATEPATH')) {
 
 
 // CREATE LANG OBJ FOR THIS ADDON
-$I18N_GBOOK = new i18n($REX['LANG'], $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/lang');
+$I18N_A63 = new i18n($REX['LANG'], $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/lang');
 
 $REX['ADDON']['page'][$mypage] = $mypage;
 $REX['ADDON']['rxid'][$mypage] = "63";
-$REX['ADDON']['name'][$mypage] = $I18N_GBOOK->msg('menu_title');
+$REX['ADDON']['name'][$mypage] = $I18N_A63->msg('menu_title');
 $REX['ADDON']['perm'][$mypage] = 'guestbook_63[]';
 $REX['ADDON']['version'][$mypage] = "2.1 RC6";
 $REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
+$REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
 
 $REX['PERM'][] = 'guestbook_63[]';
 

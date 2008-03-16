@@ -5,11 +5,11 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: install.inc.php,v 1.12 2007/11/25 13:51:02 koala_s Exp $
+ * @version $Id: install.inc.php,v 1.13 2008/03/16 20:13:33 koala_s Exp $
  */
  
 $error = '';
-$Basedir = dirname(__FILE__);
+//$Basedir = dirname(__FILE__);
 
 /**
  * Setze SQL-Comparestatus.
@@ -38,70 +38,144 @@ if (version_compare($_REX['REDAXO-VERSION'], "4.0.0", "=="))
   $REX['a63_sql_compare'] = true;
 }
 
-/**
- * pruefe config/ auf Schreibrechte
- */
-$error = rex_is_writable($Basedir.'/config');
+if (!isset ($REX['DIRPERM'])) {
+  $REX['DIRPERM'] = octdec(777); // oktaler wert
+}
+
+
 
 /**
- * pruefe config/status.txt auf Schreibrechte
+ * Hilfsfunktion zur Installation.
+ *
+ * @param int $step Installationsschritt
+ * @return string
  */
-if (($error == '' or strlen($error) < 3))
-{
-  $error = rex_is_writable($Basedir.'/config/status.txt');
-}
+function _a_63_install($step = 0) {
+  global $REX;
   
-if (($error == '' or strlen($error) < 3 ) and !OOAddon :: isAvailable('addon_framework'))
-{
-  $error = 'Required addon "addon_framework" is either not installed or not activated!';
+  /**
+   * init
+   */
+  $error = '';
+  $tmpFolder = $REX['MEDIAFOLDER'].'/'. $REX['TEMP_PREFIX'] .'/';
+  $mediaFolder = $REX['MEDIAFOLDER'].'/'. $REX['TEMP_PREFIX'] .'/guestbook_63/';
+  $cssPathSource = '/addons/guestbook/css/';
+  $cssFile = 'guestbook.css';
+  
+
+  static $_a63_checkTabelle = '';
+  
+
+  switch ($step) {
+    case 1:
+      /**
+       * pruefe config/ auf Schreibrechte
+       */
+      $error = rex_is_writable(dirname(__FILE__).'/config');
+    break;
+    
+    case 2:
+      /**
+       * pruefe config/status.txt auf Schreibrechte
+       */
+      $error = rex_is_writable(dirname(__FILE__).'/config/status.txt');
+    break;
+    
+    case 3:
+      /**
+       * das addon_framework muss installiert und aktiviert sein
+       */
+      if (!OOAddon :: isAvailable('addon_framework'))
+      {
+        $error = 'Required addon "addon_framework" is either not installed or not activated!';
+      }
+    break;
+    
+    case 4:
+      // erstelle tmp-Ordner, wenn nicht schon vorhanden
+      if (!is_dir($tmpFolder) && !mkdir($tmpFolder))
+      {
+        $error = 'Unable to create folder "'. $tmpFolder .'"';
+      }
+      @chmod($tmpFolder, $REX['DIRPERM']);
+    break;
+    
+    case 5:
+      // erstelle AddOn-Ordner im tmp-Ordner
+      if (!is_dir($mediaFolder) && !mkdir($mediaFolder))
+      {
+        $error = 'Unable to create folder "'. $mediaFolder .'"';
+      }
+      @chmod($mediaFolder, $REX['DIRPERM']);
+    break;
+    
+    case 6:
+      // kopiere CSS in Mediafolder 
+      $cssSrc = $REX['INCLUDE_PATH'] . $cssPathSource . $cssFile;
+      $cssDst = $mediaFolder . $cssFile;
+      
+      if (!file_exists($cssDst) && !copy($cssSrc, $cssDst))
+      {
+        $error = 'Unable to copy file to "'. $cssDst .'"';
+      }
+      // setze Rechte nach master.inc.php-Vorgabe
+      @ chmod($cssDst, $REX['FILEPERM']);
+      
+    break;
+    
+    case 7:
+      // Gibt es die GB-Tabelle schon?
+      $_a63_checkTabelle = rex_a63_CheckTabelle();
+      
+      // SQL wird nur ausgefuehrt, wenn die Tabelle noch nicht in der DB existiert.
+      if (!$_a63_checkTabelle)
+      {
+        $error = rex_install_dump(dirname(__FILE__).'/install_tabelle.sql', false);
+      }
+    break;
+    
+    case 8:
+      // installiere die benoetigten Module und Aktionen
+      // ToDo: eine Ueberpruefung ob die Module und Aktionen schon installiert ist waere notwendig
+      // ToDo: aber dazu fehlen noch einige Vorraussetzungen in den Redaxotabellen selbst
+      $error = rex_install_dump(dirname(__FILE__).'/install_moduleaction.sql', false);
+    break;
+    
+    case 9:
+      // DB-Daten installiert? Dann hiermit weiter.
+      include(dirname(__FILE__).'/install.php');
+      // rex_a63_installAction2Modul(Name des Modules, Name der Action)
+      $error = rex_a63_installAction2Modul('Gaestebuch - Eintragsliste', 'Gaestebuch - Eintragsliste StatusPerDatei');
+    break;
+    
+    default:
+      $error = $I18N_A63('Fehler bei der Installation. Kein passender Installationsschritt gefunden.');
+    break;
+  }
+  return $error;
+}
+
+/**
+ * Anzahl an Installationsschritte
+ * Siehe function _a_63_install()
+ */
+$step = 9;
+
+/**
+ * Arbeite alle Installationsschritte ab.
+ * Im Fehlerfall > Abbruch
+ */
+for ($i = 1; $i <= $step; $i++) {
+  $error = _a_63_install($i);
+  if ($error != '' and strlen($error) > 3)
+  {
+    $REX['ADDON']['installmsg']['guestbook'] = $error;
+    break;
+  }
 }
 
 
-// erstelle tmp-Ordner
-$tmpFolder = $REX['MEDIAFOLDER'].'/'. $REX['TEMP_PREFIX'] .'/';
-if ($error == '' && !is_dir($tmpFolder) && !mkdir($tmpFolder))
-{
-  $error = 'Unable to create folder "'. $tmpFolder .'"';
-}
 
-// erstelle AddOn-Ordner im tmp-Ordner
-$mediaFolder = $tmpFolder .'/guestbook_63/';
-if ($error == '' && !is_dir($mediaFolder) && !mkdir($mediaFolder))
-{
-  $error = 'Unable to create folder "'. $mediaFolder .'"';
-}
-
-// kopiere CSS dorthin
-$cssPathSource = '/addons/guestbook/css/';
-$cssFile = 'guestbook.css';
-
-$cssSrc = $REX['INCLUDE_PATH'] . $cssPathSource . $cssFile;
-$cssDst = $mediaFolder . $cssFile;
-
-if ($error == '' && !file_exists($cssDst) && !copy($cssSrc, $cssDst))
-{
-  $error = 'Unable to copy file to "'. $cssDst .'"';
-}
-// fertig
-
-
-
-// Gibt es die GB-Tabelle schon?
-$_a63_checkTabelle = rex_a63_CheckTabelle();
-
-// SQL wird nur ausgefuehrt, wenn die Tabelle noch nicht in der DB existiert.
-if (($error == '' or strlen($error) < 3) and !$_a63_checkTabelle)
-{
-  $error = rex_install_dump(dirname(__FILE__).'/install_.sql', false);
-}
-
-// DB-Daten installiert? Dann hiermit weiter.
-if (($error == '' or strlen($error) < 3) and !$_a63_checkTabelle)
-{
-  include(dirname(__FILE__).'/install.php');
-  // installAction2Modul(Name des Modules, Name der Action)
-  $error = installAction2Modul_63('Gaestebuch - Eintragsliste', 'Gaestebuch - Eintragsliste StatusPerDatei');
-}
 
 if ($error != '' and strlen($error) > 3)
 {
@@ -109,6 +183,7 @@ if ($error != '' and strlen($error) > 3)
 } else {
   $REX['ADDON']['install']['guestbook'] = true;
 }
+
 
 
 
@@ -128,7 +203,6 @@ function rex_a63_CheckTabelle()
   {
     return true;
   }
-
   return false;
 }
 

@@ -6,7 +6,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: index.inc.php,v 1.2 2007/10/22 14:33:58 koala_s Exp $
+ * @version $Id: index.inc.php,v 1.3 2008/03/16 20:13:33 koala_s Exp $
  */
  
 //------------------------------> Parameter
@@ -27,7 +27,7 @@ if (!isset ($subpage))
 
 require $REX['INCLUDE_PATH']."/layout/top.php";
 
-rex_title($I18N_GBOOK->msg('menu_title'), '');
+rex_title($I18N_A63->msg('menu_title'), '');
 
 
 switch($subpage){
