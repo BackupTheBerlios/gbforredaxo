@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.list.inc.php,v 1.17 2007/10/22 14:33:58 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.18 2009/01/28 14:42:38 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -75,7 +75,7 @@ $css_breite = '200px';
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-  <div class="Modulversion">($Revision: 1.17 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.18 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
@@ -118,6 +118,13 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
     $data = $sql->getArray($qry);
 
 
+    // Gesamtanzahl Eintraege ermitteln
+    $qry_gesamt = 'SELECT * FROM '.TBL_GBOOK.' WHERE status = "1"';
+    $sql_gesamt = new rex_sql();
+    $sql_gesamt->getArray($qry_gesamt);
+    $EintragsanzahlGesamt = $sql_gesamt->getRows();
+    
+
     /* create Template instance called $t */
     $t = new Template(GBOOK_TEMPLATEPATH, "remove");
     //$t->debug = 7;
@@ -136,6 +143,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
       $t->set_block("start", "EintragsUebersicht", "EintragsUebersicht_s");
 
+      $NR = $EintragsanzahlGesamt - ($page * $elementsPerPage);
       foreach ($data as $row) {
 
         $url = strpos($row['url'], 'http://') === false ? 'http://'.$row['url'] : $row['url'];
@@ -180,7 +188,8 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
                           "NACHRICHT_VALUE"   => $NACHRICHT_VALUE,
                           "ANTWORT_VALUE"   => $ANTWORT_VALUE,
                           "ANTWORT_VORHANDEN_BEGINN"   => $ANTWORT_VORHANDEN_BEGINN,
-                          "ANTWORT_VORHANDEN_ENDE"   => $ANTWORT_VORHANDEN_ENDE
+                          "ANTWORT_VORHANDEN_ENDE"   => $ANTWORT_VORHANDEN_ENDE,
+                          "NR" => $NR--
                           ));
 
         $t->parse("EintragsUebersicht_s", "EintragsUebersicht", true);
