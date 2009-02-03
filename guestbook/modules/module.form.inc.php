@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.form.inc.php,v 1.25 2007/11/25 13:51:03 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.26 2009/02/03 20:58:43 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -59,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.25 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.26 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -214,11 +214,11 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
       }
       $mail_server = $mail_host .'/redaxo';
 
-      $mail_author = htmlspecialchars($_POST['name']);
-      $mail_message = htmlspecialchars($_POST['text']);
-      $mail_url = htmlspecialchars($_POST['url']);
-      $mail_email = htmlspecialchars($_POST['email']);
-      $mail_city = htmlspecialchars($_POST['city']);
+      $mail_author = htmlspecialchars(rex_post('name', 'string'));
+      $mail_message = htmlspecialchars(rex_post('text', 'string'));
+      $mail_url = htmlspecialchars(rex_post('url', 'string'));
+      $mail_email = htmlspecialchars(rex_post('email', 'string'));
+      $mail_city = htmlspecialchars(rex_post('city', 'string'));
 
       $mail_betreff = 'Neuer Gästebucheintrag für '. $mail_host;
       $mail_nachricht = 'Im Gästebuch für die Webseite "'.$mail_host.'" wurde ein neuer Eintrag erstellt.'."\r\n\r\n";
@@ -236,8 +236,21 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
       $header .= 'Content-Transfer-Encoding: 8bit'."\r\n";
       $header .= 'X-Mailer: PHP/' . phpversion()."\r\n";
       $header .= 'From: '. $notificationEmail ."\r\n";
+//      $header .= 'Bcc: foo@david.koala'."\r\n";
 
-      mail ($notificationEmail, $mail_betreff, $mail_nachricht, $header);
+      if (class_exists('rex_mailer')) {
+      	$mail = new rex_mailer();
+        $mail->AddAddress($notificationEmail); 
+        $mail->Sender = $notificationEmail;    
+        $mail->From = $notificationEmail; 
+        //$mail->FromName = "REX_VALUE[8] |".$REX['SERVERNAME']; 
+        $mail->Subject = $mail_betreff;
+        $mail->Body = $mail_nachricht; 
+        $mail->Send();  // Versenden
+      } else {
+        // Fallback        
+        mail ($notificationEmail, $mail_betreff, $mail_nachricht, $header);
+      }
     }
 
 

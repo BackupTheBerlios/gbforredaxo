@@ -1,68 +1,74 @@
-<!-- $Id: _changelog.txt,v 1.28 2009/01/28 14:42:38 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.29 2009/02/03 20:58:43 koala_s Exp $ -->
 <h2>Changelog:</h2>
-<strong>Not yet released..</strong>
 
 <strong>ToDo</strong>
 - Spamschutz -> siehe gbook_formularPostCheck()
 - Pagination verbessert
   (Noch nicht ganz; auf der letzten Seite stimmt mit der Anzeige etwas noch nicht.
-   Es werden weniger Seitenzahlen angezeigt, als sein müssten.)
-- gbook_formularPostCheck() was soll im Fehlerfall passieren? muss noch überarbeitet werden
-- Einträge per E-Mail freischalt-/löschbar für den Admin
-  (eine xtra Tabelle mit Freischaltcode bzw. Sperr-/Löschcode ...
-  [Überlegung]In dieser Tabelle könnte der Eintrag auch ersteinmal zwischengespeichert werden
-  und wird erst in die eigentliche GB-Tabelle nach Freigabe übertragen[/Überlegung])
-- Einträge nur durch Bestätigungs-EMail des Eintragenden real ins GB eintragen (Admin-Freigabe
-  bleibt davon unberührt)
+   Es werden weniger Seitenzahlen angezeigt, als sein mÃ¼ssten.)
+- gbook_formularPostCheck() was soll im Fehlerfall passieren? muss noch Ã¼berarbeitet werden
+- EintrÃ¤ge per E-Mail freischalt-/lÃ¶schbar fÃ¼r den Admin
+  (eine xtra Tabelle mit Freischaltcode bzw. Sperr-/LÃ¶schcode ...
+  [Ãœberlegung]In dieser Tabelle kÃ¶nnte der Eintrag auch ersteinmal zwischengespeichert werden
+  und wird erst in die eigentliche GB-Tabelle nach Freigabe Ã¼bertragen[/Ãœberlegung])
+- EintrÃ¤ge nur durch BestÃ¤tigungs-EMail des Eintragenden real ins GB eintragen (Admin-Freigabe
+  bleibt davon unberÃ¼hrt)
 
 
 
   <em>changes by Koala</em>
+03.02.2009 - GB V2.1.4 -
+WertÃ¼bergabe teilweise von _POST auf rex_post umgestellt.
+Das Addon "PHPMailer" wird nun zum Versand verwendet (wichtig fÃ¼r die
+charset-Einstellungen). Falls es nicht installiert ist, bleibt es beim 
+einfachen mail() versand.
+ 
+
 28.01.2009 - GB V2.1.3 -
 Durchnummerierung der Eintraege wurde eingebaut. Mit dem Schluesselwert {NR} 
 in der HTML-Ausgabedatei wird die fortlaufende Nummer zum jeweiligen Eintrag 
 ausgegeben.  
 
 18.11.2008 - GB V2.1.2 -
-Die Deinstallation sollte nun auch mit unterschiedlichen Tabellenpräfixen klar kommen.
+Die Deinstallation sollte nun auch mit unterschiedlichen TabellenprÃ¤fixen klar kommen.
 Konfigurationsseite angepasst (muss aber noch weiter ueberarbeitet werden).
 
 16.03.2008 - GB V2.1.1 RC1 -
-Da Redaxo 4.1 kurz vor dem Release steht wurde die Gästebuchversion 2.1 zur 
-Finalversion erklärt und die Version 2.1.1 RC1 eröffnet.
-- kleinere interne Änderungen und Anpassungen an Redaxonamenskonventionen
-- Installationsroutine komplett überarbeitet
+Da Redaxo 4.1 kurz vor dem Release steht wurde die GÃ¤stebuchversion 2.1 zur 
+Finalversion erklÃ¤rt und die Version 2.1.1 RC1 erÃ¶ffnet.
+- kleinere interne Ã„nderungen und Anpassungen an Redaxonamenskonventionen
+- Installationsroutine komplett Ã¼berarbeitet
 - Fehler bei der Action behoben (die Action wird nun auch bei der 
   Installation verwendet und nicht erst beim Aendern des Artikels)
 
 
 27.01.2008 - GB V2.1 RC6 -
 - Die CSS-Integration funktionierte bisher nur im Backendbereich.
-  Mit der jetzigen Lösung wird es auch im Frontend funktionieren. Dazu
-  muss allerdings in dem Template, welches die Seitenheader enthält,
-  eine zusätzliche Zeile eingefügt werden.
-  Irgendwo zwischen <head> und </head> ist diese Zeile einzufügen:
+  Mit der jetzigen LÃ¶sung wird es auch im Frontend funktionieren. Dazu
+  muss allerdings in dem Template, welches die Seitenheader enthÃ¤lt,
+  eine zusÃ¤tzliche Zeile eingefÃ¼gt werden.
+  Irgendwo zwischen <head> und </head> ist diese Zeile einzufÃ¼gen:
   <?php echo rex_register_extension_point('PAGE_HEADER_FRONTEND', ''); ?>
-  Damit wird ein neuer Extensionpoint angelegt über den die CSS-Datei 
+  Damit wird ein neuer Extensionpoint angelegt Ã¼ber den die CSS-Datei 
   eingebunden wird.
   Oder man bindet die CSS-Datei im Template direkt ein mittels:
   <link rel="stylesheet" type="text/css" href="./files/tmp_/guestbook_63/guestbook.css" />
 
 29.11.2007 - GB V2.1 RC5 -
-- install_.sql ... was fehlende einfache Anführungszeichen so alles anrichten 
-  können ... na, nun funktionierts aber
+- install_.sql ... was fehlende einfache AnfÃ¼hrungszeichen so alles anrichten 
+  kÃ¶nnen ... na, nun funktionierts aber
 
 25.11.2007 - GB V2.1 RC4 -
-- install_.sql für mehrfache Redaxoinstallationen angepasst
-  Benutzer- und Zeitinformationen angepasst/hinzugefügt
+- install_.sql fÃ¼r mehrfache Redaxoinstallationen angepasst
+  Benutzer- und Zeitinformationen angepasst/hinzugefÃ¼gt
 - Da das Addon-Framework RC6 Probleme mit Enum-Feldern in der DB hat (bei 
-  Verwendung von int-Ziffern), wurde die Spalte 'status' in TINYINT geändert.
-  Es gibt derzeit keine Updateprozedur dafür. Daher muss jeder selbst diese 
-  Zeile bei einer bereits bestehenden Gästebuchtabelle anwenden:
+  Verwendung von int-Ziffern), wurde die Spalte 'status' in TINYINT geÃ¤ndert.
+  Es gibt derzeit keine Updateprozedur dafÃ¼r. Daher muss jeder selbst diese 
+  Zeile bei einer bereits bestehenden GÃ¤stebuchtabelle anwenden:
 ALTER TABLE `rex_63_gbook` CHANGE `status` `status` TINYINT NOT NULL DEFAULT '1'
 - entries.inc.php - Statusabfrage angepasst; bereitet nach Tabellenanpassung 
   nun keine Probleme mehr
-- install.inc.php - zusätzliche Prüfung der Schreibrechte des config-Ordners
+- install.inc.php - zusÃ¤tzliche PrÃ¼fung der Schreibrechte des config-Ordners
 - module.form.inc.php und gb_frontend_form.html angepasst > thx @gr-ha
   (siehe http://forum.redaxo.de/sutra44514.html#44514)
 
@@ -70,7 +76,7 @@ ALTER TABLE `rex_63_gbook` CHANGE `status` `status` TINYINT NOT NULL DEFAULT '1'
 - [BUG] beim Antworten auf einen Eintrag wurde der Eintrag autom. offline 
   gestellt > passiert nun nicht mehr 
 - [BUG] das entfernen eines Feldes aus dem Eintragsformular brachte eine 
-  Fehlermeldung > beseitigt; Felder können nun fast nach belieben aus dem 
+  Fehlermeldung > beseitigt; Felder kÃ¶nnen nun fast nach belieben aus dem 
   Formular entfernt werden    
 
 31.10.2007 - GB V2.1 RC2 -
@@ -82,42 +88,42 @@ ALTER TABLE `rex_63_gbook` CHANGE `status` `status` TINYINT NOT NULL DEFAULT '1'
 
 
 22.10.2007 - GB V2.1 RC1 -
-- erste Anpassungen für REDAXO 4.0
+- erste Anpassungen fÃ¼r REDAXO 4.0
 - eigene install_.sql-Datei notwendig, da sich die Installationsprozedur mit R4 
-  geändert hat
-- config/status.txt wird nun bei der Installation auf Schreibrechte geprüft 
+  geÃ¤ndert hat
+- config/status.txt wird nun bei der Installation auf Schreibrechte geprÃ¼ft 
   
 
 12.07.2007 - GB V2 RC5 -
 - Fehler in der install.sql gefixt
 
 10.07.2007 - GB V2 RC4 -
-- zwei neue Templatedateien sorgen für eine bessere trennung von Formular und Danke-Text
+- zwei neue Templatedateien sorgen fÃ¼r eine bessere trennung von Formular und Danke-Text
 - Im Backend kann nun eingestellt werden, ob nur der Danke-Text erscheinen soll, oder ob
   auch das Formular mit ausgegeben werden soll
 
 17.12.2006 - GB V2 RC3 -
 - CSS-Class-Bezeichnung war an einer Stelle noch auf 9 anstatt 63 gesetzt
-- Template-Klassenaufruf verändert (das Templateverzeichnis wird nun anders übergeben)
+- Template-Klassenaufruf verÃ¤ndert (das Templateverzeichnis wird nun anders Ã¼bergeben)
 
 08.10.2006 - GB V2 RC2 -
-- Umlaute in den Modulenamen und in der Action ersetzt (könnte in
-  UTF8-Umgebungen sonst zu Problemen führen)
+- Umlaute in den Modulenamen und in der Action ersetzt (kÃ¶nnte in
+  UTF8-Umgebungen sonst zu Problemen fÃ¼hren)
 - Fehler bei der Verwendung von MySQL >= 5.0.12 beseitigt
 
 16.07.2006 - GB V2 RC1 -
-- Mailheader etwas geändert (das Reply-To ist hier etwas sinnfrei gewesen)
+- Mailheader etwas geÃ¤ndert (das Reply-To ist hier etwas sinnfrei gewesen)
 - EMail-Zwang deaktiviert; wenn keine EMailadresse angegeben ist, wird auch nicht versucht,
   an den Admin eine zu versenden
 
 08.07.2006
 - Um Spamscripte zu verwirren, wurden die Inputnamen von URL und EMAIL untereinander getauscht.
 Vielleicht hilts ja etwas.
-- Das erstellen der Formularausgabe überarbeitet. Per default steht nun 'http://' im URL-Feld.
+- Das erstellen der Formularausgabe Ã¼berarbeitet. Per default steht nun 'http://' im URL-Feld.
 
 06.07.2006
 - falscher Moduleinhalt gefixt
-- DebugModus eingefügt; dieser versendet mit der EMail diverse zusätzliche Informationen
+- DebugModus eingefÃ¼gt; dieser versendet mit der EMail diverse zusÃ¤tzliche Informationen
 
 01.07.2006
 - Fehler gbook_formularPostCheck() und install.sql gefixt
@@ -127,24 +133,24 @@ Vielleicht hilts ja etwas.
 - Templatepfad kann in der config.inc.php zentral gesetzt werden.
 
 25.06.2006
-- Funktion zum automatischen Verbinden der Action mit dem Modul während der Installation hinzugefügt
-- gbook_formularPostCheck() - Prüft Formulversand und übergebene Variablen
+- Funktion zum automatischen Verbinden der Action mit dem Modul wÃ¤hrend der Installation hinzugefÃ¼gt
+- gbook_formularPostCheck() - PrÃ¼ft Formulversand und Ã¼bergebene Variablen
 
 24.06.2006
 - Template-Klasse
 - Trennung der Frontendausgaben von PHP- und HTML-Code durch Templates
 - Pagination verbessert
   (Noch nicht ganz; auf der letzten Seite stimmt mit der Anzeige etwas noch nicht.
-   Es werden weniger Seitenzahlen angezeigt, als sein müssten.)
-- speichern des Status kann in eine Datei erfolgen (beachte Installation der Action: Gästebuch - Eintragsliste StatusPerDatei)
+   Es werden weniger Seitenzahlen angezeigt, als sein mÃ¼ssten.)
+- speichern des Status kann in eine Datei erfolgen (beachte Installation der Action: GÃ¤stebuch - Eintragsliste StatusPerDatei)
 
 
   <em>Patches by andre.5tz vom REDAXO-Forum</em>
 
-- divsoup zum größten Teil entfernt
-- update.sql - Für Updates von alten Versionen
-- rexTablePrefix wird unterstützt
-- Emailbenachrichtigung für Admin
+- divsoup zum grÃ¶ÃŸten Teil entfernt
+- update.sql - FÃ¼r Updates von alten Versionen
+- rexTablePrefix wird unterstÃ¼tzt
+- Emailbenachrichtigung fÃ¼r Admin
 - Optionaler Freigabemechanismus
 - Email ist kein Pflichtfeld mehr
 - Neues Eingabefeld: Wohnort
@@ -157,37 +163,37 @@ Vielleicht hilts ja etwas.
 - Kleinigkeiten ausgebessert
 
 <strong>RC5</strong>
-  <em>Der Glossar benötigt das Addon "addon_framework" um installiert werden zu können!
+  <em>Der Glossar benÃ¶tigt das Addon "addon_framework" um installiert werden zu kÃ¶nnen!
   Das kopieren der CSS Datei ist entfallen!</em>
 
 - Auf Rexextension umgestellt
-- outputfilter für CSS eingebaut
+- outputfilter fÃ¼r CSS eingebaut
 - rexForm,rexList eingebaut
-- Es kann jetzt auf Beiträge geantwortet werden
+- Es kann jetzt auf BeitrÃ¤ge geantwortet werden
 - Auf neue Addon ID (9) umgestellt
 - Module als Datei ausgelagert
 
 <strong>RC4</strong>
-  <em>Das Gästebuch ist seit version RC4 nur noch mit redaxo 3.0 kompatibel!</em>
+  <em>Das GÃ¤stebuch ist seit version RC4 nur noch mit redaxo 3.0 kompatibel!</em>
 
-- Installationsroutine für redaxo 3.0 angepasst
+- Installationsroutine fÃ¼r redaxo 3.0 angepasst
 
 <strong>RC3</strong>
 
-- Im Modul Gästebuch - Eintragsliste "&#x26;" in "&#x26;#x26;" umgewandelt (&lt;a href="?article_id=9&#x26;#x26;page=0"&gt;1&lt;/a&gt;)
-- Im Modul Gästebuch - Formular einiges validiert. Sollte jetzt auch XHTML 1.0 Strict konform sein.
+- Im Modul GÃ¤stebuch - Eintragsliste "&#x26;" in "&#x26;#x26;" umgewandelt (&lt;a href="?article_id=9&#x26;#x26;page=0"&gt;1&lt;/a&gt;)
+- Im Modul GÃ¤stebuch - Formular einiges validiert. Sollte jetzt auch XHTML 1.0 Strict konform sein.
 
 <strong>RC2</strong>
 
-- Möglichkeit zur Re-Formatierung der strongailadressen
-- strongailadressen-Verschlüsselung (Optional, Default aktiv)
-- Eigene strongailadress-Verschlüsselungen einbindbar
+- MÃ¶glichkeit zur Re-Formatierung der strongailadressen
+- strongailadressen-VerschlÃ¼sselung (Optional, Default aktiv)
+- Eigene strongailadress-VerschlÃ¼sselungen einbindbar
 
 <strong>RC1</strong>
 
-- Modul zur anzeige der Einträge
+- Modul zur anzeige der EintrÃ¤ge
 - Modul zur anzeige des Eingabeformulars
-- Redaxo-seitiges löschen der Einträge
-- Komplett per CSS layout-fähig
+- Redaxo-seitiges lÃ¶schen der EintrÃ¤ge
+- Komplett per CSS layout-fÃ¤hig
 
 <strong>initial release<strong>
