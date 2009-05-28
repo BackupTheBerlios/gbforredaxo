@@ -3,7 +3,7 @@
 # @author staab[at]public-4u[dot]de Markus Staab
 # @author <a href="http://www.public-4u.de">www.public-4u.de</a>
 # @package redaxo3
-# @version $Id: de_de.lang,v 1.3 2006/06/23 17:12:24 koala_s Exp $
+# @version $Id: de_de.lang,v 1.4 2009/05/28 22:13:19 koala_s Exp $
 #
 
 menu_title = Gästebuch
@@ -38,3 +38,8 @@ saveStatusInDatei_FalscherStatus = Der Wert des Status stimmt nicht.
 saveStatusInDatei_Fehler = Konnte Status nicht speichern. Stimmen die Zugriffrechte auf das Verzeichnis guestbook/config/status.txt?
 readStatusFromFile_FalscherStatus = Der Wert des Status stimmt nicht.
 readStatusFromFile_Fehler = Konnte Status nicht speichern. Stimmen die Zugriffrechte auf das Verzeichnis guestbook/config/status.txt?
+
+// Konfigurationsseite
+Konfiguration = Konfiguration
+Re_install_starten = Reinstallation starten
+

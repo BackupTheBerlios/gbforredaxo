@@ -6,17 +6,23 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: entries.inc.php,v 1.8 2008/03/16 20:13:33 koala_s Exp $
+ * @version $Id: entries.inc.php,v 1.9 2009/05/28 22:13:19 koala_s Exp $
  */
  
 //------------------------------> Parameter
 
 $Basedir = dirname(__FILE__);
 
+$entry_id = rex_request('entry_id','integer');
+$mode =  rex_get('mode','string');
+$func = rex_request('func', 'string');
+
 $entry_id = !empty($entry_id) ? (int) $entry_id : 0;
 $mode = !empty($mode) ? (string) $mode: '';
+
 //DBO($func);
-if($func == 'status')
+//if (rex_get('func','string') == 'status')
+if ($func == 'status')
 {
   $status = $mode == 'online_it' ? 1 : 0; 
   $qry = 'UPDATE '. TBL_GBOOK .' SET status="'. $status .'" WHERE id='. $entry_id;
@@ -29,6 +35,7 @@ if($func == 'status')
 }
 
 //------------------------------> Eintragsliste
+//if (rex_get('func','string','') == '')
 if ($func == '')
 {
   require_once $Basedir.'/../../addon_framework/classes/list/class.rex_list.inc.php';
@@ -40,9 +47,10 @@ if ($func == '')
 
   // Standard sortierung nach id absteigend
   // Standard author ist shortcut
-  $list = new rexlist($sql, 'id', 'desc', 'author');
+  //$list = new rexlist($sql, 'id', 'desc', 'author');
+  $list = new rexList($sql, 'id', 'desc', 'author');
   $list->setLabel($I18N_A63->msg('label_list'));
-  //$list->debug = true;
+//  $list->debug = true;
 
   /**
    *  Spalten aus dem SQL-ResultSet anlegen 
@@ -63,8 +71,8 @@ if ($func == '')
    */
   //Status
   $colStatus = new staticColumn('status', $I18N_A63->msg('label_status'));
-  $colStatus->addCondition('status', '1', '<span class="rex-online">'. $I18N_A63->msg('status_online') .'</span>', array ('func' => 'status', 'mode' => 'offline_it', 'entry_id' => '%id%'));
-  $colStatus->addCondition('status', '0', '<span class="rex-offline">'. $I18N_A63->msg('status_offline') .'</span>', array ('func' => 'status', 'mode' => 'online_it', 'entry_id' => '%id%'));
+  $colStatus->addCondition('status', '1', '<span class="rex-online">'. $I18N_A63->msg('status_online') .'</span>', array ('page' =>'guestbook', 'func' => 'status', 'mode' => 'offline_it', 'entry_id' => '%id%'));
+  $colStatus->addCondition('status', '0', '<span class="rex-offline">'. $I18N_A63->msg('status_offline') .'</span>', array ('page' =>'guestbook', 'func' => 'status', 'mode' => 'online_it', 'entry_id' => '%id%'));
   
   // Antworten link
   $colAction = new staticColumn($I18N_A63->msg('reply'), $I18N_A63->msg('label_action'));
@@ -75,14 +83,14 @@ if ($func == '')
    */
   // Parameter "func" mit dem Wert "edit"
   // Parameter "entry_id" mit dem Wert "id" aus dem Resultset ("%id%")
-  $colAuthor->setParams(array ('func' => 'edit', 'entry_id' => '%id%'));
+  $colAuthor->setParams(array ('page' =>'guestbook', 'func' => 'edit', 'entry_id' => '%id%'));
   // Parameter "func" mit dem Wert "reply"
   // Parameter "entry_id" mit dem Wert "id" aus dem Resultset ("%id%")
-  $colAction->setParams(array ('func' => 'edit', 'entry_id' => '%id%', '' => '#reply'));
+  $colAction->setParams(array ('page' =>'guestbook', 'func' => 'edit', 'entry_id' => '%id%', '' => '#reply'));
 
   /**
    *  Optionen auf Spalten setzen
-   *  Mögliche Optionen: OPT_NONE, OPT_SEARCH, OPT_SORT, OPT_FILTER, OPT_ALL
+   *  Mï¿½gliche Optionen: OPT_NONE, OPT_SEARCH, OPT_SORT, OPT_FILTER, OPT_ALL
    */
   // Spalte "id" ist nicht durchsuchbar
   $colId->delOption(OPT_SEARCH | OPT_SORT);
@@ -90,7 +98,7 @@ if ($func == '')
   $colCreated->delOption(OPT_SEARCH);
 
   /**
-   *  Spalten zur Anzeige hinzufügen 
+   *  Spalten zur Anzeige hinzufï¿½gen 
    */
   $list->addColumn($colId);
   $list->addColumn($colAuthor);
@@ -102,7 +110,7 @@ if ($func == '')
   $list->addColumn($colAction);
   
   /**
-   * Toolbars hinzufügen
+   * Toolbars hinzufï¿½gen
    */
   $browseBar = new browseBar();
   // Add-Button Ausblenden
@@ -118,10 +126,11 @@ if ($func == '')
   $list->show(false);
 }
 //------------------------------> Formular
-elseif ($func == 'edit' || $func == 'add')
+//if (rex_get('func','string') == 'edit' || rex_get('func','string') == 'add')
+if ($func == 'edit' || $func == 'add')
 {
   require_once $Basedir.'/../../addon_framework/classes/form/class.rex_form.inc.php';
-  
+  //DBO($_POST);
   /** Reihenfolge muss eingehalten werden! */
 
   //------------------------------> Form
@@ -173,7 +182,8 @@ elseif ($func == 'edit' || $func == 'add')
 
   //------------------------------> Set conditional Field Values
   
-  if ( $func == 'add') 
+  //if (rex_get('func','string') == 'add')
+  if ($func == 'add')
   {
     $fieldCreated->setValue( time());
   }
@@ -209,4 +219,3 @@ elseif ($func == 'edit' || $func == 'add')
 
   $form->show();
 }
-?>

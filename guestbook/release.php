@@ -3,7 +3,7 @@
  * Guestbook Addon 
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: release.php,v 1.2 2007/10/22 22:08:11 koala_s Exp $
+ * @version $Id: release.php,v 1.3 2009/05/28 22:13:19 koala_s Exp $
  */
 
 $name = null;
@@ -80,7 +80,7 @@ function buildRelease($name = null, $version = null)
   echo '> read files'."\n";
 
   // Ordner und Dateien auslesen
-  $structure = readFolderStructure('.', array('.project','.settings','.cache', 'CVS', 'update_rc6_to_rc7.sql', 'install.sql', $cfg_path));
+  $structure = readFolderStructure('.', array('.git','.project','.settings','.cache', 'CVS', 'update_rc6_to_rc7.sql', 'install.sql', $cfg_path));
 
   echo '> copy files'."\n";
   // Ordner/Dateien kopieren
@@ -121,7 +121,7 @@ function buildRelease($name = null, $version = null)
   if (fwrite($h, $cont, strlen($cont)) > 0)
     fclose($h);
 
-  // Das kopierte Release-Script aus dem neu erstellten Release löschen
+  // Das kopierte Release-Script aus dem neu erstellten Release lï¿½schen
   unlink($dest .'/release.php');
 
   echo '>>> FINISHED'."\n";
@@ -291,7 +291,7 @@ function buildUtf8LangFile($langFile)
     $content = fread($hdl, filesize($langFile));
     fclose($hdl);
 
-    // Charset auf UTF-8 ändern
+    // Charset auf UTF-8 ï¿½ndern
     $content = preg_replace('/^htmlcharset = (.*)$/m', 'htmlcharset = utf-8', $content);
   }
 

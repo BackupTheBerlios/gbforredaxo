@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.list.inc.php,v 1.18 2009/01/28 14:42:38 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.19 2009/05/28 22:13:19 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -75,7 +75,7 @@ $css_breite = '200px';
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-  <div class="Modulversion">($Revision: 1.18 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.19 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
@@ -196,7 +196,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
       } // foreach ($data as $row)
 
-      // Einträge vorhanden sind, brauchen wir keinen "Einträge nicht vorhanden"-Hinweis
+      // Eintrï¿½ge vorhanden sind, brauchen wir keinen "Eintrï¿½ge nicht vorhanden"-Hinweis
       $t->set_var(array("EINTRAEGE_BEGINN" => '',
                         "EINTRAEGE_ENDE"   => '',
                         "KEINE_EINTRAEGE_BEGINN" => '{*',
@@ -205,7 +205,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
     } else { // if (is_array($data))
 
-      // Einträge keine vorhanden sind, brauchen wir "Einträge nicht vorhanden"-Hinweis
+      // Eintrï¿½ge keine vorhanden sind, brauchen wir "Eintrï¿½ge nicht vorhanden"-Hinweis
       $t->set_var(array("EINTRAEGE_BEGINN" => '{*',
                         "EINTRAEGE_ENDE"   => '*}',
                         "KEINE_EINTRAEGE_BEGINN" => '',
@@ -221,12 +221,12 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 ?>
 
 
-  <p class="rex-info">Die Einträge sind nur im Backend sichtbar!</p>
+  <p class="rex-info">Die Eintrï¿½ge sind nur im Backend sichtbar!</p>
   <h6>Konfiguration:</h6>
-  <p>Einträge pro Seite: <span class="rex-em"><?php echo $elementsPerPage ?></span></p>
+  <p>Eintrï¿½ge pro Seite: <span class="rex-em"><?php echo $elementsPerPage ?></span></p>
   <p>Anzahl anzuzgeigender Seiten: <span class="rex-em"><?php echo $paginationsPerPage ?></span></p>
-  <p>Emailverschlüsselung: <span class="rex-em"><?php echo $encryptEmails == '1' ? 'Ja' : 'Nein' ?></span></p>
-  <p>Veröffentlichung erst nach Freigabe: <span class="rex-em"><?php echo $status == '0' ? 'Ja' : 'Nein' ?></span></p>
+  <p>Emailverschlï¿½sselung: <span class="rex-em"><?php echo $encryptEmails == '1' ? 'Ja' : 'Nein' ?></span></p>
+  <p>Verï¿½ffentlichung erst nach Freigabe: <span class="rex-em"><?php echo $status == '0' ? 'Ja' : 'Nein' ?></span></p>
   <p>Datumsformat: <span class="rex-em"><?php echo $dateFormat ?></span></p>
   <p>Emailformat: <span class="rex-em"><?php echo $emailFormat ?></span></p>
 
@@ -291,8 +291,8 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
     $start ++;
   }
 
-  // Arrayinhalt umdrehen und Seitenzahlen in eine Variable zurückschreiben
-  // und ein Trennzeichen einfügen, damit man das im Seitenquelltext besser lesen kann
+  // Arrayinhalt umdrehen und Seitenzahlen in eine Variable zurï¿½ckschreiben
+  // und ein Trennzeichen einfï¿½gen, damit man das im Seitenquelltext besser lesen kann
   //$str .= implode ("\n", array_reverse ($seiten_array));
   $str .= implode ("\n", $seiten_array);
 
@@ -314,10 +314,11 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
  * @param         $label
  * @param string  title_name -
  * @param bool    aktuelle Seite (1 oder 0)
- * @return string Link auf nächste Seite
+ * @return string Link auf nï¿½chste Seite
  */
 function gbook_paginationurl($page, $label = null, $title_name = '', $aktuelleSeite = 0)
 {
+  global $REX;
   if ($label === null)
   {
     $label = $page;
@@ -326,7 +327,9 @@ function gbook_paginationurl($page, $label = null, $title_name = '', $aktuelleSe
   if ($aktuelleSeite) {
     $class_aktuell = 'a63-pagination_aktuell';
   }
-  $link = '<li class="'.$class_aktuell.'"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">';
+  //$link = '<li class="'.$class_aktuell.'"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">';
+  $_art_id = & $REX['ARTICLE_ID'];
+  $link = '<li class="'.$class_aktuell.'"><a href="?article_id='.$_art_id.'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">';
   $link .= $label.'</a></li>';
   return $link;
 }
@@ -351,5 +354,3 @@ function gbook_formatemail($email, $format)
 
   return str_replace(array ('%to%', '%domain%', '%tldomain%'), array ($to, $domain, $tldomain), $format);
 }
-
-?>

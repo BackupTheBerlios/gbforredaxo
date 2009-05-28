@@ -4,20 +4,20 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: _readme.txt,v 1.11 2008/01/27 19:22:38 koala_s Exp $
+ * @version $Id: _readme.txt,v 1.12 2009/05/28 22:13:19 koala_s Exp $
  */ -->
 <a href="?page=addon&amp;spage=help&amp;addonname=guestbook&amp;mode=changelog">Changelog</a>
 
 <strong>Beschreibung:</strong>
 
-Einfaches Gästebuch mit Eingabe-Formular und Redaxo-Seitiger Administration.
+Einfaches GÃ¤stebuch mit Eingabe-Formular und Redaxo-Seitiger Administration.
 Original von Markus Staab (http://www.public-4u.de)
 
-Anpassungen und Herausgabe der Gästebuchversion V2 durch Sven (Koala) Eichler.
+Anpassungen und Herausgabe der GÃ¤stebuchversion V2 durch Sven (Koala) Eichler.
 Bei Fragen wende dich bitte an "redaxo [at] koalashome [punkt) de".
 
-<em>Das Gästebuch ist seit version GB V2.1 RC1 nur noch mit REDAXO 4.0 kompatibel 
-und benötigt mind. die AddOn Framework Version RC6!</em>
+<em>Das GÃ¤stebuch ist seit version GB V2.1 RC1 nur noch mit REDAXO 4.0 kompatibel 
+und benÃ¤tigt mind. die AddOn Framework Version RC6!</em>
 
 
 <strong>Download:</strong>
@@ -33,7 +33,7 @@ und benötigt mind. die AddOn Framework Version RC6!</em>
 - Alle Dateien des Archivs nach "redaxo/include/addons/guestbook" entpacken
 
 - das Verzeichnis "guestbook/config/" und die darin enthaltene Datei "status.txt"
-  müssen Schreibrechte erhalten (dies wird während der Installation NICHT geprüft)!
+  mÃ¼ssen Schreibrechte erhalten (dies wird wÃ¤hrend der Installation NICHT geprÃ¼ft)!
 
 - Im Redaxo AddOn Manager das Plugin installieren
 
@@ -41,26 +41,26 @@ und benötigt mind. die AddOn Framework Version RC6!</em>
 
 - Dem Benutzer das recht "guestbook[]" verleihen
 
-- Die Module "Gaestebuch - Formular" und "Gaestebuch - Eintragsliste" in die ensprechenden Artikel einfügen
+- Die Module "Gaestebuch - Formular" und "Gaestebuch - Eintragsliste" in die ensprechenden Artikel einfÃ¼gen
 
 - CSS auf die eigene Seite anpassen
   Weiteres zur CSS-Installation findest du weiter unten.
   
 - fertig ;)
 
-- Die Ausgabe-Template können im Ordner templates/ angepasst werden.
-  Zu beachten sind hier lediglich die Platzhalter für die Datenausgabe.
+- Die Ausgabe-Template kÃ¶nnen im Ordner templates/ angepasst werden.
+  Zu beachten sind hier lediglich die Platzhalter fÃ¼r die Datenausgabe.
 
 
 
 <strong>CSS-Installation:</strong>
 
 Die CSS-Datei sollte sich nach der Installation im Verzeichnis <em>files/tmp_/guestbook_63/guestbook.css</em> befinden.
-Du hast nun drei Möglichkeiten.
-- Im Template, welches die Seitenheader enthält, eine zusätzliche Zeile eingefügen.
-  Irgendwo zwischen &lt;head&gt; und &lt;/head&gt; ist diese Zeile einzufügen:
+Du hast nun drei MÃ¶glichkeiten.
+- Im Template, welches die Seitenheader enthÃ¤lt, eine zusÃ¤tzliche Zeile eingefÃ¼gen.
+  Irgendwo zwischen &lt;head&gt; und &lt;/head&gt; ist diese Zeile einzufÃ¼gen:
   <strong>&lt;?php echo rex_register_extension_point('PAGE_HEADER_FRONTEND', ''); ?&gt;</strong>
-  Damit wird ein neuer Extensionpoint angelegt über den die CSS-Datei eingebunden wird.
+  Damit wird ein neuer Extensionpoint angelegt Ã¼ber den die CSS-Datei eingebunden wird.
 
 - Du kannst die CSS-Datei auch direkt im Header einbinden.
   Mittels dieser Zeile:
@@ -71,9 +71,9 @@ Du hast nun drei Möglichkeiten.
 
 
 
-<strong>Update von einer früheren Version:</strong>
+<strong>Update von einer frÃ¼heren Version:</strong>
 
-- Alle Gästebuch Module löschen (Dabei gehen die Gästebuch-Einträge nicht verloren!)
+- Alle GÃ¤stebuch Module lÃ¶schen (Dabei gehen die GÃ¤stebuch-EintrÃ¤ge nicht verloren!)
 
 - Weiter: siehe <strong>Installation</strong>
 
@@ -88,4 +88,4 @@ Du hast nun drei Möglichkeiten.
 
 - PEN vom REDAXO-Forum
 
-    Vielen dank an alle die Bugs gemeldet oder Verbesserungsvorschläge gegeben haben.
+    Vielen dank an alle die Bugs gemeldet oder VerbesserungsvorschlÃ¤ge gegeben haben.

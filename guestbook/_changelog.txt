@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.29 2009/02/03 20:58:43 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.30 2009/05/28 22:13:19 koala_s Exp $ -->
 <h2>Changelog:</h2>
 
 <strong>ToDo</strong>
@@ -17,6 +17,29 @@
 
 
   <em>changes by Koala</em>
+28.05.2009 - GB V2.1.5 -
+Anpassungen an Redaxo 4.2
+Diese Version funktioniert ausschließlich mit Redaxo ab 4.2!
+geaenderte Dateien:
+pages/
+- entries.inc.php
+- index.inc.php
+modules/
+- module.form.inc.php
+- module.list.inc.php
+
+Addon Framework RC6:
+addon_framework/classes/form/class.rex_fieldController.inc.php
+- in Zeile 259 Anfuehrungszeichen ergaenzt
+       $qry .= ' `'.$fields[$i]->getRawName().'`= "'.$this->_prepareValue($field_value).'"'; // Anfuehrungszeichen eingefuegt [Koala 28.5.2009]
+
+addon_framework/functions/function_rex_common.inc.php
+- Zeile 258: in function rex_a22_getDefaultGlobalParams() > Werte werden nun per rex_request uebernommen
+
+
+
+
+
 03.02.2009 - GB V2.1.4 -
 Wertübergabe teilweise von _POST auf rex_post umgestellt.
 Das Addon "PHPMailer" wird nun zum Versand verwendet (wichtig für die

@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.form.inc.php,v 1.26 2009/02/03 20:58:43 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.27 2009/05/28 22:13:19 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -28,8 +28,8 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
     $notificationEmail = $REX['ERROR_EMAIL'];
   } */
   if (!isset ($danke_text) or $danke_text == '') {
-    $danke_text = 'Danke für Ihren Eintrag!'."\n".'Die von Ihnen eingegebenen Daten wurden erfolgreich gespeichert.'."\n".'
-      Vor der Veröffentlichung wird der Eintrag durch den Webmaster geprüft. Freigegeben werden nur unbedenkliche Einträge.';
+    $danke_text = 'Danke fï¿½r Ihren Eintrag!'."\n".'Die von Ihnen eingegebenen Daten wurden erfolgreich gespeichert.'."\n".'
+      Vor der Verï¿½ffentlichung wird der Eintrag durch den Webmaster geprï¿½ft. Freigegeben werden nur unbedenkliche Eintrï¿½ge.';
   }
 
 ?>
@@ -46,9 +46,9 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
      <option value="1" <?php echo $debuglevel == '1' ? 'selected="selected"' : '' ?>>Ein</option>
     </select>
     <br />
-    <p>Hiermit werden diverse Informationen mit der EMail versand, die zu Debugzwecken nützlich sein können.
+    <p>Hiermit werden diverse Informationen mit der EMail versand, die zu Debugzwecken nï¿½tzlich sein kï¿½nnen.
     Aber beachte das es sich dabei um sehr viele Informationen handeln kann und diese Informationen
-    aus Sicherheitsgründen nie öffentlich zugänglich sein sollten!</p>
+    aus Sicherheitsgrï¿½nden nie ï¿½ffentlich zugï¿½nglich sein sollten!</p>
     <br /><br />
     <label for="VALUE[4]">Formlar Ein oder Aus:</label>
     <select name="VALUE[4]" id="VALUE[4]">
@@ -59,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.26 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.27 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -67,11 +67,11 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 
 
 /**
- * Prüft den Inhalt der übergebenen Variable.
+ * Prï¿½ft den Inhalt der ï¿½bergebenen Variable.
  *
- * Ist die Variable leer und darf sie für MySQL NULL sein,
- * so gib ein NULL zurück. Sonst gib den Wert in Anführungszeichen
- * zurück.
+ * Ist die Variable leer und darf sie fï¿½r MySQL NULL sein,
+ * so gib ein NULL zurï¿½ck. Sonst gib den Wert in Anfï¿½hrungszeichen
+ * zurï¿½ck.
  *
  * @param mixed Variable
  * @param mixed Defaultwert (NULL)
@@ -116,8 +116,8 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
 
 
   /**
-   * Um Spameinträge zu erschweren wurden die Feldnamen 'email' und 'url'
-   * im Formular untereinander getauscht. Diese müssen nun zurückgetauscht werden.
+   * Um Spameintrï¿½ge zu erschweren wurden die Feldnamen 'email' und 'url'
+   * im Formular untereinander getauscht. Diese mï¿½ssen nun zurï¿½ckgetauscht werden.
    * Der normale Benutzer sollte davon nichts bemerken.
    */
   if (isset ($_POST['email']) and $_POST['email'] != '') {
@@ -159,7 +159,7 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
 
     // Thema Sicherheit:
     // $status ist endweder 1, 0 oder false
-    // die Funktion gbook_readStatusFromFile() läßt keine andere Rückgabe zu
+    // die Funktion gbook_readStatusFromFile() lï¿½ï¿½t keine andere Rï¿½ckgabe zu
     $status = gbook_readStatusFromFile();
     if ($status === false) {
       echo 'Fehler.';
@@ -220,16 +220,16 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
       $mail_email = htmlspecialchars(rex_post('email', 'string'));
       $mail_city = htmlspecialchars(rex_post('city', 'string'));
 
-      $mail_betreff = 'Neuer Gästebucheintrag für '. $mail_host;
-      $mail_nachricht = 'Im Gästebuch für die Webseite "'.$mail_host.'" wurde ein neuer Eintrag erstellt.'."\r\n\r\n";
+      $mail_betreff = 'Neuer Gï¿½stebucheintrag fï¿½r '. $mail_host;
+      $mail_nachricht = 'Im Gï¿½stebuch fï¿½r die Webseite "'.$mail_host.'" wurde ein neuer Eintrag erstellt.'."\r\n\r\n";
       $mail_nachricht .= 'Name: '.$mail_author. "\r\n";
       $mail_nachricht .= 'Homepage: '.$mail_url. "\r\n";
       $mail_nachricht .= 'eMail: '.$mail_email. "\r\n";
       $mail_nachricht .= 'Wohnort: '.$mail_city. "\r\n\r\n";
       $mail_nachricht .= 'Nachricht: '.$mail_message. "\r\n\r\n\r\n";
-      //$nachricht .= 'Hinweis: Dieser Eintrag wurde bei der Einstellung "Veröffentlichung nach Freigabe" deaktiviert gespeichert und erscheint erst dann in Ihren Gästebuch, wenn Sie den Eintrag aktiviert haben. Zum Log-In Bereich geht es unter '.$server."\r\n";
+      //$nachricht .= 'Hinweis: Dieser Eintrag wurde bei der Einstellung "Verï¿½ffentlichung nach Freigabe" deaktiviert gespeichert und erscheint erst dann in Ihren Gï¿½stebuch, wenn Sie den Eintrag aktiviert haben. Zum Log-In Bereich geht es unter '.$server."\r\n";
 
-      // DebugInfo anhängen, falls gewünscht
+      // DebugInfo anhï¿½ngen, falls gewï¿½nscht
       $mail_nachricht .= $debug_inhalt;
       $header  = 'MIME-Version: 1.0'."\r\n";
       $header .= 'Content-type: text/plain; charset=iso-8859-1'."\r\n";
@@ -259,11 +259,11 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
     // der Danke-Text erscheint nur nach dem erfolgreichen absenden des Formulares
     $danke_text = '';
 
-    // Wurde eine falsche Eingabe festgestellt, fülle die Eingabefelder wieder
-    // mit den ursprünglichen Werten und gibt eine Fehlernachricht aus.
+    // Wurde eine falsche Eingabe festgestellt, fï¿½lle die Eingabefelder wieder
+    // mit den ursprï¿½nglichen Werten und gibt eine Fehlernachricht aus.
     if (!empty ($_POST['gbook_save'])) {
       // var_dump($_POST);
-      // Felder mit Werten füllen
+      // Felder mit Werten fï¿½llen
       $name = $_POST['name'];
       $email = $_POST['email'];
       $url = $_POST['url'];
@@ -308,7 +308,8 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
     $t->set_var(array("DANKE_TEXT_VALUE" => $danke_text
                   ));
 		// Formular
-    $adresse = rex_geturl($GLOBALS['article_id']);
+    //$adresse = rex_geturl($GLOBALS['article_id']);
+    $adresse = rex_geturl(& $REX['ARTICLE_ID']);
     $t->set_var(array("FEHLERMELDUNG_VALUE" => $error,
                       "ADRESSE_VALUE" => $adresse,
                       "NAME_VALUE" => $name,
@@ -384,7 +385,7 @@ function validFields() {
     }
   }
 
-  // Email Syntax Prüfung
+  // Email Syntax Prï¿½fung
   if ($_POST['email'] != '' &&
      !(
       !(preg_match('!@.*@|\.\.|\,|\;!', $_POST['email']) ||
@@ -394,7 +395,7 @@ function validFields() {
     $failed[] = 'email';
   }
 
-  // URL Syntax Prüfung
+  // URL Syntax Prï¿½fung
   if ($_POST['url'] == 'http://') {
     $url_temp = '';
   } else {
@@ -408,5 +409,3 @@ function validFields() {
 
   return empty ($failed) ? true : $failed;
 }
-
-?>
