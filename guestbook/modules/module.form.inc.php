@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.form.inc.php,v 1.27 2009/05/28 22:13:19 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.28 2009/09/03 21:02:09 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -28,8 +28,8 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
     $notificationEmail = $REX['ERROR_EMAIL'];
   } */
   if (!isset ($danke_text) or $danke_text == '') {
-    $danke_text = 'Danke f�r Ihren Eintrag!'."\n".'Die von Ihnen eingegebenen Daten wurden erfolgreich gespeichert.'."\n".'
-      Vor der Ver�ffentlichung wird der Eintrag durch den Webmaster gepr�ft. Freigegeben werden nur unbedenkliche Eintr�ge.';
+    $danke_text = 'Danke f&#252;r Ihren Eintrag!'."\n".'Die von Ihnen eingegebenen Daten wurden erfolgreich gespeichert.'."\n".'
+      Vor der Ver&#246;ffentlichung wird der Eintrag durch den Webmaster gepr&#252;ft. Freigegeben werden nur unbedenkliche Eintr&#228;ge.';
   }
 
 ?>
@@ -46,9 +46,9 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
      <option value="1" <?php echo $debuglevel == '1' ? 'selected="selected"' : '' ?>>Ein</option>
     </select>
     <br />
-    <p>Hiermit werden diverse Informationen mit der EMail versand, die zu Debugzwecken n�tzlich sein k�nnen.
+    <p>Hiermit werden diverse Informationen mit der EMail versand, die zu Debugzwecken n&#252;tzlich sein k&#246;nnen.
     Aber beachte das es sich dabei um sehr viele Informationen handeln kann und diese Informationen
-    aus Sicherheitsgr�nden nie �ffentlich zug�nglich sein sollten!</p>
+    aus Sicherheitsgr&#252;nden nie &#246;ffentlich zug&#228;nglich sein sollten!</p>
     <br /><br />
     <label for="VALUE[4]">Formlar Ein oder Aus:</label>
     <select name="VALUE[4]" id="VALUE[4]">
@@ -59,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.27 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.28 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }

@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.list.inc.php,v 1.19 2009/05/28 22:13:19 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.20 2009/09/03 21:02:09 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -75,7 +75,7 @@ $css_breite = '200px';
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-  <div class="Modulversion">($Revision: 1.19 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.20 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
@@ -221,12 +221,12 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 ?>
 
 
-  <p class="rex-info">Die Eintr�ge sind nur im Backend sichtbar!</p>
+  <p class="rex-info">Die&#160;Eintr&#228;ge sind nur im Backend sichtbar!</p>
   <h6>Konfiguration:</h6>
-  <p>Eintr�ge pro Seite: <span class="rex-em"><?php echo $elementsPerPage ?></span></p>
+  <p>Eintr&#228;ge pro Seite: <span class="rex-em"><?php echo $elementsPerPage ?></span></p>
   <p>Anzahl anzuzgeigender Seiten: <span class="rex-em"><?php echo $paginationsPerPage ?></span></p>
-  <p>Emailverschl�sselung: <span class="rex-em"><?php echo $encryptEmails == '1' ? 'Ja' : 'Nein' ?></span></p>
-  <p>Ver�ffentlichung erst nach Freigabe: <span class="rex-em"><?php echo $status == '0' ? 'Ja' : 'Nein' ?></span></p>
+  <p>Emailverschl&#252;sselung: <span class="rex-em"><?php echo $encryptEmails == '1' ? 'Ja' : 'Nein' ?></span></p>
+  <p>Ver&#246;ffentlichung erst nach Freigabe: <span class="rex-em"><?php echo $status == '0' ? 'Ja' : 'Nein' ?></span></p>
   <p>Datumsformat: <span class="rex-em"><?php echo $dateFormat ?></span></p>
   <p>Emailformat: <span class="rex-em"><?php echo $emailFormat ?></span></p>
 
@@ -329,7 +329,10 @@ function gbook_paginationurl($page, $label = null, $title_name = '', $aktuelleSe
   }
   //$link = '<li class="'.$class_aktuell.'"><a href="?article_id='.$GLOBALS['article_id'].'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">';
   $_art_id = & $REX['ARTICLE_ID'];
-  $link = '<li class="'.$class_aktuell.'"><a href="?article_id='.$_art_id.'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">';
+  $link = '<li class="'.$class_aktuell.'">';
+  //$link .= '<a href="?article_id='.$_art_id.'&amp;page='.$page.'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">';
+  // Vorschlag zur Nutzung von realURL: http://forum.redaxo.de/sutra72140.html#72140
+  $link .= '<a href="'.rex_getUrl($_art_id, '', array('page' => $page)).'" title="Seite '.$title_name.'" name="Seite '.$title_name.'">';
   $link .= $label.'</a></li>';
   return $link;
 }

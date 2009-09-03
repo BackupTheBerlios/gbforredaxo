@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.31 2009/08/25 20:29:34 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.32 2009/09/03 21:02:09 koala_s Exp $ -->
 <h2>Changelog:</h2>
 
 <strong>ToDo</strong>
@@ -17,6 +17,9 @@
 
 
   <em>changes by Koala</em>
+03.09.2009 - GB V2.1.6 - NOCH NICHT FREIGEGEBEN !
+- URL-Ausgabe der Pagination fuer realURL angepasst
+
 19.07.2009 - GB V2.1.6 - NOCH NICHT FREIGEGEBEN !
 templates/
 - gb_frontend_from.html - Umlaute in HTML-Zeichen geaendert
