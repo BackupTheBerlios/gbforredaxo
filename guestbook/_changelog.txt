@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.32 2009/09/03 21:02:09 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.33 2009/09/13 20:54:40 koala_s Exp $ -->
 <h2>Changelog:</h2>
 
 <strong>ToDo</strong>
@@ -17,6 +17,11 @@
 
 
   <em>changes by Koala</em>
+13.09.2009 - GB V2.1.6 - NOCH NICHT FREIGEGEBEN !
+- module.form.inc.php - htmlspecialchars durch strip_tags ersetzt
+                        Beim Bearbeiten der Beiträge im Backend werden durch das Addon Framework
+                        aus in HTML-Zeichen umgewandelte Zeichen wieder normale Zeichen (aus $lt; wird <).  
+
 03.09.2009 - GB V2.1.6 - NOCH NICHT FREIGEGEBEN !
 - URL-Ausgabe der Pagination fuer realURL angepasst
 

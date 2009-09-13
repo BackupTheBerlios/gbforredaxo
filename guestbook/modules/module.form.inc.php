@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.form.inc.php,v 1.28 2009/09/03 21:02:09 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.29 2009/09/13 20:54:40 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -59,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.28 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.29 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -79,7 +79,8 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
  */
 function checkPostVarForMySQL($var, $default = '') {
   if (isset ($var) and $var != '') {
-    $var = '"'.htmlspecialchars($var).'"';
+//    $var = '"'.htmlspecialchars($var).'"';
+    $var = '"'.strip_tags($var).'"';
   } elseif (isset ($default) and $default != '' and isset ($var) and $var == '') {
     $var = $default;
   } else {
@@ -214,12 +215,18 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
       }
       $mail_server = $mail_host .'/redaxo';
 
-      $mail_author = htmlspecialchars(rex_post('name', 'string'));
+/*      $mail_author = htmlspecialchars(rex_post('name', 'string'));
       $mail_message = htmlspecialchars(rex_post('text', 'string'));
       $mail_url = htmlspecialchars(rex_post('url', 'string'));
       $mail_email = htmlspecialchars(rex_post('email', 'string'));
       $mail_city = htmlspecialchars(rex_post('city', 'string'));
-
+*/
+      $mail_author = strip_tags(rex_post('name', 'string'));
+      $mail_message = strip_tags(rex_post('text', 'string'));
+      $mail_url = strip_tags(rex_post('url', 'string'));
+      $mail_email = strip_tags(rex_post('email', 'string'));
+      $mail_city = strip_tags(rex_post('city', 'string'));
+      
       $mail_betreff = 'Neuer G�stebucheintrag f�r '. $mail_host;
       $mail_nachricht = 'Im G�stebuch f�r die Webseite "'.$mail_host.'" wurde ein neuer Eintrag erstellt.'."\r\n\r\n";
       $mail_nachricht .= 'Name: '.$mail_author. "\r\n";
