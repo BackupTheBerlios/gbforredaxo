@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.form.inc.php,v 1.29 2009/09/13 20:54:40 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.30 2009/11/30 20:47:24 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -59,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.29 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.30 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -67,7 +67,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 
 
 /**
- * Pr�ft den Inhalt der �bergebenen Variable.
+ * Prüft den Inhalt der übergebenen Variable.
  *
  * Ist die Variable leer und darf sie f�r MySQL NULL sein,
  * so gib ein NULL zur�ck. Sonst gib den Wert in Anf�hrungszeichen
