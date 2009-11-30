@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.list.inc.php,v 1.20 2009/09/03 21:02:09 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.21 2009/11/30 22:10:13 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -75,7 +75,7 @@ $css_breite = '200px';
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-  <div class="Modulversion">($Revision: 1.20 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.21 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
@@ -196,7 +196,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
       } // foreach ($data as $row)
 
-      // Eintr�ge vorhanden sind, brauchen wir keinen "Eintr�ge nicht vorhanden"-Hinweis
+      // Einträge vorhanden sind, brauchen wir keinen "Einträge nicht vorhanden"-Hinweis
       $t->set_var(array("EINTRAEGE_BEGINN" => '',
                         "EINTRAEGE_ENDE"   => '',
                         "KEINE_EINTRAEGE_BEGINN" => '{*',
@@ -205,7 +205,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
     } else { // if (is_array($data))
 
-      // Eintr�ge keine vorhanden sind, brauchen wir "Eintr�ge nicht vorhanden"-Hinweis
+      // Einträge keine vorhanden sind, brauchen wir "Einträge nicht vorhanden"-Hinweis
       $t->set_var(array("EINTRAEGE_BEGINN" => '{*',
                         "EINTRAEGE_ENDE"   => '*}',
                         "KEINE_EINTRAEGE_BEGINN" => '',
@@ -291,8 +291,8 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
     $start ++;
   }
 
-  // Arrayinhalt umdrehen und Seitenzahlen in eine Variable zur�ckschreiben
-  // und ein Trennzeichen einf�gen, damit man das im Seitenquelltext besser lesen kann
+  // Arrayinhalt umdrehen und Seitenzahlen in eine Variable zurückschreiben
+  // und ein Trennzeichen einfügen, damit man das im Seitenquelltext besser lesen kann
   //$str .= implode ("\n", array_reverse ($seiten_array));
   $str .= implode ("\n", $seiten_array);
 
@@ -314,7 +314,7 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
  * @param         $label
  * @param string  title_name -
  * @param bool    aktuelle Seite (1 oder 0)
- * @return string Link auf n�chste Seite
+ * @return string Link auf nächste Seite
  */
 function gbook_paginationurl($page, $label = null, $title_name = '', $aktuelleSeite = 0)
 {
