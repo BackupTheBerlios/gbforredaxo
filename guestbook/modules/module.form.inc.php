@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.form.inc.php,v 1.31 2009/11/30 22:10:13 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.32 2009/12/06 21:01:32 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -59,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.31 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.32 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -329,7 +329,11 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
 
 
     // Teilseite zusammensetzen
-    $danke_text_value = $t->parse("output", "danketext");
+    if (trim ($danke_text) != '') {
+      $danke_text_value = $t->parse("output", "danketext");
+    } else {
+      $danke_text_value = '';
+    }
 
 		// soll nur der Danke-Text ausgegeben werden, erstelle keine Formularseite
 		if ($formular_an_aus == 0 and $Eintrag_geschrieben) {

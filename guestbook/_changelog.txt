@@ -1,4 +1,4 @@
-<!-- $Id: _changelog.txt,v 1.33 2009/09/13 20:54:40 koala_s Exp $ -->
+<!-- $Id: _changelog.txt,v 1.34 2009/12/06 21:01:32 koala_s Exp $ -->
 <h2>Changelog:</h2>
 
 <strong>ToDo</strong>
@@ -17,6 +17,9 @@
 
 
   <em>changes by Koala</em>
+06.12.2009 - GB V2.1.6 - NOCH NICHT FREIGEGEBEN !
+- module.form.inc.php - Der 'Danke-Text' wird nun nur ausgegeben, wenn es auch einen gibt.
+
 13.09.2009 - GB V2.1.6 - NOCH NICHT FREIGEGEBEN !
 - module.form.inc.php - htmlspecialchars durch strip_tags ersetzt
                         Beim Bearbeiten der Beiträge im Backend werden durch das Addon Framework
