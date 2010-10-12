@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.form.inc.php,v 1.32 2009/12/06 21:01:32 koala_s Exp $
+ * @version $Id: module.form.inc.php,v 1.33 2010/10/12 19:32:39 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -59,7 +59,7 @@ function gbook_form_input($notificationEmail, $danke_text, $debuglevel, $formula
 		<p>Ist "Aus" eingestellt, erscheint nur der Danke-Text nach einem G&#228;stebucheintrag.<br />
 		Ist "Ein" eingestellt, erscheint der Danke-Text <strong>und</strong> das Formular nach einem G&#228;stebucheintrag.</p>
 
-<div class="Modulversion">($Revision: 1.32 $ - $RCSfile: module.form.inc.php,v $)</div>
+<div class="Modulversion">($Revision: 1.33 $ - $RCSfile: module.form.inc.php,v $)</div>
 
 <?php
 }
@@ -163,8 +163,8 @@ function gbook_form_output($notificationEmail, $danke_text, $debuglevel, $formul
     // die Funktion gbook_readStatusFromFile() läßt keine andere Rückgabe zu
     $status = gbook_readStatusFromFile();
     if ($status === false) {
-      echo 'Fehler.';
-      $status_db = '';
+      echo 'Fehler bei Statusermittlung des Eintrages aufgetreten. Setze Defaultwert 0. ';
+      $status_db = 'status = "0",';
     } else {
       $status_db = 'status = "'.$status.'",';
     }
@@ -406,7 +406,12 @@ function validFields() {
   {
     $failed[] = 'email';
   }
-
+  
+  if ($_POST['city'] == 'USA, New York' || $_POST['city'] == 'New York') {
+  	$failed[] = 'city';
+  }
+  
+  
   // URL Syntax Prüfung
   if ($_POST['url'] == 'http://') {
     $url_temp = '';
