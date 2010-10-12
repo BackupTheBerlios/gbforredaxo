@@ -5,7 +5,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: module.list.inc.php,v 1.21 2009/11/30 22:10:13 koala_s Exp $
+ * @version $Id: module.list.inc.php,v 1.22 2010/10/12 19:28:57 koala_s Exp $
  */
 
 // Dateifunktionen zur Statusbearbeitung einbinden
@@ -35,7 +35,7 @@ $css_breite = '200px';
     </p>
 
     <p>
-      <label for="VALUE[2]" style="width:<?php echo $css_breite; ?>">Anzahl anzuzgeigender Seiten:</label>
+      <label for="VALUE[2]" style="width:<?php echo $css_breite; ?>">Anzahl anzuzeigender Seiten:</label>
       <input type="text" id="VALUE[2]" name="VALUE[2]" value="<?php echo $paginationsPerPage ?>" size="2" maxlength="2" />
     </p>
     <p>
@@ -75,7 +75,7 @@ $css_breite = '200px';
       %to%*AT*%domain%*DOT*%tldomain%
     </p>
   </fieldset>
-  <div class="Modulversion">($Revision: 1.21 $ - $RCSfile: module.list.inc.php,v $)</div>
+  <div class="Modulversion">($Revision: 1.22 $ - $RCSfile: module.list.inc.php,v $)</div>
     <?php
 
 
@@ -109,7 +109,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
 
   // Ausgabe nur im Frontend
   if ($REX['REDAXO'] != true) {
-    $page = empty ($_GET['page']) ? 0 : $_GET['page'];
+    $page = empty ($_GET['page']) ? 0 : intval($_GET['page']);
 
     $qry = 'SELECT * FROM '.TBL_GBOOK.' WHERE status = "1" ORDER BY id DESC LIMIT '. ($page * $elementsPerPage).', '.$elementsPerPage;
 //    $qry = 'SELECT * FROM '.TBL_GBOOK.' WHERE status = "'. $status .'" ORDER BY id DESC LIMIT '. ($page * $elementsPerPage).', '.$elementsPerPage;
@@ -128,7 +128,7 @@ function gbook_list_output($elementsPerPage, $paginationsPerPage, $dateFormat, $
     /* create Template instance called $t */
     $t = new Template(GBOOK_TEMPLATEPATH, "remove");
     //$t->debug = 7;
-    //$start_dir = $_ROOT['template'].'gb_frontend_output.html';
+    //$start_dir = 'gb_frontend_output.html';
     $start_dir = 'gb_frontend_output2.html';
 
     /* lese Template-Datei */
@@ -297,10 +297,9 @@ function gbook_pagination($currentPage, $elementsPerPage, $paginationsPerPage) {
   $str .= implode ("\n", $seiten_array);
 
   // zeige den Sprung zum Ende nur, wenn noch nicht alle Links zum anklicken zu sehen sind
-  if ($currentPage != ($pageCount -3) and $currentPage != ($pageCount -2)) {
+  if ($currentPage != ($pageCount -3) and $currentPage != ($pageCount -2) and ($pageCount -2) > $currentPage) {
     $str .= "\n".gbook_paginationurl($pageCount -2, '&raquo;','Ende')."\n";
   }
-
   return $str;
 }
 
