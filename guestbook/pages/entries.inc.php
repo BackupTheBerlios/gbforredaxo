@@ -6,7 +6,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @author redaxo[at]koalashome[dot]de Sven (Koala) Eichler
  * @package redaxo4
- * @version $Id: entries.inc.php,v 1.9 2009/05/28 22:13:19 koala_s Exp $
+ * @version $Id: entries.inc.php,v 1.10 2010/10/12 19:38:46 koala_s Exp $
  */
  
 //------------------------------> Parameter
