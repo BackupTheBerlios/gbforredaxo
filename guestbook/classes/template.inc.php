@@ -5,7 +5,7 @@
  * (C) Copyright 1999-2000 NetUSE GmbH
  *                    Kristian Koehntopp
  *
- * $Id: template.inc.php,v 1.1 2006/06/13 20:26:10 koala_s Exp $
+ * $Id: template.inc.php,v 1.2 2011/06/03 10:57:25 koala_s Exp $
  *
  */
 
@@ -246,7 +246,7 @@ class Template
   * @return    boolean
   */
   function set_root($root) {
-    if(ereg('/$', $root)) {
+    if(preg_match('#/$#', $root)) {
       $root = substr($root, 0, -1);
     }
     if ($this->debug & 4) {
